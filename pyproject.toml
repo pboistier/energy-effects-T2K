@@ -7,6 +7,7 @@ authors = [
 ]
 dependencies = [
     "numpy>=1.26.4",
+    "pre-commit>=3.7.0",
 ]
 requires-python = ">=3.10"
 readme = "README.md"

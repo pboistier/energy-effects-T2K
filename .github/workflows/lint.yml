@@ -17,11 +17,11 @@ jobs:
         pip install pdm
         pdm install
         pdm add black
-    - name: Analysing the code with black
+    - name: Analyzing the code with black
       run: |
         pdm run python -m black src/* --check
         pdm run python -m black tests/* --check
-  
+
   flake8:
     runs-on: ubuntu-latest
     steps:
@@ -36,9 +36,9 @@ jobs:
         pip install pdm
         pdm install
         pdm add flake8
-    - name: Analysing the code with flake8
+    - name: Analyzing the code with flake8
       run: pdm run python -m flake8 src/* --max-line-length=80 --extend-select=B950 --extend-ignore=E203,E501,E701
-  
+
   mypy:
     runs-on: ubuntu-latest
     steps:
@@ -55,5 +55,5 @@ jobs:
         pdm add black
         pdm add flake8
         pdm add mypy
-    - name: Analysing the code with mypy
+    - name: Analyzing the code with mypy
       run: pdm run python -m mypy .
