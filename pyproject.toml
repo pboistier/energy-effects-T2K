@@ -1,0 +1,21 @@
+[project]
+name = "energy-effects-T2K"
+version = "0.1.0"
+description = "Energy resolution and non-linearity effects on the neutrino oscillation probability at T2K and beyond"
+authors = [
+    {name = "Pierre Boistier", email = "pierre.boistier@cea.fr"},
+]
+dependencies = [
+    "numpy>=1.26.4",
+]
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
