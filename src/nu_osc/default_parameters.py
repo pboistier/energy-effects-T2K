@@ -1,5 +1,52 @@
-# -*- coding: utf-8 -*-
 from numpy import radians, sqrt
+
+"""NuFIT parameters with SK atmospheric, with normal ordering.
+   Taken from http://www.nu-fit.org. Version: 03/24"""
+
+NUFIT = {
+    "theta_12": {  # in rad
+        "bf": radians(33.67),
+        "m1sigma": radians(32.96),
+        "p1sigma": radians(34.4),
+        "m3sigma": radians(31.61),
+        "p3sigma": radians(35.94),
+    },
+    "theta_23": {  # in rad
+        "bf": radians(42.3),
+        "m1sigma": radians(41.4),
+        "p1sigma": radians(43.4),
+        "m3sigma": radians(39.9),
+        "p3sigma": radians(51.1),
+    },
+    "theta_13": {  # in rad
+        "bf": radians(8.58),
+        "m1sigma": radians(8.47),
+        "p1sigma": radians(8.69),
+        "m3sigma": radians(8.23),
+        "p3sigma": radians(8.91),
+    },
+    "delta_CP": {  # in rad
+        "bf": radians(232),
+        "m1sigma": radians(207),
+        "p1sigma": radians(271),
+        "m3sigma": radians(139),
+        "p3sigma": radians(350),
+    },
+    "Dm_square_21": {  # in eV^2
+        "bf": 7.41e-5,
+        "m1sigma": 7.20e-5,
+        "p1sigma": 7.62e-5,
+        "m3sigma": 6.81e-5,
+        "p3sigma": 8.03e-5,
+    },
+    "Dm_square_32": {  # in eV^2
+        "bf": 2.505e-3,
+        "m1sigma": 2.479e-3,
+        "p1sigma": 2.529e-3,
+        "m3sigma": 2.426e-3,
+        "p3sigma": 2.586e-3,
+    },
+}
 
 theta_12_BF = radians(33.44)
 theta_13_BF = radians(8.57)
