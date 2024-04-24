@@ -1,3 +1,6 @@
+sphinx
+sphinx-build
+spinx-quickstart
 sphinx-autobuild
 sphinx-copybutton
 sphinx-book-theme
