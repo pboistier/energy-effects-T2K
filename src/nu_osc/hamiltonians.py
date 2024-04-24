@@ -1,4 +1,4 @@
-from default_parameters import *
+from src.nu_osc.default_parameters import *
 from numpy import *
 import numpy as np
 import cmath

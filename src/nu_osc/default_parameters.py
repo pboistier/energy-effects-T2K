@@ -1,8 +1,5 @@
 from numpy import radians, sqrt
 
-"""NuFIT parameters with SK atmospheric, with normal ordering.
-   Taken from http://www.nu-fit.org. Version: 03/24"""
-
 NUFIT = {
     "theta_12": {  # in rad
         "bf": radians(33.67),
@@ -47,6 +44,11 @@ NUFIT = {
         "p3sigma": 2.586e-3,
     },
 }
+r"""dict[str, dict[str, float]]: NuFIT 2024
+
+NuFIT parameters with SK atmospheric, with normal ordering.
+Taken from http://www.nu-fit.org. Version: 03/24
+"""
 
 theta_12_BF = radians(33.44)
 theta_13_BF = radians(8.57)

@@ -8,6 +8,11 @@ authors = [
 dependencies = [
     "numpy>=1.26.4",
     "pre-commit>=3.7.0",
+    "sphinx>=7.3.7",
+    "sphinx-autobuild>=2024.4.16",
+    "sphinx-copybutton>=0.5.2",
+    "sphinx-book-theme>=1.1.2",
+    "matplotlib>=3.8.4",
 ]
 requires-python = ">=3.10"
 readme = "README.md"
