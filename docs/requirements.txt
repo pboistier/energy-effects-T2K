@@ -1,5 +1,4 @@
 sphinx
-sphinx-quickstart
 sphinx-autobuild
 sphinx-copybutton
 sphinx-book-theme
