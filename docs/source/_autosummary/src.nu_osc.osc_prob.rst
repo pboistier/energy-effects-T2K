@@ -23,13 +23,3 @@
       probability_vacuum
       probability_vacuum_anti
       probability_vacuum_approx
-
-
-
-
-
-
-
-
-
-

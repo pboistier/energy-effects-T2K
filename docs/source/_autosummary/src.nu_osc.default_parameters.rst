@@ -27,17 +27,3 @@
       DENSITY_MATTER_CRUST_G_PER_CM3
       NUM_DENSITY_E_EARTH_CRUST
       VCC_EARTH_CRUST
-
-
-
-
-
-
-
-
-
-
-
-
-
-

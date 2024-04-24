@@ -24,13 +24,3 @@
       star
       su3_invariants
       tensor_d
-
-
-
-
-
-
-
-
-
-
