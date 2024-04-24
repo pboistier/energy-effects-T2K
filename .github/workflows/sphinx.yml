@@ -2,6 +2,9 @@ name: sphinx
 
 on: [push, pull_request]
 
+permissions:
+  contents: write
+
 jobs:
   sphinx:
     runs-on: ubuntu-latest
