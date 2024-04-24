@@ -9,6 +9,15 @@ jobs:
       contents: write
     steps:
     - uses: actions/checkout@main
+    - name: Set up Python 3.10
+      uses: actions/setup-python@main
+      with:
+        python-version: "3.10"
+    - name: Install pytest dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pdm
+        pdm install
     - name: Build HTML
       uses: ammaraskar/sphinx-action@master
     - name: Upload artifacts
