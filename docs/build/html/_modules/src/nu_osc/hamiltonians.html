@@ -1,0 +1,1023 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>src.nu_osc.hamiltonians &#8212; energy_effects_t2k 0.1.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../../_static/documentation_options.js?v=1a9ffd16"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/src/nu_osc/hamiltonians';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">energy_effects_t2k 0.1.1 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../api.html">API</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../_autosummary/src.nu_osc.default_parameters.html">src.nu_osc.default_parameters</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.default_parameters.NUFIT.html">src.nu_osc.default_parameters.NUFIT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.default_parameters.SQRT3.html">src.nu_osc.default_parameters.SQRT3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.default_parameters.SQRT3_INV.html">src.nu_osc.default_parameters.SQRT3_INV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.default_parameters.NEG_HALF_SQRT3_INV.html">src.nu_osc.default_parameters.NEG_HALF_SQRT3_INV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.default_parameters.CONV_KM_TO_INV_EV.html">src.nu_osc.default_parameters.CONV_KM_TO_INV_EV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.default_parameters.CONV_CM_TO_INV_EV.html">src.nu_osc.default_parameters.CONV_CM_TO_INV_EV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.default_parameters.CONV_INV_EV_TO_CM.html">src.nu_osc.default_parameters.CONV_INV_EV_TO_CM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.default_parameters.CONV_EV_TO_G.html">src.nu_osc.default_parameters.CONV_EV_TO_G</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.default_parameters.CONV_G_TO_EV.html">src.nu_osc.default_parameters.CONV_G_TO_EV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.default_parameters.GF.html">src.nu_osc.default_parameters.GF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.default_parameters.MASS_ELECTRON.html">src.nu_osc.default_parameters.MASS_ELECTRON</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.default_parameters.MASS_PROTON.html">src.nu_osc.default_parameters.MASS_PROTON</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.default_parameters.MASS_NEUTRON.html">src.nu_osc.default_parameters.MASS_NEUTRON</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.default_parameters.ELECTRON_FRACTION_EARTH_CRUST.html">src.nu_osc.default_parameters.ELECTRON_FRACTION_EARTH_CRUST</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.default_parameters.DENSITY_MATTER_CRUST_G_PER_CM3.html">src.nu_osc.default_parameters.DENSITY_MATTER_CRUST_G_PER_CM3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.default_parameters.NUM_DENSITY_E_EARTH_CRUST.html">src.nu_osc.default_parameters.NUM_DENSITY_E_EARTH_CRUST</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.default_parameters.VCC_EARTH_CRUST.html">src.nu_osc.default_parameters.VCC_EARTH_CRUST</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../_autosummary/src.nu_osc.hamiltonians.html">src.nu_osc.hamiltonians</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.hamiltonians.PMNS.html">src.nu_osc.hamiltonians.PMNS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.hamiltonians.evolution_operator_3nu.html">src.nu_osc.hamiltonians.evolution_operator_3nu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.hamiltonians.evolution_operator_3nu_u_coefficients.html">src.nu_osc.hamiltonians.evolution_operator_3nu_u_coefficients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.hamiltonians.hamiltonian_3nu_coefficients.html">src.nu_osc.hamiltonians.hamiltonian_3nu_coefficients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.hamiltonians.hamiltonian_3nu_energy_independent.html">src.nu_osc.hamiltonians.hamiltonian_3nu_energy_independent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.hamiltonians.probability_energy_fixed.html">src.nu_osc.hamiltonians.probability_energy_fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.hamiltonians.psi_roots.html">src.nu_osc.hamiltonians.psi_roots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.hamiltonians.star.html">src.nu_osc.hamiltonians.star</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.hamiltonians.su3_invariants.html">src.nu_osc.hamiltonians.su3_invariants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.hamiltonians.tensor_d.html">src.nu_osc.hamiltonians.tensor_d</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../_autosummary/src.nu_osc.osc_prob.html">src.nu_osc.osc_prob</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.osc_prob.K.html">src.nu_osc.osc_prob.K</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.osc_prob.PMNS.html">src.nu_osc.osc_prob.PMNS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.osc_prob.cronecer.html">src.nu_osc.osc_prob.cronecer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.osc_prob.multiline.html">src.nu_osc.osc_prob.multiline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.osc_prob.probability_general.html">src.nu_osc.osc_prob.probability_general</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.osc_prob.probability_general_anti.html">src.nu_osc.osc_prob.probability_general_anti</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.osc_prob.probability_vacuum.html">src.nu_osc.osc_prob.probability_vacuum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.osc_prob.probability_vacuum_anti.html">src.nu_osc.osc_prob.probability_vacuum_anti</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/src.nu_osc.osc_prob.probability_vacuum_approx.html">src.nu_osc.osc_prob.probability_vacuum_approx</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for src.nu_osc.hamiltonians</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">src.nu_osc.default_parameters</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">cmath</span>
+<span class="kn">import</span> <span class="nn">cmath</span> <span class="k">as</span> <span class="nn">cmath</span>
+
+<span class="sd">&quot;&quot;&quot;Computes all the necessary objects for oscillation probability in matter: hamiltonian and evolution operator (SU(3) expansion is used).</span>
+<span class="sd">   Taken from https://github.com/mbustama/NuOscProbExact&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="PMNS">
+<a class="viewcode-back" href="../../../_autosummary/src.nu_osc.hamiltonians.PMNS.html#src.nu_osc.hamiltonians.PMNS">[docs]</a>
+<span class="k">def</span> <span class="nf">PMNS</span><span class="p">(</span>
+    <span class="n">theta_12</span><span class="o">=</span><span class="n">theta_12_BF</span><span class="p">,</span>
+    <span class="n">theta_13</span><span class="o">=</span><span class="n">theta_13_BF</span><span class="p">,</span>
+    <span class="n">theta_23</span><span class="o">=</span><span class="n">theta_23_BF</span><span class="p">,</span>
+    <span class="n">delta_cp</span><span class="o">=</span><span class="n">delta_cp_BF</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns PMNS matrix</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    3 mixing angles and delta_cp phase</span>
+<span class="sd">    By default best fit values are set from default_parameters file</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    numpy array</span>
+<span class="sd">        2D numpy array of the PMNS matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">s13</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">theta_13</span><span class="p">)</span>
+    <span class="n">c13</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">theta_13</span><span class="p">)</span>
+    <span class="n">s23</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">theta_23</span><span class="p">)</span>
+    <span class="n">c23</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">theta_23</span><span class="p">)</span>
+    <span class="n">s12</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">theta_12</span><span class="p">)</span>
+    <span class="n">c12</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">theta_12</span><span class="p">)</span>
+
+    <span class="n">s2_13</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">theta_13</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">c2_13</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">theta_13</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">s2_23</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">theta_23</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">c2_23</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">theta_23</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">c2_12</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">theta_12</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">s2_12</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">theta_12</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">c23</span><span class="p">,</span> <span class="n">s23</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">s23</span><span class="p">,</span> <span class="n">c23</span><span class="p">]])</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">[</span><span class="n">c13</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">s13</span> <span class="o">*</span> <span class="n">exp</span><span class="p">(</span><span class="nb">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">delta_cp</span><span class="p">))],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="o">-</span><span class="n">s13</span> <span class="o">*</span> <span class="n">exp</span><span class="p">(</span><span class="nb">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">delta_cp</span><span class="p">)),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">c13</span><span class="p">],</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">c12</span><span class="p">,</span> <span class="n">s12</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">s12</span><span class="p">,</span> <span class="n">c12</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+
+    <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">),</span> <span class="n">C</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">U</span></div>
+
+
+
+<div class="viewcode-block" id="hamiltonian_3nu_energy_independent">
+<a class="viewcode-back" href="../../../_autosummary/src.nu_osc.hamiltonians.hamiltonian_3nu_energy_independent.html#src.nu_osc.hamiltonians.hamiltonian_3nu_energy_independent">[docs]</a>
+<span class="k">def</span> <span class="nf">hamiltonian_3nu_energy_independent</span><span class="p">(</span>
+    <span class="n">theta_12</span><span class="o">=</span><span class="n">theta_12_BF</span><span class="p">,</span>
+    <span class="n">theta_13</span><span class="o">=</span><span class="n">theta_13_BF</span><span class="p">,</span>
+    <span class="n">theta_23</span><span class="o">=</span><span class="n">theta_23_BF</span><span class="p">,</span>
+    <span class="n">delta_cp</span><span class="o">=</span><span class="n">delta_cp_BF</span><span class="p">,</span>
+    <span class="n">dm2_21</span><span class="o">=</span><span class="n">dm2_21_BF</span><span class="p">,</span>
+    <span class="n">dm2_32</span><span class="o">=</span><span class="n">dm2_32_BF</span><span class="p">,</span>
+    <span class="n">compute_matrix_multiplication</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the three-neutrino Hamiltonian for vacuum oscillations.</span>
+
+<span class="sd">    Computes and returns the 3x3 complex three-neutrino Hamiltonian for</span>
+<span class="sd">    oscillations in vacuum, parametrized by three mixing angles ---</span>
+<span class="sd">    theta_12, theta_23, theta_13 --- one CP-violation phase --- delta_CP</span>
+<span class="sd">    --- and two mass-squared difference --- Delta m^2_21, Delta m^2_31.</span>
+<span class="sd">    The Hamiltonian is H = (1/2)*R.M2.R^dagger, with R the 3x3 PMNS</span>
+<span class="sd">    matrix and M2 the mass matrix.  The multiplicative factor 1/E is not</span>
+<span class="sd">    applied.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    s12 : float</span>
+<span class="sd">        Sin(theta_12).</span>
+<span class="sd">    s23 : float</span>
+<span class="sd">        Sin(theta_23).</span>
+<span class="sd">    s13 : float</span>
+<span class="sd">        Sin(theta_13).</span>
+<span class="sd">    D21 : float</span>
+<span class="sd">        Mass-squared difference Delta m^2_21.</span>
+<span class="sd">    D31 : float</span>
+<span class="sd">        Mass-squared difference Delta m^2_31.</span>
+<span class="sd">    compute_matrix_multiplication : bool, optional</span>
+<span class="sd">        If False (default), use the pre-computed expressions; otherwise,</span>
+<span class="sd">        multiply R.M2.R^dagger live.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list</span>
+<span class="sd">        Hamiltonian 3x3 matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dm2_31</span> <span class="o">=</span> <span class="n">dm2_21</span> <span class="o">+</span> <span class="n">dm2_32</span>
+    <span class="n">D21</span> <span class="o">=</span> <span class="n">dm2_21</span>
+    <span class="n">D31</span> <span class="o">=</span> <span class="n">dm2_31</span>
+    <span class="n">dCP</span> <span class="o">=</span> <span class="n">delta_cp</span>
+    <span class="n">s12</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">theta_12</span><span class="p">)</span>
+    <span class="n">s13</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">theta_13</span><span class="p">)</span>
+    <span class="n">s23</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">theta_23</span><span class="p">)</span>
+    <span class="n">c12</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">s12</span> <span class="o">*</span> <span class="n">s12</span><span class="p">)</span>
+    <span class="n">c23</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">s23</span> <span class="o">*</span> <span class="n">s23</span><span class="p">)</span>
+    <span class="n">c13</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">s13</span> <span class="o">*</span> <span class="n">s13</span><span class="p">)</span>
+
+    <span class="n">f</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">2.0</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">compute_matrix_multiplication</span><span class="p">:</span>
+        <span class="c1"># All Hij have units of [eV^2]</span>
+        <span class="n">H00</span> <span class="o">=</span> <span class="n">c13</span> <span class="o">*</span> <span class="n">c13</span> <span class="o">*</span> <span class="n">D21</span> <span class="o">*</span> <span class="n">s12</span> <span class="o">*</span> <span class="n">s12</span> <span class="o">+</span> <span class="n">D31</span> <span class="o">*</span> <span class="n">s13</span> <span class="o">*</span> <span class="n">s13</span>
+        <span class="n">H01</span> <span class="o">=</span> <span class="n">c12</span> <span class="o">*</span> <span class="n">c13</span> <span class="o">*</span> <span class="n">c23</span> <span class="o">*</span> <span class="n">D21</span> <span class="o">*</span> <span class="n">s12</span> <span class="o">+</span> <span class="n">c13</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="n">D31</span> <span class="o">-</span> <span class="n">D21</span> <span class="o">*</span> <span class="n">s12</span> <span class="o">*</span> <span class="n">s12</span>
+        <span class="p">)</span> <span class="o">*</span> <span class="n">s13</span> <span class="o">*</span> <span class="n">s23</span> <span class="o">*</span> <span class="nb">complex</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">dCP</span><span class="p">),</span> <span class="o">-</span><span class="n">sin</span><span class="p">(</span><span class="n">dCP</span><span class="p">))</span>
+        <span class="n">H02</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">c13</span> <span class="o">*</span> <span class="n">c23</span> <span class="o">*</span> <span class="p">(</span><span class="n">D31</span> <span class="o">-</span> <span class="n">D21</span> <span class="o">*</span> <span class="n">s12</span> <span class="o">*</span> <span class="n">s12</span><span class="p">)</span> <span class="o">*</span> <span class="n">s13</span> <span class="o">*</span> <span class="nb">complex</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">dCP</span><span class="p">),</span> <span class="o">-</span><span class="n">sin</span><span class="p">(</span><span class="n">dCP</span><span class="p">))</span>
+            <span class="o">-</span> <span class="n">c12</span> <span class="o">*</span> <span class="n">c13</span> <span class="o">*</span> <span class="n">D21</span> <span class="o">*</span> <span class="n">s12</span> <span class="o">*</span> <span class="n">s23</span>
+        <span class="p">)</span>
+        <span class="n">H10</span> <span class="o">=</span> <span class="n">c12</span> <span class="o">*</span> <span class="n">c13</span> <span class="o">*</span> <span class="n">c23</span> <span class="o">*</span> <span class="n">D21</span> <span class="o">*</span> <span class="n">s12</span> <span class="o">+</span> <span class="n">c13</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="n">D31</span> <span class="o">-</span> <span class="n">D21</span> <span class="o">*</span> <span class="n">s12</span> <span class="o">*</span> <span class="n">s12</span>
+        <span class="p">)</span> <span class="o">*</span> <span class="n">s13</span> <span class="o">*</span> <span class="n">s23</span> <span class="o">*</span> <span class="nb">complex</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">dCP</span><span class="p">),</span> <span class="n">sin</span><span class="p">(</span><span class="n">dCP</span><span class="p">))</span>
+        <span class="n">H11</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">c12</span> <span class="o">*</span> <span class="n">c12</span> <span class="o">*</span> <span class="n">c23</span> <span class="o">*</span> <span class="n">c23</span> <span class="o">*</span> <span class="n">D21</span>
+            <span class="o">+</span> <span class="p">(</span><span class="n">c13</span> <span class="o">*</span> <span class="n">c13</span> <span class="o">*</span> <span class="n">D31</span> <span class="o">+</span> <span class="n">D21</span> <span class="o">*</span> <span class="n">s12</span> <span class="o">*</span> <span class="n">s12</span> <span class="o">*</span> <span class="n">s13</span> <span class="o">*</span> <span class="n">s13</span><span class="p">)</span> <span class="o">*</span> <span class="n">s23</span> <span class="o">*</span> <span class="n">s23</span>
+            <span class="o">-</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">c12</span> <span class="o">*</span> <span class="n">c23</span> <span class="o">*</span> <span class="n">D21</span> <span class="o">*</span> <span class="n">s12</span> <span class="o">*</span> <span class="n">s13</span> <span class="o">*</span> <span class="n">s23</span> <span class="o">*</span> <span class="n">cos</span><span class="p">(</span><span class="n">dCP</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">H12</span> <span class="o">=</span> <span class="n">c13</span> <span class="o">*</span> <span class="n">c13</span> <span class="o">*</span> <span class="n">c23</span> <span class="o">*</span> <span class="n">D31</span> <span class="o">*</span> <span class="n">s23</span> <span class="o">+</span> <span class="p">(</span>
+            <span class="n">c23</span> <span class="o">*</span> <span class="n">s12</span> <span class="o">*</span> <span class="n">s13</span> <span class="o">*</span> <span class="nb">complex</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">dCP</span><span class="p">),</span> <span class="o">-</span><span class="n">sin</span><span class="p">(</span><span class="n">dCP</span><span class="p">))</span> <span class="o">+</span> <span class="n">c12</span> <span class="o">*</span> <span class="n">s23</span>
+        <span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="n">c12</span> <span class="o">*</span> <span class="n">c23</span> <span class="o">*</span> <span class="n">D21</span> <span class="o">+</span> <span class="n">D21</span> <span class="o">*</span> <span class="n">s12</span> <span class="o">*</span> <span class="n">s13</span> <span class="o">*</span> <span class="n">s23</span> <span class="o">*</span> <span class="nb">complex</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">dCP</span><span class="p">),</span> <span class="n">sin</span><span class="p">(</span><span class="n">dCP</span><span class="p">)))</span>
+        <span class="n">H20</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">c13</span> <span class="o">*</span> <span class="n">c23</span> <span class="o">*</span> <span class="p">(</span><span class="n">D31</span> <span class="o">-</span> <span class="n">D21</span> <span class="o">*</span> <span class="n">s12</span> <span class="o">*</span> <span class="n">s12</span><span class="p">)</span> <span class="o">*</span> <span class="n">s13</span> <span class="o">*</span> <span class="nb">complex</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">dCP</span><span class="p">),</span> <span class="n">sin</span><span class="p">(</span><span class="n">dCP</span><span class="p">))</span>
+            <span class="o">-</span> <span class="n">c12</span> <span class="o">*</span> <span class="n">c13</span> <span class="o">*</span> <span class="n">D21</span> <span class="o">*</span> <span class="n">s12</span> <span class="o">*</span> <span class="n">s23</span>
+        <span class="p">)</span>
+        <span class="n">H21</span> <span class="o">=</span> <span class="n">c13</span> <span class="o">*</span> <span class="n">c13</span> <span class="o">*</span> <span class="n">c23</span> <span class="o">*</span> <span class="n">D31</span> <span class="o">*</span> <span class="n">s23</span> <span class="o">-</span> <span class="n">D21</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="n">c23</span> <span class="o">*</span> <span class="n">s12</span> <span class="o">*</span> <span class="n">s13</span> <span class="o">*</span> <span class="nb">complex</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">dCP</span><span class="p">),</span> <span class="n">sin</span><span class="p">(</span><span class="n">dCP</span><span class="p">))</span> <span class="o">+</span> <span class="n">c12</span> <span class="o">*</span> <span class="n">s23</span>
+        <span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">c12</span> <span class="o">*</span> <span class="n">c23</span> <span class="o">-</span> <span class="n">s12</span> <span class="o">*</span> <span class="n">s13</span> <span class="o">*</span> <span class="n">s23</span> <span class="o">*</span> <span class="nb">complex</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">dCP</span><span class="p">),</span> <span class="o">-</span><span class="n">sin</span><span class="p">(</span><span class="n">dCP</span><span class="p">)))</span>
+        <span class="n">H22</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">c23</span> <span class="o">*</span> <span class="n">c23</span> <span class="o">*</span> <span class="p">(</span><span class="n">c13</span> <span class="o">*</span> <span class="n">c13</span> <span class="o">*</span> <span class="n">D31</span> <span class="o">+</span> <span class="n">D21</span> <span class="o">*</span> <span class="n">s12</span> <span class="o">*</span> <span class="n">s12</span> <span class="o">*</span> <span class="n">s13</span> <span class="o">*</span> <span class="n">s13</span><span class="p">)</span>
+            <span class="o">+</span> <span class="n">c12</span> <span class="o">*</span> <span class="n">c12</span> <span class="o">*</span> <span class="n">D21</span> <span class="o">*</span> <span class="n">s23</span> <span class="o">*</span> <span class="n">s23</span>
+            <span class="o">+</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">c12</span> <span class="o">*</span> <span class="n">c23</span> <span class="o">*</span> <span class="n">D21</span> <span class="o">*</span> <span class="n">s12</span> <span class="o">*</span> <span class="n">s13</span> <span class="o">*</span> <span class="n">s23</span> <span class="o">*</span> <span class="n">cos</span><span class="p">(</span><span class="n">dCP</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">H</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">[</span><span class="n">H00</span> <span class="o">*</span> <span class="n">f</span><span class="p">,</span> <span class="n">H01</span> <span class="o">*</span> <span class="n">f</span><span class="p">,</span> <span class="n">H02</span> <span class="o">*</span> <span class="n">f</span><span class="p">],</span>
+            <span class="p">[</span><span class="n">H10</span> <span class="o">*</span> <span class="n">f</span><span class="p">,</span> <span class="n">H11</span> <span class="o">*</span> <span class="n">f</span><span class="p">,</span> <span class="n">H12</span> <span class="o">*</span> <span class="n">f</span><span class="p">],</span>
+            <span class="p">[</span><span class="n">H20</span> <span class="o">*</span> <span class="n">f</span><span class="p">,</span> <span class="n">H21</span> <span class="o">*</span> <span class="n">f</span><span class="p">,</span> <span class="n">H22</span> <span class="o">*</span> <span class="n">f</span><span class="p">],</span>
+        <span class="p">]</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># PMNS matrix</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">PMNS</span><span class="p">(</span><span class="n">theta_12</span><span class="p">,</span> <span class="n">theta_13</span><span class="p">,</span> <span class="n">theta_23</span><span class="p">,</span> <span class="n">delta_cp</span><span class="p">))</span>
+        <span class="c1"># Mass matrix</span>
+        <span class="n">M2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">dm2_21</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">dm2_31</span><span class="p">]])</span>
+        <span class="c1"># Hamiltonian</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">f</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">M2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">R</span><span class="p">)))))</span>
+    <span class="k">return</span> <span class="n">H</span></div>
+
+
+
+<div class="viewcode-block" id="hamiltonian_3nu_coefficients">
+<a class="viewcode-back" href="../../../_autosummary/src.nu_osc.hamiltonians.hamiltonian_3nu_coefficients.html#src.nu_osc.hamiltonians.hamiltonian_3nu_coefficients">[docs]</a>
+<span class="k">def</span> <span class="nf">hamiltonian_3nu_coefficients</span><span class="p">(</span><span class="n">hamiltonian_matrix</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the h_k of the SU(3)-expansion of the 3nu Hamiltonian.</span>
+
+<span class="sd">    Computes the coefficients :math:`h_1, ..., h_8` in the SU(3)</span>
+<span class="sd">    expansion of the provided three-flavor Hamiltonian</span>
+<span class="sd">    `hamiltonian_matrix`, which is assumed to be given in the flavor</span>
+<span class="sd">    basis.  The Hamiltonian is a :math:`3\times3` Hermitian matrix.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    hamiltonian_matrix : array_like</span>
+<span class="sd">        Three-flavor Hamiltonian matrix, given as the list</span>
+<span class="sd">        [[H11, H12, H13], [H12*, H22, H23], [H13*, H23*, H33]], where</span>
+<span class="sd">        the componentes Hij are complex numbers.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list</span>
+<span class="sd">        List of coefficients [h1, h2, h3, h4, h5, h6, h7, h8].  These</span>
+<span class="sd">        are complex numbers, in general.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; hamiltonian_matrix = [</span>
+<span class="sd">    ...                   [1.0+0.0j, 0.0+2.0j, 0.0-1.0j],</span>
+<span class="sd">    ...                   [0.0-2.0j, 3.0+0.0j, 3.0+0.0j],</span>
+<span class="sd">    ...                   [0.0+1.0j, 3.0-0.0j, -5.0+0.0j]</span>
+<span class="sd">    ... ]</span>
+<span class="sd">    &gt;&gt;&gt; h_coeffs = hamiltonian_3nu_coefficients(hamiltonian_matrix)</span>
+<span class="sd">    &gt;&gt;&gt; print(h_coeffs)</span>
+<span class="sd">    [0.0, -2.0, (-1+0j), 0.0, 1.0, 3.0, -0.0, (-1.7320508075688774+0j)]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">H11</span> <span class="o">=</span> <span class="n">hamiltonian_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">H12</span> <span class="o">=</span> <span class="n">hamiltonian_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">H13</span> <span class="o">=</span> <span class="n">hamiltonian_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">H21</span> <span class="o">=</span> <span class="n">hamiltonian_matrix</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">H22</span> <span class="o">=</span> <span class="n">hamiltonian_matrix</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">H23</span> <span class="o">=</span> <span class="n">hamiltonian_matrix</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">H31</span> <span class="o">=</span> <span class="n">hamiltonian_matrix</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">H32</span> <span class="o">=</span> <span class="n">hamiltonian_matrix</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">H33</span> <span class="o">=</span> <span class="n">hamiltonian_matrix</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="c1"># h0 = (H11+H22+H33)/3.0  # Not used</span>
+    <span class="n">h1</span> <span class="o">=</span> <span class="n">H12</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">h2</span> <span class="o">=</span> <span class="o">-</span><span class="n">H12</span><span class="o">.</span><span class="n">imag</span>
+    <span class="n">h3</span> <span class="o">=</span> <span class="p">(</span><span class="n">H11</span> <span class="o">-</span> <span class="n">H22</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
+    <span class="n">h4</span> <span class="o">=</span> <span class="n">H13</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">h5</span> <span class="o">=</span> <span class="o">-</span><span class="n">H13</span><span class="o">.</span><span class="n">imag</span>
+    <span class="n">h6</span> <span class="o">=</span> <span class="n">H23</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">h7</span> <span class="o">=</span> <span class="o">-</span><span class="n">H23</span><span class="o">.</span><span class="n">imag</span>
+    <span class="n">h8</span> <span class="o">=</span> <span class="p">(</span><span class="n">H11</span> <span class="o">+</span> <span class="n">H22</span> <span class="o">-</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">H33</span><span class="p">)</span> <span class="o">*</span> <span class="n">SQRT3</span> <span class="o">/</span> <span class="mf">6.0</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">h1</span><span class="p">,</span> <span class="n">h2</span><span class="p">,</span> <span class="n">h3</span><span class="p">,</span> <span class="n">h4</span><span class="p">,</span> <span class="n">h5</span><span class="p">,</span> <span class="n">h6</span><span class="p">,</span> <span class="n">h7</span><span class="p">,</span> <span class="n">h8</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="tensor_d">
+<a class="viewcode-back" href="../../../_autosummary/src.nu_osc.hamiltonians.tensor_d.html#src.nu_osc.hamiltonians.tensor_d">[docs]</a>
+<span class="k">def</span> <span class="nf">tensor_d</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the tensor d_ijk of the SU(3) algebra.</span>
+
+<span class="sd">    Returns the SU(3) tensor d_ijk.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    i : int</span>
+<span class="sd">        First index.</span>
+<span class="sd">    j : int</span>
+<span class="sd">        Second index.</span>
+<span class="sd">    k : int</span>
+<span class="sd">        Third index.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Value of the tensor d_ijk.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ip1</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">jp1</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">kp1</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">jkp1</span> <span class="o">=</span> <span class="p">(</span><span class="n">jp1</span><span class="p">,</span> <span class="n">kp1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ip1</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">SQRT3_INV</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">SQRT3_INV</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">elif</span> <span class="n">ip1</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">SQRT3_INV</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">SQRT3_INV</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">elif</span> <span class="n">ip1</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">SQRT3_INV</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">SQRT3_INV</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">elif</span> <span class="n">ip1</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">NEG_HALF_SQRT3_INV</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">NEG_HALF_SQRT3_INV</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">elif</span> <span class="n">ip1</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">NEG_HALF_SQRT3_INV</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">NEG_HALF_SQRT3_INV</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">elif</span> <span class="n">ip1</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">NEG_HALF_SQRT3_INV</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">NEG_HALF_SQRT3_INV</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">elif</span> <span class="n">ip1</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">NEG_HALF_SQRT3_INV</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">NEG_HALF_SQRT3_INV</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">elif</span> <span class="n">ip1</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">SQRT3_INV</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">SQRT3_INV</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">SQRT3_INV</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">NEG_HALF_SQRT3_INV</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">NEG_HALF_SQRT3_INV</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">NEG_HALF_SQRT3_INV</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">NEG_HALF_SQRT3_INV</span>
+        <span class="k">if</span> <span class="n">jkp1</span> <span class="o">==</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+            <span class="k">return</span> <span class="o">-</span><span class="n">SQRT3_INV</span>
+        <span class="k">return</span> <span class="mf">0.0</span></div>
+
+
+
+<div class="viewcode-block" id="star">
+<a class="viewcode-back" href="../../../_autosummary/src.nu_osc.hamiltonians.star.html#src.nu_osc.hamiltonians.star">[docs]</a>
+<span class="k">def</span> <span class="nf">star</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">h_coeffs</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the SU(3) star oroduct (h*h)_i.</span>
+
+<span class="sd">    Returns the SU(3) star product (h*h)_i = d_ijk*h^j*h^k (summed over</span>
+<span class="sd">    repeated indices).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    i : int</span>
+<span class="sd">        Index of the star product.</span>
+<span class="sd">    h_coeffs : array_like</span>
+<span class="sd">        Eight-component vector.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Star product (h*h)_i.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">tensor_d</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="n">h_coeffs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">h_coeffs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">res</span></div>
+
+
+
+<div class="viewcode-block" id="su3_invariants">
+<a class="viewcode-back" href="../../../_autosummary/src.nu_osc.hamiltonians.su3_invariants.html#src.nu_osc.hamiltonians.su3_invariants">[docs]</a>
+<span class="k">def</span> <span class="nf">su3_invariants</span><span class="p">(</span><span class="n">h_coeffs</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the two SU(3) invariants, |h|^2 and &lt;h&gt;.</span>
+
+<span class="sd">    Returns the two SU(3) invariants computed from the coefficients</span>
+<span class="sd">    h_coeffs.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    h_coeffs : array_like</span>
+<span class="sd">        Eight-component vector.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    h2 : float</span>
+<span class="sd">        SU(3) invariant |h|^2.</span>
+<span class="sd">    h3 : float</span>
+<span class="sd">        SU(3) invariant &lt;h&gt;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># h2 = |h|^2</span>
+    <span class="n">h2</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">h</span> <span class="o">*</span> <span class="n">h</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">h_coeffs</span><span class="p">])</span>
+
+    <span class="c1"># h3 = &lt;h&gt;</span>
+    <span class="n">h3</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">tensor_d</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="n">h_coeffs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">h_coeffs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">h_coeffs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">h2</span><span class="p">,</span> <span class="n">h3</span></div>
+
+
+
+<div class="viewcode-block" id="psi_roots">
+<a class="viewcode-back" href="../../../_autosummary/src.nu_osc.hamiltonians.psi_roots.html#src.nu_osc.hamiltonians.psi_roots">[docs]</a>
+<span class="k">def</span> <span class="nf">psi_roots</span><span class="p">(</span><span class="n">h2</span><span class="p">,</span> <span class="n">h3</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the roots psi.</span>
+
+<span class="sd">    Returns the three latent roots psi of the characteristic equation of</span>
+<span class="sd">    -h_h*lambda^k.  These roots are L-independent.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    h2 : float</span>
+<span class="sd">        SU(3) invariant |h|^2.</span>
+<span class="sd">    h3 : float</span>
+<span class="sd">        SU(3) invariant &lt;h&gt;.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    roots : list</span>
+<span class="sd">        The three roots [psi1, psi2, psi3].</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pre</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">h2</span><span class="p">)</span> <span class="o">*</span> <span class="n">SQRT3_INV</span>
+    <span class="n">chi</span> <span class="o">=</span> <span class="n">cmath</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="o">-</span><span class="n">SQRT3</span> <span class="o">*</span> <span class="n">h3</span> <span class="o">*</span> <span class="nb">pow</span><span class="p">(</span><span class="n">h2</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">))</span>
+
+    <span class="n">roots</span> <span class="o">=</span> <span class="p">[</span><span class="n">pre</span> <span class="o">*</span> <span class="n">cmath</span><span class="o">.</span><span class="n">cos</span><span class="p">((</span><span class="n">chi</span> <span class="o">+</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">m</span><span class="p">)</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+
+    <span class="k">return</span> <span class="n">roots</span></div>
+
+
+
+<div class="viewcode-block" id="evolution_operator_3nu_u_coefficients">
+<a class="viewcode-back" href="../../../_autosummary/src.nu_osc.hamiltonians.evolution_operator_3nu_u_coefficients.html#src.nu_osc.hamiltonians.evolution_operator_3nu_u_coefficients">[docs]</a>
+<span class="k">def</span> <span class="nf">evolution_operator_3nu_u_coefficients</span><span class="p">(</span><span class="n">hamiltonian_matrix</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns coefficients u0, ..., u8 of the 3nu evolution operator.</span>
+
+<span class="sd">    Returns the nine coefficients u0, ..., u8 of the three-neutrino</span>
+<span class="sd">    time-evolution operator U3(L) in its SU(3) exponential expansion,</span>
+<span class="sd">    i.e., U3 = u0*I + i*u_k*lambda^k.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    hamiltonian_matrix : list</span>
+<span class="sd">        3x3 Hamiltonian, [[H11,H12,H13],[H21,H22,H23],[H31,H32,H33]].</span>
+<span class="sd">    L : float</span>
+<span class="sd">        Baseline.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list</span>
+<span class="sd">        The nine coefficients [u0, u1, u2, u3, u4, u5, u6, u7, u8].</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; hamiltonian_matrix = [</span>
+<span class="sd">    ...                   [1.0+0.0j, 0.0+2.0j, 0.0-1.0j],</span>
+<span class="sd">    ...                   [0.0-2.0j, 3.0+0.0j, 3.0+0.0j],</span>
+<span class="sd">    ...                   [0.0+1.0j, 3.0-0.0j, -5.0+0.0j]</span>
+<span class="sd">    ... ]</span>
+<span class="sd">    &gt;&gt;&gt; L = 1.0</span>
+<span class="sd">    &gt;&gt;&gt; u_coeffs = \</span>
+<span class="sd">    ...     evolution_operator_3nu_u_coefficients(hamiltonian_matrix, L)</span>
+<span class="sd">    &gt;&gt;&gt; print(u_coeffs)</span>
+<span class="sd">    [(0.02931819348583329-0.05379039810587031j), 0j,</span>
+<span class="sd">     (-0.37401185730706943+0.5232654591567741j),</span>
+<span class="sd">     (-0.22397496123471491-0.18194182213957913j), 0j,</span>
+<span class="sd">     (0.17020182293481648-0.4632575258138263j),</span>
+<span class="sd">     (0.6584815991291701+0.3845256294303862j), 0j,</span>
+<span class="sd">     (-0.37629378652956447-0.17544272350921003j)]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># [h1, h2, h3, h4, h5, h6, h7, h8]</span>
+    <span class="n">h_coeffs</span> <span class="o">=</span> <span class="n">hamiltonian_3nu_coefficients</span><span class="p">(</span><span class="n">hamiltonian_matrix</span><span class="p">)</span>
+
+    <span class="c1"># h2 = |h|^2, h3 = &lt;h&gt;</span>
+    <span class="n">h2</span><span class="p">,</span> <span class="n">h3</span> <span class="o">=</span> <span class="n">su3_invariants</span><span class="p">(</span><span class="n">h_coeffs</span><span class="p">)</span>
+
+    <span class="c1"># [psi1, psi2, psi3]</span>
+    <span class="n">psi</span> <span class="o">=</span> <span class="n">psi_roots</span><span class="p">(</span><span class="n">h2</span><span class="p">,</span> <span class="n">h3</span><span class="p">)</span>
+
+    <span class="c1"># [e^{i*L*psi1}, e^{i*L*psi2}, e^{i*L*psi3}]</span>
+    <span class="n">exp_psi</span> <span class="o">=</span> <span class="p">[</span><span class="n">cmath</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.0</span><span class="n">j</span> <span class="o">*</span> <span class="n">L</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">psi</span><span class="p">]</span>
+
+    <span class="n">u0</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">exp_psi</span><span class="p">])</span> <span class="o">/</span> <span class="mf">3.0</span>
+    <span class="n">uk</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="mf">1.0</span><span class="n">j</span>
+        <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">exp_psi</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+                <span class="o">*</span> <span class="p">(</span><span class="n">psi</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">*</span> <span class="n">h_coeffs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">star</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">h_coeffs</span><span class="p">))</span>
+                <span class="o">/</span> <span class="p">(</span><span class="mf">3.0</span> <span class="o">*</span> <span class="n">psi</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">*</span> <span class="n">psi</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">-</span> <span class="n">h2</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="c1"># [u0, u1, u2, u3, u4, u5, u6, u7, u8]</span>
+    <span class="n">u_coeffs</span> <span class="o">=</span> <span class="p">[</span><span class="n">u0</span><span class="p">]</span> <span class="o">+</span> <span class="n">uk</span>
+
+    <span class="c1"># print(u_coeffs)</span>
+
+    <span class="k">return</span> <span class="n">u_coeffs</span></div>
+
+
+
+<div class="viewcode-block" id="evolution_operator_3nu">
+<a class="viewcode-back" href="../../../_autosummary/src.nu_osc.hamiltonians.evolution_operator_3nu.html#src.nu_osc.hamiltonians.evolution_operator_3nu">[docs]</a>
+<span class="k">def</span> <span class="nf">evolution_operator_3nu</span><span class="p">(</span><span class="n">hamiltonian_matrix</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the 3nu time-evolution operator in its SU(3) expanstion.</span>
+
+<span class="sd">    Returns the three-neutrino time-evolution operator U3(L) in its</span>
+<span class="sd">    exponential SU(3) expansion U3(L) = u0*I + i*u_k*lambda^k.  This is</span>
+<span class="sd">    a 3x3 unitary matrix.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    hamiltonian_matrix : list</span>
+<span class="sd">        3x3 Hamiltonian, [[H11,H12,H13],[H21,H22,H23],[H31,H32,H33]].</span>
+<span class="sd">    L : float</span>
+<span class="sd">        Baseline.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list</span>
+<span class="sd">        The U3(L) time-evolution operator, a 3x3 unitary complex matrix.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; hamiltonian_matrix = [</span>
+<span class="sd">    ...                   [1.0+0.0j, 0.0+2.0j, 0.0-1.0j],</span>
+<span class="sd">    ...                   [0.0-2.0j, 3.0+0.0j, 3.0+0.0j],</span>
+<span class="sd">    ...                   [0.0+1.0j, 3.0-0.0j, -5.0+0.0j]</span>
+<span class="sd">    ... ]</span>
+<span class="sd">    &gt;&gt;&gt; L = 1.0</span>
+<span class="sd">    &gt;&gt;&gt; U3 = evolution_operator_3nu(hamiltonian_matrix, L)</span>
+<span class="sd">    &gt;&gt;&gt; print(U3)</span>
+<span class="sd">    [[ 0.312551-0.495018j -0.374011+0.523265j  0.170201-0.463257j]</span>
+<span class="sd">     [ 0.374011-0.523265j -0.051331-0.047068j -0.384525+0.65848j ]</span>
+<span class="sd">     [-0.170201+0.463257j -0.384525+0.65848j  -0.173265+0.380716j]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">u0</span><span class="p">,</span> <span class="n">u1</span><span class="p">,</span> <span class="n">u2</span><span class="p">,</span> <span class="n">u3</span><span class="p">,</span> <span class="n">u4</span><span class="p">,</span> <span class="n">u5</span><span class="p">,</span> <span class="n">u6</span><span class="p">,</span> <span class="n">u7</span><span class="p">,</span> <span class="n">u8</span> <span class="o">=</span> <span class="n">evolution_operator_3nu_u_coefficients</span><span class="p">(</span>
+        <span class="n">hamiltonian_matrix</span><span class="p">,</span> <span class="n">L</span>
+    <span class="p">)</span>
+
+    <span class="n">evolution_operator</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="n">u0</span> <span class="o">+</span> <span class="mf">1.0</span><span class="n">j</span> <span class="o">*</span> <span class="p">(</span><span class="n">u3</span> <span class="o">+</span> <span class="n">u8</span> <span class="o">/</span> <span class="n">SQRT3</span><span class="p">),</span> <span class="mf">1.0</span><span class="n">j</span> <span class="o">*</span> <span class="n">u1</span> <span class="o">+</span> <span class="n">u2</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">j</span> <span class="o">*</span> <span class="n">u4</span> <span class="o">+</span> <span class="n">u5</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.0</span><span class="n">j</span> <span class="o">*</span> <span class="n">u1</span> <span class="o">-</span> <span class="n">u2</span><span class="p">,</span> <span class="n">u0</span> <span class="o">-</span> <span class="mf">1.0</span><span class="n">j</span> <span class="o">*</span> <span class="p">(</span><span class="n">u3</span> <span class="o">-</span> <span class="n">u8</span> <span class="o">/</span> <span class="n">SQRT3</span><span class="p">),</span> <span class="mf">1.0</span><span class="n">j</span> <span class="o">*</span> <span class="n">u6</span> <span class="o">+</span> <span class="n">u7</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.0</span><span class="n">j</span> <span class="o">*</span> <span class="n">u4</span> <span class="o">-</span> <span class="n">u5</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">j</span> <span class="o">*</span> <span class="n">u6</span> <span class="o">-</span> <span class="n">u7</span><span class="p">,</span> <span class="n">u0</span> <span class="o">-</span> <span class="mf">1.0</span><span class="n">j</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">u8</span> <span class="o">/</span> <span class="n">SQRT3</span><span class="p">],</span>
+    <span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">evolution_operator</span></div>
+
+
+
+<div class="viewcode-block" id="probability_energy_fixed">
+<a class="viewcode-back" href="../../../_autosummary/src.nu_osc.hamiltonians.probability_energy_fixed.html#src.nu_osc.hamiltonians.probability_energy_fixed">[docs]</a>
+<span class="k">def</span> <span class="nf">probability_energy_fixed</span><span class="p">(</span><span class="n">hamiltonian_matrix</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="n">baseline</span> <span class="o">*</span> <span class="n">CONV_KM_TO_INV_EV</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the 3nu oscillation probability.</span>
+
+<span class="sd">    Returns the three-neutrino oscillation probabilities</span>
+<span class="sd">    Pee, Pem, Pet, Pme, Pmm, Pmt, Pte, Ptm, Ptt.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    hamiltonian_matrix : list</span>
+<span class="sd">        3x3 Hamiltonian, [[H11,H12,H13],[H21,H22,H23],[H31,H32,H33]].</span>
+<span class="sd">    L : float</span>
+<span class="sd">        Baseline.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list</span>
+<span class="sd">        Three-neutrino probabilities</span>
+<span class="sd">        Pee, Pem, Pet, Pme, Pmm, Pmt, Pte, Ptm, Ptt.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; hamiltonian_matrix = [</span>
+<span class="sd">    ...                   [1.0+0.0j, 0.0+2.0j, 0.0-1.0j],</span>
+<span class="sd">    ...                   [0.0-2.0j, 3.0+0.0j, 3.0+0.0j],</span>
+<span class="sd">    ...                   [0.0+1.0j, 3.0-0.0j, -5.0+0.0j]</span>
+<span class="sd">    ... ]</span>
+<span class="sd">    &gt;&gt;&gt; L = 1.0</span>
+<span class="sd">    &gt;&gt;&gt; Pee, Pem, Pet, Pme, Pmm, Pmt, Pte, Ptm, Ptt = \</span>
+<span class="sd">    ...     probabilities_3nu(hamiltonian_matrix, 1.0)</span>
+<span class="sd">    &gt;&gt;&gt; print(Pee, Pem, Pet, Pme, Pmm, Pmt, Pte, Ptm, Ptt)</span>
+<span class="sd">    0.342732 0.413691 0.243576 0.413691 0.0048504 0.58145 0.243576</span>
+<span class="sd">    0.58145 0.174965</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">U</span> <span class="o">=</span> <span class="n">evolution_operator_3nu</span><span class="p">(</span><span class="n">hamiltonian_matrix</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">beta</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">**</span> <span class="mf">2.0</span>
+    <span class="k">elif</span> <span class="n">beta</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">elif</span> <span class="n">beta</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pierre Boistier
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Pierre Boistier.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
