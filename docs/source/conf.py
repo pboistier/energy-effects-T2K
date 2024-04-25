@@ -36,7 +36,10 @@ extensions = [
     "sphinx.ext.autosectionlabel",
     "sphinx_copybutton",
     "sphinx.ext.viewcode",
+    "nbsphinx",
+    "sphinx.ext.mathjax",
 ]
+source_suffix = [".rst", ".md"]
 
 # Add any paths that contain templates here, relative to this directory.
 
