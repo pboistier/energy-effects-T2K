@@ -1,6 +1,6 @@
 [project]
 name = "energy-effects-T2K"
-version = "0.1.1"
+version = "0.1.2"
 description = "Energy resolution and non-linearity effects on the neutrino oscillation probability at T2K and beyond"
 authors = [
     {name = "Pierre Boistier", email = "pierre.boistier@cea.fr"},
