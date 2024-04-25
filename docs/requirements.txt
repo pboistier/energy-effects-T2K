@@ -1,5 +1,0 @@
-pip
-sphinx
-sphinx-autobuild
-sphinx-copybutton
-sphinx-book-theme
