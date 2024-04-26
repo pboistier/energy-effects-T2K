@@ -8,21 +8,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Oscillation probability in vacuum &#8212; energy_effects_t2k 0.1.1 documentation</title>
-
-
-
+    <title>Oscillation probability in vacuum &#8212; Energy effects at T2K</title>
+  
+  
+  
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
-
+  
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 <link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
-
+  
   <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
@@ -31,21 +31,22 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
     <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
-
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../_static/documentation_options.js?v=1a9ffd16"></script>
+    <script src="../_static/documentation_options.js?v=0deb7d70"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "tags": "ams", "useLabelIds": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/Probability_vacuum_tutorial';</script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -54,34 +55,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
-
-
+  
+  
   <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-
-
+  
+  
   <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
-
+  
   <div id="pst-scroll-pixel-helper"></div>
-
+  
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
     Back to top
   </button>
 
-
+  
   <input type="checkbox"
           class="sidebar-toggle"
           name="__primary"
           id="__primary"/>
   <label class="overlay overlay-primary" for="__primary"></label>
-
+  
   <input type="checkbox"
           class="sidebar-toggle"
           name="__secondary"
           id="__secondary"/>
   <label class="overlay overlay-secondary" for="__secondary"></label>
-
+  
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
@@ -102,41 +103,41 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
+  
     <header class="bd-header navbar navbar-expand-lg bd-navbar">
     </header>
-
+  
 
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
-
-
-
+      
+      
+      
       <div class="bd-sidebar-primary bd-sidebar">
+        
 
-
-
+  
   <div class="sidebar-header-items sidebar-primary__section">
-
-
-
-
+    
+    
+    
+    
   </div>
-
+  
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
 
-
+  
 
 <a class="navbar-brand logo" href="../index.html">
-
-
-
-
-
-
-    <p class="title logo__title">energy_effects_t2k 0.1.1 documentation</p>
-
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Energy effects at T2K</p>
+  
 </a></div>
         <div class="sidebar-primary-item">
 
@@ -208,39 +209,39 @@
     </div>
 </nav></div>
     </div>
-
-
+  
+  
   <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
-
+  
   <div id="rtd-footer-container"></div>
 
 
       </div>
-
+      
       <main id="main-content" class="bd-main">
-
-
+        
+        
 
 <div class="sbt-scroll-pixel-helper"></div>
 
           <div class="bd-content">
             <div class="bd-article-container">
-
+              
               <div class="bd-header-article">
 <div class="header-article-items header-article__inner">
-
+  
     <div class="header-article-items__start">
-
+      
         <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
 </label></div>
-
+      
     </div>
-
-
+  
+  
     <div class="header-article-items__end">
-
+      
         <div class="header-article-item">
 
 <div class="article-header-buttons">
@@ -254,15 +255,15 @@
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
-
-
-
+      
+      
+      
       <li><a href="../_sources/notebooks/Probability_vacuum_tutorial.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
-
+  
 
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
@@ -270,17 +271,17 @@
 <span class="btn__text-container">.ipynb</span>
 </a>
 </li>
-
-
-
-
+      
+      
+      
+      
       <li>
 <button onclick="window.print()"
   class="btn btn-sm btn-download-pdf-button dropdown-item"
   title="Print to PDF"
   data-bs-placement="left" data-bs-toggle="tooltip"
 >
-
+  
 
 <span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
@@ -288,7 +289,7 @@
 <span class="btn__text-container">.pdf</span>
 </button>
 </li>
-
+      
   </ul>
 </div>
 
@@ -300,7 +301,7 @@
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
-
+  
 
 <span class="btn__icon-container">
   <i class="fas fa-expand"></i>
@@ -330,32 +331,33 @@ document.write(`
 </script>
 
 </div></div>
-
+      
     </div>
-
+  
 </div>
 </div>
-
-
+              
+              
 
 <div id="jb-print-docs-body" class="onlyprint">
     <h1>Oscillation probability in vacuum</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
-
+            
         </div>
     </div>
 </div>
 
-
-
+              
+                
 <div id="searchbox"></div>
                 <article class="bd-article">
-
+                  
   <section id="Oscillation-probability-in-vacuum">
 <h1>Oscillation probability in vacuum<a class="headerlink" href="#Oscillation-probability-in-vacuum" title="Link to this heading">#</a></h1>
-<p>A <span class="math notranslate nohighlight">\(\texttt{JupyterNotebook}\)</span> to show how the code by Denis Carabadjac is implemented.</p>
+<p>A <span class="math notranslate nohighlight">\(\texttt{Jupyter}\)</span> notebook to show how the code by Denis Carabadjac is implemented.</p>
+<p>Miscellaneous:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -366,18 +368,19 @@ document.write(`
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">conj</span><span class="p">,</span> <span class="n">tan</span><span class="p">,</span> <span class="n">radians</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">src.nu_osc.osc_prob</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">src.nu_osc.default_parameters</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rc</span>
+<span class="kn">import</span> <span class="nn">src.nu_osc.osc_prob</span> <span class="k">as</span> <span class="nn">prob</span>
+<span class="kn">import</span> <span class="nn">src.nu_osc.default_parameters</span> <span class="k">as</span> <span class="nn">param</span>
 </pre></div>
 </div>
 </div>
-<p>To make plots more beautiful</p>
+<p></p><p>To make plots more beautiful</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rc</span>
-<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes.spines&#39;</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -392,129 +395,141 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<p>The definition of PMNS matrix:</p>
-<p><span class="math notranslate nohighlight">\(\Large\)</span> <span class="math notranslate nohighlight">\(\textbf{PMNS} = \left(\begin{array}{ccc}1 &amp; 0 &amp; 0 \\ 0 &amp; c_{23} &amp; s_{23} \\ 0 &amp; -s_{23} &amp; c_{23}\end{array}\right)\left(\begin{array}{ccc}c_{13} &amp; 0 &amp; s_{13} e^{-i \delta_{\mathrm{CP}}} \\ 0 &amp; 1 &amp; 0 \\ -s_{13} e^{i \delta_{\mathrm{CP}}} &amp; 0 &amp; c_{13}\end{array}\right)\left(\begin{array}{ccc}c_{12} &amp; s_{12} &amp; 0 \\ -s_{12} &amp; c_{12} &amp; 0 \\ 0 &amp; 0 &amp; 1\end{array}\right)\)</span></p>
+<p></p><p>A definition of the PMNS matrix in the non-Majorana scheme:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+    U_\text{PMNS}  =
+    \begin{pmatrix}
+        1 &amp; 0 &amp; 0 \\
+        0 &amp; c_{23} &amp; s_{23} \\
+        0 &amp; -s_{23} &amp; c_{23}
+    \end{pmatrix} \times
+\begin{pmatrix}
+    c_{13} &amp; 0 &amp; s_{13} \text{e}^{-i \delta_\text{CP}} \\
+    0 &amp; 1 &amp; 0 \\
+    -s_{13} \text{e}^{i \delta_\text{CP}} &amp; 0 &amp; c_{13}
+\end{pmatrix} \times
+\begin{pmatrix}
+    c_{12} &amp; s_{12} &amp; 0 \\
+    -s_{12} &amp; c_{12} &amp; 0 \\
+    0 &amp; 0 &amp; 1
+\end{pmatrix}
+\end{equation}\end{split}\]</div>
 <p>Oscillation probability for neutrino in vacuum:</p>
 <div class="math notranslate nohighlight">
-\[P({\nu_\alpha} \to {\nu_\beta}) = \delta_{\alpha \beta} + 4 \sum_{j&gt;i} Re[U_{\alpha i} U_{\beta i}^* U_{\alpha j}^* U_{\beta j}] \sin^2{\frac{\Delta m_{i j}^2 L}{4 E_\nu}} + 2 \sum_{j&gt;i} Im[U_{\alpha i} U_{\beta i}^* U_{\alpha j}^* U_{\beta j}] \sin{\frac{\Delta m_{i j}^2 L}{2 E_\nu}}\]</div>
-<p>This formula is used in definition of function <span class="math notranslate nohighlight">\(\texttt{probability_vacuum}\)</span>.</p>
+\[\begin{split}\begin{equation}
+\begin{split}
+    \mathcal{P}_{\alpha\to\beta}(E, L) &amp; = \delta_{\alpha \beta} + 4 \sum_{j&gt;i} \text{Re}\left(U_{\alpha i} U_{\beta i}^* U_{\alpha j}^* U_{\beta j}\right) \sin^2{\frac{\Delta m_{i j}^2 \, L}{4 \, E}} \\
+    &amp;  \ \ \ \pm 2 \sum_{j&gt;i} \text{Im}\left(U_{\alpha i} U_{\beta i}^* U_{\alpha j}^* U_{\beta j}\right) \sin{\frac{\Delta m_{i j}^2 \, L}{2 \, E}}
+\end{split}
+\end{equation}\end{split}\]</div>
+<p>This formula is used in definition of function <span class="math notranslate nohighlight">\(\texttt{prob.probability_vacuum}\)</span> .</p>
 <hr class="docutils" />
-<p><strong>Example #1:</strong> Usage of PMNS and probability_vacuum functions</p>
-<div class="nbinput nblast docutils container">
+<h4><p><strong>Studying the oscillation probability with T2K parameters</strong></p>
+</h4><div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span> <span class="o">=</span> <span class="n">PMNS</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">PMNS</span><span class="p">()</span>
 <span class="n">energy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
 
-<span class="n">prob_mue</span> <span class="o">=</span> <span class="n">probability_vacuum</span><span class="p">(</span><span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">energy</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
-<span class="n">prob_mumu</span> <span class="o">=</span> <span class="n">probability_vacuum</span><span class="p">(</span><span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">energy</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
-<span class="n">prob_mutau</span> <span class="o">=</span> <span class="n">probability_vacuum</span><span class="p">(</span><span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">energy</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+<span class="n">mu2e</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">probability_vacuum</span><span class="p">(</span><span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">energy</span><span class="p">)</span>
+<span class="n">mu2mu</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">probability_vacuum</span><span class="p">(</span><span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">energy</span><span class="p">)</span>
+<span class="n">mu2tau</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">probability_vacuum</span><span class="p">(</span><span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">energy</span><span class="p">)</span>
 
-<span class="n">prob_mumu_anti</span> <span class="o">=</span> <span class="n">probability_vacuum_anti</span><span class="p">(</span><span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">energy</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
-<span class="n">prob_mue_anti</span> <span class="o">=</span> <span class="n">probability_vacuum_anti</span><span class="p">(</span><span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">energy</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
-<span class="n">prob_mutau_anti</span> <span class="o">=</span> <span class="n">probability_vacuum_anti</span><span class="p">(</span><span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">energy</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+<span class="n">mu2mu_anti</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">probability_vacuum_anti</span><span class="p">(</span><span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">energy</span><span class="p">)</span>
+<span class="n">mu2e_anti</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">probability_vacuum_anti</span><span class="p">(</span><span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">energy</span><span class="p">)</span>
+<span class="n">mu2tau_anti</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">probability_vacuum_anti</span><span class="p">(</span><span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">energy</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">prob_mumu</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Muon dissappearance&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">prob_mue</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Electron appearance&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">prob_mutau</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tau appearance&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">mu2mu</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\nu_\mu\to\nu_\mu$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">mu2e</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\nu_\mu\to\nu_e$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">mu2tau</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\nu_\mu\to\nu_\tau$&quot;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;E, GeV&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;P, %&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$E$ [GeV]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\mathcal</span><span class="si">{P}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[]
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_Probability_vacuum_tutorial_7_1.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_7_1.png" style="width: 866px; height: 607px;" />
+<img alt="../_images/notebooks_Probability_vacuum_tutorial_10_0.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_10_0.png" style="width: 858px; height: 453px;" />
 </div>
 </div>
+<p></p><p>For long-baseline experiments there is a simple and accurate approximation of oscillation probability formula:</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+    \mathcal{P}_{\mu\to e} (E,L) \simeq \sin^2 (2\,\theta_{13}) \sin^2{\theta_{23}} \sin^2\left(\frac{\Delta m ^2_{31} L}{4 E}\right)
+    \label{for:probapprox1}
+\end{equation}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+    \mathcal{P}_{\mu\to \mu} (E,L) \simeq 1 - \sin^2 (2\,\theta_{23}) \cos^4{\theta_{13}}\sin^2\left(\frac{\Delta m ^2_{31} L}{4 E}\right)
+\end{equation}\]</div>
+<p>These formula are used in definition of <span class="math notranslate nohighlight">\(\texttt{prob_vacuum_approx}\)</span> function.</p>
 <hr class="docutils" />
-<p>For long-baseline experiments there is a simple and accurate approximation of oscillation probability formula: $ P(<span class="math">\nu</span><em>:nbsphinx-math:`mu `:nbsphinx-math:`xrightarrow[]{}` :nbsphinx-math:`nu`e) :nbsphinx-math:`approx `:nbsphinx-math:`sin`^2{2:nbsphinx-math:`theta`{13}} :nbsphinx-math:`sin`^2{:nbsphinx-math:`theta`</em>{23}} <span class="math">\sin`^2{:nbsphinx-math:</span>frac{Delta m ^2_{31} L}{4 E}`}\ <span class="math">\label{for:probapprox1}</span>\
-P(<span class="math">\nu</span><em>:nbsphinx-math:`mu `:nbsphinx-math:`xrightarrow[]{}` :nbsphinx-math:`nu`</em><span class="math">\mu</span>) = 1 - <span class="math">\sin</span><sup>2{2:nbsphinx-math:</sup>theta`{23}} <span class="math">\cos`^4{:nbsphinx-math:</span>theta`{13}}:nbsphinx-math:<cite>sin`</cite>2{<span class="math">\frac{\Delta m ^2_{31} L}{4 E}</span>}$</p>
-<p>These formula are used in definition of <span class="math notranslate nohighlight">\(\textbf{prob_vacuum_approx}\)</span> function.</p>
-<p>$textbf{Example #2:} $ Comparison of exact and approximated formulas.</p>
+<h4><p><strong>Comparison of exact and approximated formulae</strong></p>
+</h4><p>Let’s compare the validity of our approximations with the exact formulae. First, we plot the different oscillation probabilities as functions of the energy with T2K baseline <span class="math notranslate nohighlight">\(L\)</span>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob_mue_approx</span> <span class="o">=</span> <span class="n">probability_vacuum_approx</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">energy</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
-<span class="n">prob_mumu_approx</span> <span class="o">=</span> <span class="n">probability_vacuum_approx</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">energy</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu2e_approx</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">probability_vacuum_approx</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">energy</span><span class="p">)</span>
+<span class="n">mu2mu_approx</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">probability_vacuum_approx</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">energy</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">prob_mue</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exact formula&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">prob_mue_approx</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Approx formula&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;E, GeV&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$P(\nu_\mu \rightarrow \nu_e)$, %&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">mu2mu</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\nu_\mu\to\nu_\mu$ / exact&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">mu2mu_approx</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span>  <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\nu_\mu\to\nu_\mu$ / approx&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">mu2e</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\nu_\mu\to\nu_e$ / exact&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">mu2e</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\nu_\mu\to\nu_e$ / approx&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$E$ [GeV]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\mathcal</span><span class="si">{P}</span><span class="s2">$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x79a22bbf04c0&gt;
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_Probability_vacuum_tutorial_10_1.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_10_1.png" style="width: 840px; height: 609px;" />
+<img alt="../_images/notebooks_Probability_vacuum_tutorial_15_0.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_15_0.png" style="width: 858px; height: 453px;" />
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">prob_mumu</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exact formula&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">prob_mumu_approx</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Approx formula&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;E, GeV&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$P(\nu_\mu \rightarrow \nu_\mu)$, %&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu2mu_relat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">mu2mu</span><span class="o">-</span><span class="n">mu2mu_approx</span><span class="p">)</span><span class="o">/</span><span class="n">mu2mu</span><span class="p">)</span>
+<span class="n">mu2e_relat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">mu2e</span><span class="o">-</span><span class="n">mu2e_approx</span><span class="p">)</span><span class="o">/</span><span class="n">mu2mu</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">mu2mu_relat</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\nu_\mu\to\nu_\mu$ / relat&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">mu2e_relat</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\nu_\mu\to\nu_e$ / relat&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$E$ [GeV]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$(\mathcal</span><span class="si">{P}</span><span class="s2">-\mathcal</span><span class="si">{P}</span><span class="s2">_\text</span><span class="si">{approx}</span><span class="s2">) \ / \ \mathcal</span><span class="si">{P}</span><span class="s2"> \ $ [%]&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x79a229ae69e0&gt;
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_Probability_vacuum_tutorial_11_1.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_11_1.png" style="width: 870px; height: 607px;" />
+<img alt="../_images/notebooks_Probability_vacuum_tutorial_16_0.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_16_0.png" style="width: 862px; height: 454px;" />
 </div>
 </div>
 <p><span class="math notranslate nohighlight">\(\textbf{Example 3: Multiline plots in matplotlib}\)</span></p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob_mue_list</span> <span class="o">=</span><span class="p">[]</span>
@@ -595,8 +610,7 @@ P(<span class="math">\nu</span><em>:nbsphinx-math:`mu `:nbsphinx-math:`xrightarr
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
@@ -607,7 +621,7 @@ Text(0, 0.5, &#39;P, %&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_Probability_vacuum_tutorial_13_1.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_13_1.png" style="width: 2554px; height: 616px;" />
+<img alt="../_images/notebooks_Probability_vacuum_tutorial_18_1.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_18_1.png" style="width: 2554px; height: 616px;" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -619,7 +633,7 @@ Text(0, 0.5, &#39;P, %&#39;)
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
@@ -652,8 +666,7 @@ Text(0, 0.5, &#39;P, %&#39;)
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
@@ -664,7 +677,7 @@ Text(0, 0.5, &#39;P, %&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_Probability_vacuum_tutorial_15_1.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_15_1.png" style="width: 842px; height: 693px;" />
+<img alt="../_images/notebooks_Probability_vacuum_tutorial_20_1.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_20_1.png" style="width: 842px; height: 693px;" />
 </div>
 </div>
 <hr class="docutils" />
@@ -672,7 +685,7 @@ Text(0, 0.5, &#39;P, %&#39;)
 <p>where J <span class="math notranslate nohighlight">\(\approx \sin 2\theta_{23} \sin 2\theta_{12} \sin \theta_{13} \sin \delta\)</span></p>
 <p><span class="math notranslate nohighlight">\(\textbf{Example 4: Absolute CP-asymmetry in vaccuum}\)</span></p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
@@ -710,8 +723,7 @@ Text(0, 0.5, &#39;P, %&#39;)
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
@@ -722,7 +734,7 @@ Text(0, 0.5, &#39;P, %&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_Probability_vacuum_tutorial_18_1.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_18_1.png" style="width: 856px; height: 684px;" />
+<img alt="../_images/notebooks_Probability_vacuum_tutorial_23_1.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_23_1.png" style="width: 856px; height: 684px;" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -741,18 +753,20 @@ Text(0, 0.5, &#39;P, %&#39;)
 </pre></div>
 </div>
 </div>
-</section>
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {}, "version_major": 2, "version_minor": 0}
+</script></section>
 
 
                 </article>
+              
 
-
-
-
-
-
+              
+              
+              
+              
                 <footer class="prev-next-footer">
-
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="../_autosummary/src.nu_osc.osc_prob.probability_vacuum_approx.html"
@@ -765,55 +779,55 @@ Text(0, 0.5, &#39;P, %&#39;)
     </a>
 </div>
                 </footer>
-
+              
             </div>
-
-
-
+            
+            
+              
                 <div class="bd-sidebar-secondary bd-toc"></div>
-
-
+              
+            
           </div>
           <footer class="bd-footer-content">
-
+            
 <div class="bd-footer-content__inner container">
-
+  
   <div class="footer-item">
-
+    
 <p class="component-author">
 By Pierre Boistier
 </p>
 
   </div>
-
+  
   <div class="footer-item">
-
+    
 
   <p class="copyright">
-
+    
       © Copyright 2024, Pierre Boistier.
       <br/>
-
+    
   </p>
 
   </div>
-
+  
   <div class="footer-item">
-
+    
   </div>
-
+  
   <div class="footer-item">
-
+    
   </div>
-
+  
 </div>
           </footer>
-
+        
 
       </main>
     </div>
   </div>
-
+  
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
   <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
 <script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>

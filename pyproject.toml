@@ -17,6 +17,10 @@ dependencies = [
     "ipykernel>=6.29.4",
     "nbconvert>=7.16.3",
     "pypandoc>=1.13",
+    "myst-parser>=3.0.0",
+    "sphinxcontrib-bibtex>=2.6.2",
+    "sphinx-tabs>=3.4.5",
+    "pydata-sphinx-theme>=0.15.2",
 ]
 requires-python = ">=3.10"
 readme = "README.md"

@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:12724a2510e88ed9e1f76b07192fe4f4abf615de2e697938da9867d0dc141a8b"
+content_hash = "sha256:e78bf53bfb3dfc90f6df0808957ba024ac16ed16b7441fcff257eb185de4b51b"
 
 [[package]]
 name = "accessible-pygments"
@@ -758,6 +758,31 @@ files = [
 ]
 
 [[package]]
+name = "latexcodec"
+version = "3.0.0"
+requires_python = ">=3.7"
+summary = "A lexer and codec to work with LaTeX code in Python."
+groups = ["default"]
+files = [
+    {file = "latexcodec-3.0.0-py3-none-any.whl", hash = "sha256:6f3477ad5e61a0a99bd31a6a370c34e88733a6bad9c921a3ffcfacada12f41a7"},
+    {file = "latexcodec-3.0.0.tar.gz", hash = "sha256:917dc5fe242762cc19d963e6548b42d63a118028cdd3361d62397e3b638b6bc5"},
+]
+
+[[package]]
+name = "markdown-it-py"
+version = "3.0.0"
+requires_python = ">=3.8"
+summary = "Python port of markdown-it. Markdown parsing, done right!"
+groups = ["default"]
+dependencies = [
+    "mdurl~=0.1",
+]
+files = [
+    {file = "markdown-it-py-3.0.0.tar.gz", hash = "sha256:e3f60a94fa066dc52ec76661e37c851cb232d92f9886b15cb560aaada2df8feb"},
+    {file = "markdown_it_py-3.0.0-py3-none-any.whl", hash = "sha256:355216845c60bd96232cd8d8c40e8f9765cc86f46880e43a8fd22dc1a1a8cab1"},
+]
+
+[[package]]
 name = "markupsafe"
 version = "2.1.5"
 requires_python = ">=3.7"
@@ -854,6 +879,31 @@ files = [
 ]
 
 [[package]]
+name = "mdit-py-plugins"
+version = "0.4.0"
+requires_python = ">=3.8"
+summary = "Collection of plugins for markdown-it-py"
+groups = ["default"]
+dependencies = [
+    "markdown-it-py<4.0.0,>=1.0.0",
+]
+files = [
+    {file = "mdit_py_plugins-0.4.0-py3-none-any.whl", hash = "sha256:b51b3bb70691f57f974e257e367107857a93b36f322a9e6d44ca5bf28ec2def9"},
+    {file = "mdit_py_plugins-0.4.0.tar.gz", hash = "sha256:d8ab27e9aed6c38aa716819fedfde15ca275715955f8a185a8e1cf90fb1d2c1b"},
+]
+
+[[package]]
+name = "mdurl"
+version = "0.1.2"
+requires_python = ">=3.7"
+summary = "Markdown URL utilities"
+groups = ["default"]
+files = [
+    {file = "mdurl-0.1.2-py3-none-any.whl", hash = "sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8"},
+    {file = "mdurl-0.1.2.tar.gz", hash = "sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba"},
+]
+
+[[package]]
 name = "mistune"
 version = "3.0.2"
 requires_python = ">=3.7"
@@ -862,6 +912,25 @@ groups = ["default"]
 files = [
     {file = "mistune-3.0.2-py3-none-any.whl", hash = "sha256:71481854c30fdbc938963d3605b72501f5c10a9320ecd412c121c163a1c7d205"},
     {file = "mistune-3.0.2.tar.gz", hash = "sha256:fc7f93ded930c92394ef2cb6f04a8aabab4117a91449e72dcc8dfa646a508be8"},
+]
+
+[[package]]
+name = "myst-parser"
+version = "3.0.0"
+requires_python = ">=3.8"
+summary = "An extended [CommonMark](https://spec.commonmark.org/) compliant parser,"
+groups = ["default"]
+dependencies = [
+    "docutils<0.22,>=0.18",
+    "jinja2",
+    "markdown-it-py~=3.0",
+    "mdit-py-plugins~=0.4",
+    "pyyaml",
+    "sphinx<8,>=6",
+]
+files = [
+    {file = "myst_parser-3.0.0-py3-none-any.whl", hash = "sha256:8ee926557b8e4c2940a1e62c5720e1667cfaf8480b94b1b9c77dc38e31d104aa"},
+    {file = "myst_parser-3.0.0.tar.gz", hash = "sha256:0b4ae0b33a45800a748260cb40348c37089a8a456c35120609240bd1b32f9255"},
 ]
 
 [[package]]
@@ -1189,6 +1258,37 @@ groups = ["default"]
 files = [
     {file = "pure_eval-0.2.2-py3-none-any.whl", hash = "sha256:01eaab343580944bc56080ebe0a674b39ec44a945e6d09ba7db3cb8cec289350"},
     {file = "pure_eval-0.2.2.tar.gz", hash = "sha256:2b45320af6dfaa1750f543d714b6d1c520a1688dec6fd24d339063ce0aaa9ac3"},
+]
+
+[[package]]
+name = "pybtex"
+version = "0.24.0"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*"
+summary = "A BibTeX-compatible bibliography processor in Python"
+groups = ["default"]
+dependencies = [
+    "PyYAML>=3.01",
+    "latexcodec>=1.0.4",
+    "six",
+]
+files = [
+    {file = "pybtex-0.24.0-py2.py3-none-any.whl", hash = "sha256:e1e0c8c69998452fea90e9179aa2a98ab103f3eed894405b7264e517cc2fcc0f"},
+    {file = "pybtex-0.24.0.tar.gz", hash = "sha256:818eae35b61733e5c007c3fcd2cfb75ed1bc8b4173c1f70b56cc4c0802d34755"},
+]
+
+[[package]]
+name = "pybtex-docutils"
+version = "1.0.3"
+requires_python = ">=3.7"
+summary = "A docutils backend for pybtex."
+groups = ["default"]
+dependencies = [
+    "docutils>=0.14",
+    "pybtex>=0.16",
+]
+files = [
+    {file = "pybtex-docutils-1.0.3.tar.gz", hash = "sha256:3a7ebdf92b593e00e8c1c538aa9a20bca5d92d84231124715acc964d51d93c6b"},
+    {file = "pybtex_docutils-1.0.3-py3-none-any.whl", hash = "sha256:8fd290d2ae48e32fcb54d86b0efb8d573198653c7e2447d5bec5847095f430b9"},
 ]
 
 [[package]]
@@ -1638,6 +1738,22 @@ files = [
 ]
 
 [[package]]
+name = "sphinx-tabs"
+version = "3.4.5"
+requires_python = "~=3.7"
+summary = "Tabbed views for Sphinx"
+groups = ["default"]
+dependencies = [
+    "docutils",
+    "pygments",
+    "sphinx",
+]
+files = [
+    {file = "sphinx-tabs-3.4.5.tar.gz", hash = "sha256:ba9d0c1e3e37aaadd4b5678449eb08176770e0fc227e769b6ce747df3ceea531"},
+    {file = "sphinx_tabs-3.4.5-py3-none-any.whl", hash = "sha256:92cc9473e2ecf1828ca3f6617d0efc0aa8acb06b08c56ba29d1413f2f0f6cf09"},
+]
+
+[[package]]
 name = "sphinxcontrib-applehelp"
 version = "1.0.8"
 requires_python = ">=3.9"
@@ -1646,6 +1762,23 @@ groups = ["default"]
 files = [
     {file = "sphinxcontrib_applehelp-1.0.8-py3-none-any.whl", hash = "sha256:cb61eb0ec1b61f349e5cc36b2028e9e7ca765be05e49641c97241274753067b4"},
     {file = "sphinxcontrib_applehelp-1.0.8.tar.gz", hash = "sha256:c40a4f96f3776c4393d933412053962fac2b84f4c99a7982ba42e09576a70619"},
+]
+
+[[package]]
+name = "sphinxcontrib-bibtex"
+version = "2.6.2"
+requires_python = ">=3.7"
+summary = "Sphinx extension for BibTeX style citations."
+groups = ["default"]
+dependencies = [
+    "Sphinx>=3.5",
+    "docutils!=0.18.*,!=0.19.*,>=0.8",
+    "pybtex-docutils>=1.0.0",
+    "pybtex>=0.24",
+]
+files = [
+    {file = "sphinxcontrib-bibtex-2.6.2.tar.gz", hash = "sha256:f487af694336f28bfb7d6a17070953a7d264bec43000a2379724274f5f8d70ae"},
+    {file = "sphinxcontrib_bibtex-2.6.2-py3-none-any.whl", hash = "sha256:10d45ebbb19207c5665396c9446f8012a79b8a538cb729f895b5910ab2d0b2da"},
 ]
 
 [[package]]
