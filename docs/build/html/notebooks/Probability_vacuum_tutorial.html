@@ -51,6 +51,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/Probability_vacuum_tutorial';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bibliography" href="../bibliography.html" />
     <link rel="prev" title="src.nu_osc.osc_prob.probability_vacuum_approx" href="../_autosummary/src.nu_osc.osc_prob.probability_vacuum_approx.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -204,6 +205,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Oscillation probability in vacuum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">Bibliography</a></li>
 </ul>
 
     </div>
@@ -329,7 +331,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -345,6 +349,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Theoretical-bases">Theoretical bases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Plotting-the-oscillation-probability-w/-T2K-parameters">Plotting the oscillation probability w/ T2K parameters</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -395,7 +408,10 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<p></p><p>A definition of the PMNS matrix in the non-Majorana scheme:</p>
+<p></p><section id="Theoretical-bases">
+<h2>Theoretical bases<a class="headerlink" href="#Theoretical-bases" title="Link to this heading">#</a></h2>
+<p>The canonical way to describe the oscillation and mixing phenomena in the leptonic sector is through the <span class="math notranslate nohighlight">\(3\times 3\)</span> PMNS mixing matrix, named for Pontecorvo, Maki, Nakagawa and Sakata, which describes the neutrino mass eigenstates in terms of the weak flavour eigenstates. In general, there are nine degrees of freedom in any unitary <span class="math notranslate nohighlight">\(3\times3\)</span> matrix. In the case of the PMNS matrix, five of those real parameters can be absorbed as phases of the lepton fields and thus the PMNS matrix
+can be fully described by four free parameters. The PMNS matrix is most commonly written with the Chau-Keung parametrization as the product of three Tait-Bryan rotations (by <span class="math notranslate nohighlight">\(\theta_{ij}\)</span>) and a Dirac phase transformation (by <span class="math notranslate nohighlight">\(\delta_\text{CP}\)</span>), and reads:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{equation}
     U_\text{PMNS}  =
@@ -404,17 +420,63 @@ document.write(`
         0 &amp; c_{23} &amp; s_{23} \\
         0 &amp; -s_{23} &amp; c_{23}
     \end{pmatrix} \times
-\begin{pmatrix}
-    c_{13} &amp; 0 &amp; s_{13} \text{e}^{-i \delta_\text{CP}} \\
-    0 &amp; 1 &amp; 0 \\
-    -s_{13} \text{e}^{i \delta_\text{CP}} &amp; 0 &amp; c_{13}
-\end{pmatrix} \times
-\begin{pmatrix}
-    c_{12} &amp; s_{12} &amp; 0 \\
-    -s_{12} &amp; c_{12} &amp; 0 \\
-    0 &amp; 0 &amp; 1
-\end{pmatrix}
+    \begin{pmatrix}
+        c_{13} &amp; 0 &amp; s_{13} \text{e}^{-i \delta_\text{CP}} \\
+        0 &amp; 1 &amp; 0 \\
+        -s_{13} \text{e}^{i \delta_\text{CP}} &amp; 0 &amp; c_{13}
+    \end{pmatrix} \times
+    \begin{pmatrix}
+        c_{12} &amp; s_{12} &amp; 0 \\
+        -s_{12} &amp; c_{12} &amp; 0 \\
+        0 &amp; 0 &amp; 1
+    \end{pmatrix} \ ,
+\label{eq:PMNS}
 \end{equation}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(s_{ij} \equiv \sin \theta_{ij}\)</span> and <span class="math notranslate nohighlight">\(c_{ij} \equiv \cos \theta_{ij}\)</span>. The angles <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> can be taken without loss of generality to lie in the first quadrant <span class="math notranslate nohighlight">\([0,\pi/2]\)</span>, and the CP phase <span class="math notranslate nohighlight">\(\delta_\text{CP} \in [0, 2\pi]\)</span>. Since a purely real matrix corresponds to <span class="math notranslate nohighlight">\(\delta_\text{CP}\)</span> being an integer multiple of <span class="math notranslate nohighlight">\(\pi\)</span>, any other other value is manifested as violation of Charge-Parity symmetry. In the case of Majorana neutrino fields, two extra
+Majorana complex phases cannot be freely redefined and must be added to the parametrization.</p>
+<p>Assuming three neutrino generations, we denote mass eigenstates by <span class="math notranslate nohighlight">\(\ket{\nu_i}\)</span>, <span class="math notranslate nohighlight">\(i \in \{1,2,3\}\)</span> and weak flavour eigenstates by <span class="math notranslate nohighlight">\(\ket{\nu_\alpha}\)</span>, <span class="math notranslate nohighlight">\(\alpha \in \{e,\mu,\tau\}\)</span>, so that one can connect them using (<span class="math">\ref{eq:PMNS}</span>)</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+    \ket{\nu_\alpha} = \sum_i U_{\alpha i}^* \ket{\nu_i} \ .
+    \label{eq:linear-combination}
+\end{equation}\]</div>
+<p>A given neutrino is produced as a pure weak flavour eigenstate, propagates as a linear combination of interfering mass eigenstates, and is detected or interacts as weak pure flavour eigenstate. Then, one must look at oscillation probability from some flavour state <span class="math notranslate nohighlight">\(\alpha\)</span> to some flavour state <span class="math notranslate nohighlight">\(\beta\)</span>. We particularly speak of the appearance probability of <span class="math notranslate nohighlight">\(\beta\)</span>, if <span class="math notranslate nohighlight">\(\beta \neq \alpha\)</span>, and the disappearance probability of <span class="math notranslate nohighlight">\(\alpha\)</span> if <span class="math notranslate nohighlight">\(\alpha = \beta\)</span>.
+Hence, the vacuum oscillation probability <span class="math notranslate nohighlight">\(\mathcal{P}_{\alpha\to\beta}\)</span> for a state <span class="math notranslate nohighlight">\(\nu_\alpha\)</span> to oscillate into <span class="math notranslate nohighlight">\(\nu_\beta\)</span> after some time <span class="math notranslate nohighlight">\(t\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+    \mathcal{P}_{\alpha\to\beta}(t) = \left| \sum_i\sum_j U_{\alpha i}^* U_{\beta j} \braket{\nu_j|\nu_i(t)}\right|^2 \ .
+    \label{eq:prob-def}
+\end{equation}\]</div>
+<p>Since <span class="math notranslate nohighlight">\(\ket{\nu_j}\)</span> are mass eigenstates, their propagation through space and time follow the Schrödinger equation and can be approximated as plane wave solutions, here and hereafter using natural units:</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+    \ket{\nu_j(t)} = \exp \left(-i \left(E_j t - \mathbf{p}_j \cdot \mathbf{x}\right)\right) \ket{\nu_j(0)} \ ,
+    \label{eq:plane-wave}
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(E_j\)</span>, <span class="math notranslate nohighlight">\(\mathbf{p}_j\)</span>, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> are respectively the energy, momentum, position of the <span class="math notranslate nohighlight">\(\ket{\nu_j}\)</span> state. The plane wave description is a rather rough approximation, but a similar computation using wavepackets description leads to the same oscillation probability <span class="math">\cite{giunti}</span>.</p>
+<p>In the ultra-relativistic limit (always satisfied for current oscillation experiments, since the neutrinos have mass <span class="math notranslate nohighlight">\(m \lesssim \mathcal{O}(1 \text{ eV})\)</span> and energy <span class="math notranslate nohighlight">\(E \gtrsim \mathcal{O}(1 \text{ MeV})\)</span> <span id="id1">[<a class="reference internal" href="../bibliography.html#id3" title="K. Abe, N. Akhlaq, R. Akutsu, A. Ali, C. Alt, C. Andreopoulos, M. Antonova, S. Aoki, T. Arihara, Y. Asada, Y. Ashida, E. T. Atkin, Y. Awataguchi, G. J. Barker, G. Barr, D. Barrow, M. Batkiewicz-Kwasniak, A. Beloshapkin, F. Bench, V. Berardi, L. Berns, S. Bhadra, A. Blanchet, A. Blondel, S. Bolognesi, T. Bonus, B. Bourguille, S. B. Boyd, A. Bravar, D. Bravo Berguño, C. Bronner, S. Bron, A. Bubak, M. Buizza Avanzini, S. Cao, S. L. Cartwright, M. G. Catanesi, A. Cervera, J. Chakrani, D. Cherdack, G. Christodoulou, M. Cicerchia, J. Coleman, G. Collazuol, L. Cook, D. Coplowe, A. Cudd, G. De Rosa, T. Dealtry, C. C. Delogu, S. R. Dennis, C. Densham, A. Dergacheva, F. Di Lodovico, S. Dolan, D. Douqa, T. A. Doyle, J. Dumarchez, P. Dunne, A. Eguchi, L. Eklund, S. Emery-Schrenk, A. Ereditato, A. J. Finch, G. Fiorillo, C. Francois, M. Friend, Y. Fujii, R. Fukuda, Y. Fukuda, K. Fusshoeller, C. Giganti, M. Gonin, E. A. G. Goodman, A. Gorin, M. Grassi, M. Guigue, D. R. Hadley, P. Hamacher-Baumann, D. A. Harris, M. Hartz, T. Hasegawa, S. Hassani, N. C. Hastings, Y. Hayato, A. Hiramoto, M. Hogan, J. Holeczek, N. T. Hong Van, T. Honjo, F. Iacob, A. K. Ichikawa, M. Ikeda, T. Ishida, M. Ishitsuka, K. Iwamoto, A. Izmaylov, N. Izumi, M. Jakkapu, B. Jamieson, S. J. Jenkins, C. Jesús-Valls, J. J. Jiang, P. Jonsson, C. K. Jung, P. B. Jurj, M. Kabirnezhad, H. Kakuno, J. Kameda, S. P. Kasetti, Y. Kataoka, Y. Katayama, T. Katori, E. Kearns, M. Khabibullin, A. Khotjantsev, T. Kikawa, H. Kikutani, S. King, J. Kisiel, T. Kobata, T. Kobayashi, L. Koch, A. Konaka, L. L. Kormos, Y. Koshio, A. Kostin, K. Kowalik, Y. Kudenko, S. Kuribayashi, R. Kurjata, T. Kutter, M. Kuze, L. Labarga, J. Lagoda, M. Lamoureux, D. Last, M. Laveder, M. Lawe, S.-K. Lin, R. P. Litchfield, S. L. Liu, A. Longhin, L. Ludovici, X. Lu, T. Lux, L. N. Machado, L. Magaletti, K. Mahn, M. Malek, S. Manly, L. Maret, A. D. Marino, L. Marti-Magro, T. Maruyama, T. Matsubara, K. Matsushita, C. Mauger, A. Maurel, K. Mavrokoridis, E. Mazzucato, N. McCauley, J. McElwee, K. S. McFarland, C. McGrew, A. Mefodiev, G. D. Megias, L. Mellet, M. Mezzetto, A. Minamino, O. Mineev, S. Mine, M. Miura, L. Molina Bueno, S. Moriyama, Th. A. Mueller, D. Munford, L. Munteanu, Y. Nagai, T. Nakadaira, M. Nakahata, Y. Nakajima, A. Nakamura, H. Nakamura, K. Nakamura, Y. Nakano, S. Nakayama, T. Nakaya, K. Nakayoshi, C. E. R. Naseby, T. V. Ngoc, V. Q. Nguyen, K. Niewczas, Y. Nishimura, K. Nishizaki, E. Noah, T. S. Nonnenmacher, F. Nova, J. Nowak, J. C. Nugent, H. M. O’Keeffe, L. O’Sullivan, T. Odagawa, T. Ogawa, R. Okada, K. Okumura, T. Okusawa, R. A. Owen, Y. Oyama, V. Palladino, V. Paolone, M. Pari, W. C. Parker, J. Parlone, S. Parsa, J. Pasternak, M. Pavin, D. Payne, G. C. Penn, D. Pershey, L. Pickering, C. Pidcott, G. Pintaudi, C. Pistillo, B. Popov, K. Porwit, M. Posiadala-Zezula, A. Pritchard, B. Quilain, T. Radermacher, E. Radicioni, B. Radics, P. N. Ratoff, M. Reh, C. Riccio, E. Rondio, S. Roth, A. Rubbia, A. C. Ruggeri, C. A. Ruggles, A. Rychter, L. S. M. Lakshmi, K. Sakashita, F. Sánchez, G. Santucci, C. M. Schloesser, K. Scholberg, M. Scott, Y. Seiya, T. Sekiguchi, H. Sekiya, D. Sgalaberna, A. Shaikhiev, A. Shaykina, M. Shiozawa, W. Shorrock, A. Shvartsman, K. Skwarczynski, M. Smy, J. T. Sobczyk, H. Sobel, F. J. P. Soler, Y. Sonoda, R. Spina, S. Suvorov, A. Suzuki, S. Y. Suzuki, Y. Suzuki, A. A. Sztuc, M. Tada, M. Tajima, A. Takeda, Y. Takeuchi, H. K. Tanaka, Y. Tanihara, M. Tani, N. Teshima, N. Thamm, L. F. Thompson, W. Toki, C. Touramanis, T. Towstego, K. M. Tsui, T. Tsukamoto, M. Tzanov, Y. Uchida, M. Vagins, S. Valder, D. Vargas, G. Vasseur, C. Vilela, W. G. S. Vinning, T. Vladisavljevic, T. Wachala, J. Walker, J. G. Walsh, Y. Wang, L. Wan, D. Wark, M. O. Wascko, A. Weber, R. Wendell, M. J. Wilking, C. Wilkinson, J. R. Wilson, K. Wood, C. Wret, J. Xia, Y.-h. Xu, K. Yamamoto, C. Yanagisawa, G. Yang, T. Yano, K. Yasutome, N. Yershov, M. Yokoyama, T. Yoshida, Y. Yoshimoto, M. Yu, R. Zaki, A. Zalewska, J. Zalipska, K. Zaremba, G. Zarnecki, M. Ziembicki, M. Zito, and S. Zsoldos. Improved constraints on neutrino mixing from the T2K experiment with $3.13 \times 10^21$ protons on target. Physical Review D, June 2021. doi:10.1103/physrevd.103.112008.">1</a>]</span>), we have <span class="math notranslate nohighlight">\(p_j \gg m_j\)</span>. Hence the mass eigenstate energy reads</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+    E_j = \sqrt{{p_j}^2 + {m_j}^2} \simeq p_j + \frac{{m_j}^2}{2\,p_j} \simeq E + \frac{{m_j}^2}{2\,E} \ ,
+    \label{eq:energy}
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(E\)</span> is the total energy of the particle. Using also <span class="math notranslate nohighlight">\(t \simeq L\)</span> where <span class="math notranslate nohighlight">\(L\)</span> is the distance traveled by neutrinos (the baseline of the experiment), and dropping the global phase factors that will not contribute to the probability, we can rewrite (<span class="math">\ref{eq:plane-wave}</span>) as</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+    \ket{\nu_i(L)} = \exp \left(-i\left(\frac{{m_j}^2 L}{2\,E}\right)\right) \ket{\nu_j(0)} \ .
+    \label{eq:propagation}
+\end{equation}\]</div>
+<p>Finally, taking (<span class="math">\ref{eq:prob-def}</span>) and (<span class="math">\ref{eq:propagation}</span>), and noting the orthogonality of the eigenstates <span class="math notranslate nohighlight">\(\braket{\nu_i|\nu_j} = \delta_{ij}\)</span>, we can conclude after some computations by expanding the vacuum oscillation probability as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+    \begin{split}
+        \mathcal{P}_{\alpha\to\beta}(E, L) %&amp; = \left| \sum_i\sum_j U_{\alpha i}^* U_{\beta j} \braket{\nu_j|\nu_i(t)}\right|^2 = \left|\sum_j U_{\alpha j}^* U_{\beta j} \exp \left(-i\frac{{m_j}^2}{2 E}L\right)\right|^2 \\
+        &amp; = \delta_{\alpha\beta} - 4 \sum_{i&gt;j} \text{Re} (U_{\alpha i}^* U_{\alpha j} U_{\beta i} U_{\beta j}^*) \sin^2 X_{ij} \\
+        &amp; \ \ \ \pm 2 \sum_{i&gt;j} \text{Im} (U_{\alpha i}^* U_{\alpha j} U_{\beta i} U_{\beta j}^*) \sin\left(2X_{ij} \right) \ ,
+    \end{split}
+    \label{eq:vacuum-osc}
+\end{equation}\end{split}\]</div>
+<p>where we use above and hereafter <span class="math notranslate nohighlight">\(X_{ij} \equiv \Delta m_{ij}^2L / 4E\)</span> and where the <span class="math notranslate nohighlight">\(+\)</span> (resp. <span class="math notranslate nohighlight">\(-\)</span>) sign stands for neutrino (resp. antineutrino) states. Consequently, we conclude that the second term on the right hand-side in (<span class="math">\ref{eq:vacuum-osc}</span>) is CP conserving since it is the same for neutrinos and anti-neutrinos, whilst the last one is CP violating due to the sign difference.</p>
 <p>Oscillation probability for neutrino in vacuum:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{equation}
@@ -425,8 +487,10 @@ document.write(`
 \end{equation}\end{split}\]</div>
 <p>This formula is used in definition of function <span class="math notranslate nohighlight">\(\texttt{prob.probability_vacuum}\)</span> .</p>
 <hr class="docutils" />
-<h4><p><strong>Studying the oscillation probability with T2K parameters</strong></p>
-</h4><div class="nbinput nblast docutils container">
+</section>
+<section id="Plotting-the-oscillation-probability-w/-T2K-parameters">
+<h2>Plotting the oscillation probability w/ T2K parameters<a class="headerlink" href="#Plotting-the-oscillation-probability-w/-T2K-parameters" title="Link to this heading">#</a></h2>
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
@@ -462,7 +526,7 @@ document.write(`
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_Probability_vacuum_tutorial_10_0.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_10_0.png" style="width: 858px; height: 453px;" />
+<img alt="../_images/notebooks_Probability_vacuum_tutorial_12_0.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_12_0.png" style="width: 858px; height: 453px;" />
 </div>
 </div>
 <p></p><p>For long-baseline experiments there is a simple and accurate approximation of oscillation probability formula:</p>
@@ -501,7 +565,7 @@ document.write(`
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_Probability_vacuum_tutorial_15_0.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_15_0.png" style="width: 858px; height: 453px;" />
+<img alt="../_images/notebooks_Probability_vacuum_tutorial_17_0.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_17_0.png" style="width: 858px; height: 453px;" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -524,7 +588,7 @@ document.write(`
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_Probability_vacuum_tutorial_16_0.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_16_0.png" style="width: 862px; height: 454px;" />
+<img alt="../_images/notebooks_Probability_vacuum_tutorial_18_0.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_18_0.png" style="width: 862px; height: 454px;" />
 </div>
 </div>
 <p><span class="math notranslate nohighlight">\(\textbf{Example 3: Multiline plots in matplotlib}\)</span></p>
@@ -621,7 +685,7 @@ Text(0, 0.5, &#39;P, %&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_Probability_vacuum_tutorial_18_1.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_18_1.png" style="width: 2554px; height: 616px;" />
+<img alt="../_images/notebooks_Probability_vacuum_tutorial_20_1.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_20_1.png" style="width: 2554px; height: 616px;" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -677,7 +741,7 @@ Text(0, 0.5, &#39;P, %&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_Probability_vacuum_tutorial_20_1.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_20_1.png" style="width: 842px; height: 693px;" />
+<img alt="../_images/notebooks_Probability_vacuum_tutorial_22_1.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_22_1.png" style="width: 842px; height: 693px;" />
 </div>
 </div>
 <hr class="docutils" />
@@ -734,7 +798,7 @@ Text(0, 0.5, &#39;P, %&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_Probability_vacuum_tutorial_23_1.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_23_1.png" style="width: 856px; height: 684px;" />
+<img alt="../_images/notebooks_Probability_vacuum_tutorial_25_1.png" class="no-scaled-link" src="../_images/notebooks_Probability_vacuum_tutorial_25_1.png" style="width: 856px; height: 684px;" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -756,6 +820,7 @@ Text(0, 0.5, &#39;P, %&#39;)
 <script type="application/vnd.jupyter.widget-state+json">
 {"state": {}, "version_major": 2, "version_minor": 0}
 </script></section>
+</section>
 
 
                 </article>
@@ -777,6 +842,15 @@ Text(0, 0.5, &#39;P, %&#39;)
         <p class="prev-next-title">src.nu_osc.osc_prob.probability_vacuum_approx</p>
       </div>
     </a>
+    <a class="right-next"
+       href="../bibliography.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Bibliography</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -784,7 +858,21 @@ Text(0, 0.5, &#39;P, %&#39;)
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Theoretical-bases">Theoretical bases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Plotting-the-oscillation-probability-w/-T2K-parameters">Plotting the oscillation probability w/ T2K parameters</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
