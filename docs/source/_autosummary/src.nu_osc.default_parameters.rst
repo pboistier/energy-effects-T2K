@@ -3,13 +3,13 @@
 
 .. automodule:: src.nu_osc.default_parameters
 
-   
-   
+
+
    .. rubric:: Module Attributes
 
    .. autosummary::
       :toctree:
-   
+
       NUFIT
       SQRT3
       SQRT3_INV
@@ -27,20 +27,4 @@
       DENSITY_MATTER_CRUST_G_PER_CM3
       NUM_DENSITY_E_EARTH_CRUST
       VCC_EARTH_CRUST
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
+      CONV_CM2_TO_BARN

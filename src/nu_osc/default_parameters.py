@@ -179,3 +179,10 @@ r"""float: Module-level constant
 Charged-current matter potential in the Earth's crust.
 Units: [eV]
 """
+
+CONV_CM2_TO_BARN = 1e24
+r"""float: Module-level constant
+
+Multiplicative conversion factor from cm^2 to barn.
+Units: [b^{-1} cm^2]
+"""
