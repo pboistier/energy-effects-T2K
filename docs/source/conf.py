@@ -12,8 +12,8 @@ copyright = "2024, Pierre Boistier"
 author = "Pierre Boistier"
 release = "0.1.2"
 
-html_theme = "sphinx_book_theme"
-#html_theme = "pydata_sphinx_theme"
+# html_theme = "sphinx_book_theme"
+html_theme = "pydata_sphinx_theme"
 
 # -- Path setup --------------------------------------------------------------
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -46,12 +46,12 @@ extensions = [
     "sphinx_tabs.tabs",
 ]
 source_suffix = [".rst", ".md"]
-bibtex_bibfiles = ['refs.bib']
-bibtex_default_style = 'plain'
-#bibtex_reference_style = 'super'
+bibtex_bibfiles = ["refs.bib"]
+bibtex_default_style = "plain"
+# bibtex_reference_style = 'super'
 
 mathjax3_config = {
-    'tex': {'tags': 'ams', 'useLabelIds': True},
+    "tex": {"tags": "ams", "useLabelIds": True},
 }
 
 # Add any paths that contain templates here, relative to this directory.
@@ -72,10 +72,10 @@ exclude_patterns = ["_build"]
 # html_title = "Energy resolution and non-linearity effects on the neutrino oscillation probability at T2K and beyond"
 html_title = "Energy effects at T2K"
 html_show_sphinx = True
-#nbsphinx_input_prompt = " "
-#nbsphinx_prompt_width = 0
-highlight_language = 'none'
-#nbsphinx_requirejs_path = ''
+# nbsphinx_input_prompt = " "
+# nbsphinx_prompt_width = 0
+highlight_language = "none"
+# nbsphinx_requirejs_path = ''
 
 # html_style = 'friendly'
 
