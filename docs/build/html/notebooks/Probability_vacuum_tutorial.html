@@ -375,7 +375,7 @@ document.write(`
 <p>A <span class="math notranslate nohighlight">\(\texttt{Jupyter}\)</span> notebook to show how the code by Denis Carabadjac is implemented.</p>
 <p>Miscellaneous:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
@@ -393,7 +393,7 @@ document.write(`
 </div>
 <p></p><p>To make plots more beautiful</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rc</span><span class="p">(</span><span class="s2">&quot;figure&quot;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
@@ -489,7 +489,7 @@ Hence, the vacuum oscillation probability <span class="math notranslate nohighli
 <section id="Plotting-the-oscillation-probability-w/-T2K-parameters">
 <h2>Plotting the oscillation probability w/ T2K parameters<a class="headerlink" href="#Plotting-the-oscillation-probability-w/-T2K-parameters" title="Link to this heading">#</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">PMNS</span><span class="p">()</span>
@@ -506,7 +506,7 @@ Hence, the vacuum oscillation probability <span class="math notranslate nohighli
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">mu2mu</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\nu_\mu\to\nu_\mu$&quot;</span><span class="p">)</span>
@@ -542,7 +542,7 @@ Hence, the vacuum oscillation probability <span class="math notranslate nohighli
 <h4><p><strong>Comparison of exact and approximated formulae</strong></p>
 </h4><p>Let’s compare the validity of our approximations with the exact formulae. First, we plot the different oscillation probabilities as functions of the energy with T2K baseline <span class="math notranslate nohighlight">\(L\)</span>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu2e_approx</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">probability_vacuum_approx</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">energy</span><span class="p">)</span>
@@ -575,7 +575,7 @@ Hence, the vacuum oscillation probability <span class="math notranslate nohighli
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu2mu_relat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">mu2mu</span> <span class="o">-</span> <span class="n">mu2mu_approx</span><span class="p">)</span> <span class="o">/</span> <span class="n">mu2mu</span><span class="p">)</span>
@@ -599,7 +599,7 @@ Hence, the vacuum oscillation probability <span class="math notranslate nohighli
 </div>
 <p><span class="math notranslate nohighlight">\(\textbf{Example 3: Multiline plots in matplotlib}\)</span></p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob_mue_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -706,12 +706,12 @@ Hence, the vacuum oscillation probability <span class="math notranslate nohighli
 <div class="highlight"><pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">/local/home/pb278543/Github/energy-effects-T2K/docs/source/notebooks/Probability_vacuum_tutorial.ipynb Cell 21</span> line <span class="ansi-cyan-fg">1
-</span><span class="ansi-green-intense-fg ansi-bold">      &lt;a href=&#39;vscode-notebook-cell:/local/home/pb278543/Github/energy-effects-T2K/docs/source/notebooks/Probability_vacuum_tutorial.ipynb#X66sZmlsZQ%3D%3D?line=6&#39;&gt;7&lt;/a&gt;</span> dm2_32_list = np.linspace(2e-3, 3e-3, 50)
-<span class="ansi-green-intense-fg ansi-bold">      &lt;a href=&#39;vscode-notebook-cell:/local/home/pb278543/Github/energy-effects-T2K/docs/source/notebooks/Probability_vacuum_tutorial.ipynb#X66sZmlsZQ%3D%3D?line=7&#39;&gt;8&lt;/a&gt;</span> for i in range(50):
-<span class="ansi-green-fg">---&gt; &lt;a href=&#39;vscode-notebook-cell:/local/home/pb278543/Github/energy-effects-T2K/docs/source/notebooks/Probability_vacuum_tutorial.ipynb#X66sZmlsZQ%3D%3D?line=9&#39;&gt;10&lt;/a&gt;</span>     U = PMNS(theta_13=radians(theta_13_list[i]))
-<span class="ansi-green-intense-fg ansi-bold">     &lt;a href=&#39;vscode-notebook-cell:/local/home/pb278543/Github/energy-effects-T2K/docs/source/notebooks/Probability_vacuum_tutorial.ipynb#X66sZmlsZQ%3D%3D?line=10&#39;&gt;11&lt;/a&gt;</span>     prob_mue = probability_vacuum(U, beta=0, E=energy) * 100
-<span class="ansi-green-intense-fg ansi-bold">     &lt;a href=&#39;vscode-notebook-cell:/local/home/pb278543/Github/energy-effects-T2K/docs/source/notebooks/Probability_vacuum_tutorial.ipynb#X66sZmlsZQ%3D%3D?line=11&#39;&gt;12&lt;/a&gt;</span>     prob_mue_list.append(prob_mue)
+Cell <span class="ansi-green-fg">In[7], line 10</span>
+<span class="ansi-green-intense-fg ansi-bold">      7</span> dm2_32_list <span style="color: rgb(98,98,98)">=</span> np<span style="color: rgb(98,98,98)">.</span>linspace(<span style="color: rgb(98,98,98)">2e-3</span>, <span style="color: rgb(98,98,98)">3e-3</span>, <span style="color: rgb(98,98,98)">50</span>)
+<span class="ansi-green-intense-fg ansi-bold">      8</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> i <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span style="color: rgb(0,135,0)">range</span>(<span style="color: rgb(98,98,98)">50</span>):
+<span class="ansi-green-fg">---&gt; 10</span>     U <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">PMNS</span>(theta_13<span style="color: rgb(98,98,98)">=</span>radians(theta_13_list[i]))
+<span class="ansi-green-intense-fg ansi-bold">     11</span>     prob_mue <span style="color: rgb(98,98,98)">=</span> probability_vacuum(U, beta<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">0</span>, E<span style="color: rgb(98,98,98)">=</span>energy) <span style="color: rgb(98,98,98)">*</span> <span style="color: rgb(98,98,98)">100</span>
+<span class="ansi-green-intense-fg ansi-bold">     12</span>     prob_mue_list<span style="color: rgb(98,98,98)">.</span>append(prob_mue)
 
 <span class="ansi-red-fg">NameError</span>: name &#39;PMNS&#39; is not defined
 </pre></div></div>
