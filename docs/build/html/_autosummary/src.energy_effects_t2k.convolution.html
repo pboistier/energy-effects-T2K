@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>src.nu_osc.hamiltonians &#8212; Energy effects at T2K</title>
+    <title>src.energy_effects_t2k.convolution &#8212; Energy effects at T2K</title>
 
 
 
@@ -43,13 +43,11 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "tags": "ams", "useLabelIds": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_autosummary/src.nu_osc.hamiltonians';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_autosummary/src.energy_effects_t2k.convolution';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="src.nu_osc.hamiltonians.PMNS" href="src.nu_osc.hamiltonians.PMNS.html" />
-    <link rel="prev" title="src.nu_osc.default_parameters.CONV_CM2_TO_BARN" href="src.nu_osc.default_parameters.CONV_CM2_TO_BARN.html" />
+    <link rel="next" title="src.energy_effects_t2k.convolution.fluximport" href="src.energy_effects_t2k.convolution.fluximport.html" />
+    <link rel="prev" title="src.nu_osc.osc_prob.probability_vacuum_approx" href="src.nu_osc.osc_prob.probability_vacuum_approx.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -338,7 +336,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="src.nu_osc.default_parameters.CONV_CM2_TO_BARN.html">src.nu_osc.default_parameters.CONV_CM2_TO_BARN</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">src.nu_osc.hamiltonians</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="src.nu_osc.hamiltonians.html">src.nu_osc.hamiltonians</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="src.nu_osc.hamiltonians.PMNS.html">src.nu_osc.hamiltonians.PMNS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.nu_osc.hamiltonians.evolution_operator_3nu.html">src.nu_osc.hamiltonians.evolution_operator_3nu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.nu_osc.hamiltonians.evolution_operator_3nu_u_coefficients.html">src.nu_osc.hamiltonians.evolution_operator_3nu_u_coefficients</a></li>
@@ -363,7 +361,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="src.nu_osc.osc_prob.probability_vacuum_approx.html">src.nu_osc.osc_prob.probability_vacuum_approx</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="src.energy_effects_t2k.convolution.html">src.energy_effects_t2k.convolution</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">src.energy_effects_t2k.convolution</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="src.energy_effects_t2k.convolution.fluximport.html">src.energy_effects_t2k.convolution.fluximport</a></li>
 </ul>
 </li>
@@ -407,7 +405,7 @@ document.write(`
 
     <li class="breadcrumb-item"><a href="../api.html" class="nav-link">API</a></li>
 
-    <li class="breadcrumb-item active" aria-current="page">src.nu_osc.h...</li>
+    <li class="breadcrumb-item active" aria-current="page">src.energy_e...</li>
   </ul>
 </nav>
 </div>
@@ -424,40 +422,24 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
 
-  <section id="module-src.nu_osc.hamiltonians">
-<span id="src-nu-osc-hamiltonians"></span><h1>src.nu_osc.hamiltonians<a class="headerlink" href="#module-src.nu_osc.hamiltonians" title="Link to this heading">#</a></h1>
+  <section id="module-src.energy_effects_t2k.convolution">
+<span id="src-energy-effects-t2k-convolution"></span><h1>src.energy_effects_t2k.convolution<a class="headerlink" href="#module-src.energy_effects_t2k.convolution" title="Link to this heading">#</a></h1>
+<p>Convolution.</p>
+<p>This tool accepts comma separated value files (.csv).</p>
+<p>This script requires that <cite>pandas</cite> be installed within the Python
+environment you are running this script in.</p>
+<p>This file can also be imported as a module and contains the following
+functions:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>fluximport - returns the pandas.DataFrame containing the flux data</p></li>
+</ul>
+</div></blockquote>
 <p class="rubric">Functions</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="src.nu_osc.hamiltonians.PMNS.html#src.nu_osc.hamiltonians.PMNS" title="src.nu_osc.hamiltonians.PMNS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PMNS</span></code></a>([theta_12, theta_13, theta_23, delta_cp])</p></td>
-<td><p>Returns PMNS matrix</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="src.nu_osc.hamiltonians.evolution_operator_3nu.html#src.nu_osc.hamiltonians.evolution_operator_3nu" title="src.nu_osc.hamiltonians.evolution_operator_3nu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evolution_operator_3nu</span></code></a>(hamiltonian_matrix, L)</p></td>
-<td><p>Returns the 3nu time-evolution operator in its SU(3) expanstion.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="src.nu_osc.hamiltonians.evolution_operator_3nu_u_coefficients.html#src.nu_osc.hamiltonians.evolution_operator_3nu_u_coefficients" title="src.nu_osc.hamiltonians.evolution_operator_3nu_u_coefficients"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evolution_operator_3nu_u_coefficients</span></code></a>(...)</p></td>
-<td><p>Returns coefficients u0, ..., u8 of the 3nu evolution operator.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="src.nu_osc.hamiltonians.hamiltonian_3nu_coefficients.html#src.nu_osc.hamiltonians.hamiltonian_3nu_coefficients" title="src.nu_osc.hamiltonians.hamiltonian_3nu_coefficients"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hamiltonian_3nu_coefficients</span></code></a>(hamiltonian_matrix)</p></td>
-<td><p>Returns the h_k of the SU(3)-expansion of the 3nu Hamiltonian.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="src.nu_osc.hamiltonians.hamiltonian_3nu_energy_independent.html#src.nu_osc.hamiltonians.hamiltonian_3nu_energy_independent" title="src.nu_osc.hamiltonians.hamiltonian_3nu_energy_independent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hamiltonian_3nu_energy_independent</span></code></a>([...])</p></td>
-<td><p>Returns the three-neutrino Hamiltonian for vacuum oscillations.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="src.nu_osc.hamiltonians.probability_energy_fixed.html#src.nu_osc.hamiltonians.probability_energy_fixed" title="src.nu_osc.hamiltonians.probability_energy_fixed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">probability_energy_fixed</span></code></a>(hamiltonian_matrix, ...)</p></td>
-<td><p>Returns the 3nu oscillation probability.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="src.nu_osc.hamiltonians.psi_roots.html#src.nu_osc.hamiltonians.psi_roots" title="src.nu_osc.hamiltonians.psi_roots"><code class="xref py py-obj docutils literal notranslate"><span class="pre">psi_roots</span></code></a>(h2, h3)</p></td>
-<td><p>Returns the roots psi.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="src.nu_osc.hamiltonians.star.html#src.nu_osc.hamiltonians.star" title="src.nu_osc.hamiltonians.star"><code class="xref py py-obj docutils literal notranslate"><span class="pre">star</span></code></a>(i, h_coeffs)</p></td>
-<td><p>Returns the SU(3) star oroduct (h*h)_i.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="src.nu_osc.hamiltonians.su3_invariants.html#src.nu_osc.hamiltonians.su3_invariants" title="src.nu_osc.hamiltonians.su3_invariants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">su3_invariants</span></code></a>(h_coeffs)</p></td>
-<td><p>Returns the two SU(3) invariants, <a href="#id1"><span class="problematic" id="id2">|</span></a>h|^2 and &lt;h&gt;.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="src.nu_osc.hamiltonians.tensor_d.html#src.nu_osc.hamiltonians.tensor_d" title="src.nu_osc.hamiltonians.tensor_d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tensor_d</span></code></a>(i, j, k)</p></td>
-<td><p>Returns the tensor d_ijk of the SU(3) algebra.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="src.energy_effects_t2k.convolution.fluximport.html#src.energy_effects_t2k.convolution.fluximport" title="src.energy_effects_t2k.convolution.fluximport"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fluximport</span></code></a>(name)</p></td>
+<td><p>Creates a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> with the flux data.</p></td>
 </tr>
 </tbody>
 </table>
@@ -474,20 +456,20 @@ document.write(`
 
 <div class="prev-next-area">
     <a class="left-prev"
-       href="src.nu_osc.default_parameters.CONV_CM2_TO_BARN.html"
+       href="src.nu_osc.osc_prob.probability_vacuum_approx.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">src.nu_osc.default_parameters.CONV_CM2_TO_BARN</p>
+        <p class="prev-next-title">src.nu_osc.osc_prob.probability_vacuum_approx</p>
       </div>
     </a>
     <a class="right-next"
-       href="src.nu_osc.hamiltonians.PMNS.html"
+       href="src.energy_effects_t2k.convolution.fluximport.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">src.nu_osc.hamiltonians.PMNS</p>
+        <p class="prev-next-title">src.energy_effects_t2k.convolution.fluximport</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -504,7 +486,7 @@ document.write(`
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../_sources/_autosummary/src.nu_osc.hamiltonians.rst.txt">
+    <a href="../_sources/_autosummary/src.energy_effects_t2k.convolution.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

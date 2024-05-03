@@ -361,7 +361,7 @@
     "plt.ylabel(\n",
     "    r\"Flux [$\\text{cm}^{-2}\\cdot (50\\,\\text{MeV})^{-1} \\cdot (10^{21}\\,\\text{PoT})^{-1}$]\"\n",
     ")\n",
-    "plt.ylim(bottom=1e-1)\n",
+    "plt.ylim(bottom=1e-1)        >>> {minE,maxE,numu,anti-numu,nue,anti-nue}\n",
     "plt.title(r\"T2K Flux 2020 | Nominal conditions | SK | $+250$ kA\")\n",
     "plt.legend()\n",
     "\n",
@@ -374,8 +374,8 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "for key in ['numu', 'nue', 'antinumu', 'antinue']:\n",
-    "    fluxes['true'+key] = fluxes[key] * (fluxes.maxE - fluxes.minE) * 1e3 / (50 * 1e21)"
+    "for key in [\"numu\", \"nue\", \"antinumu\", \"antinue\"]:\n",
+    "    fluxes[\"true\" + key] = fluxes[key] * (fluxes.maxE - fluxes.minE) * 1e3 / (50 * 1e21)"
    ]
   },
   {
@@ -405,10 +405,8 @@
     "plt.xscale(\"log\")\n",
     "plt.yscale(\"log\")\n",
     "plt.xlabel(r\"$E$ [GeV]\")\n",
-    "plt.ylabel(\n",
-    "    r\"Flux [$\\text{cm}^{-2} \\cdot \\text{PoT}^{-1}$]\"\n",
-    ")\n",
-    "#plt.ylim(bottom=1e-1)\n",
+    "plt.ylabel(r\"Flux [$\\text{cm}^{-2} \\cdot \\text{PoT}^{-1}$]\")\n",
+    "# plt.ylim(bottom=1e-1)\n",
     "plt.title(r\"T2K Flux 2020 | Nominal conditions | SK | $+250$ kA\")\n",
     "plt.legend()\n",
     "\n",
@@ -779,17 +777,12 @@
     "plt.legend()\n",
     "\n",
     "ax = plt.gca()\n",
-    "axins = inloc.inset_axes(\n",
-    "    ax, width='25%', height='45%', loc=5, borderpad=3\n",
-    ")\n",
+    "axins = inloc.inset_axes(ax, width=\"25%\", height=\"45%\", loc=5, borderpad=3)\n",
     "axins.set_xlim(0.8, 1.5)\n",
     "axins.set_ylim(0.4, 0.6)\n",
     "plt.step(xsec.energy, xsec.xsec, label=r\"CCQE\", where=\"mid\")\n",
-    "axins.grid(True, 'both')\n",
-    "inloc.mark_inset(\n",
-    "    ax, axins, loc1=2, loc2=3,\n",
-    "    fc=\"none\", ec=\"0.5\"\n",
-    ")\n",
+    "axins.grid(True, \"both\")\n",
+    "inloc.mark_inset(ax, axins, loc1=2, loc2=3, fc=\"none\", ec=\"0.5\")\n",
     "\n",
     "plt.show()"
    ]
@@ -1120,7 +1113,7 @@
    "outputs": [],
    "source": [
     "def maxwell(x, a, b):\n",
-    "    return np.sqrt(2/np.pi) * ((x)**2/a**3) * np.exp(-(x+b)**2 / (2*a**2))"
+    "    return np.sqrt(2 / np.pi) * ((x) ** 2 / a**3) * np.exp(-((x + b) ** 2) / (2 * a**2))"
    ]
   },
   {
@@ -1130,7 +1123,9 @@
    "outputs": [],
    "source": [
     "def lognormal(x, sigma, mu):\n",
-    "    return (1 / (x*sigma*np.sqrt(2*np.pi))) * np.exp(-(np.log(x) - mu)**2 / (2*sigma**2))"
+    "    return (1 / (x * sigma * np.sqrt(2 * np.pi))) * np.exp(\n",
+    "        -((np.log(x) - mu) ** 2) / (2 * sigma**2)\n",
+    "    )"
    ]
   },
   {
@@ -1139,7 +1134,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "#params = stats.maxwell.fit(xsec.xsec, floc=0)\n",
+    "# params = stats.maxwell.fit(xsec.xsec, floc=0)\n",
     "parameters, covariance = optimize.curve_fit(lognormal, xsec.energy, xsec.xsec)"
    ]
   },
