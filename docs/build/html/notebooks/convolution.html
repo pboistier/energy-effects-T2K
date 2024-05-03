@@ -374,7 +374,7 @@ document.write(`
 <h1>Convolution of the flux and interaction cross-section<a class="headerlink" href="#Convolution-of-the-flux-and-interaction-cross-section" title="Link to this heading">#</a></h1>
 <p>Miscellaneous:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[148]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
@@ -383,16 +383,19 @@ document.write(`
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
 <span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">savgol_filter</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rc</span>
+<span class="kn">import</span> <span class="nn">mpl_toolkits.axes_grid1.inset_locator</span> <span class="k">as</span> <span class="nn">inloc</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
 <span class="kn">from</span> <span class="nn">src.nu_osc.default_parameters</span> <span class="kn">import</span> <span class="n">CONV_CM2_TO_BARN</span>
 </pre></div>
 </div>
 </div>
 <p></p><p>To make plots more beautiful</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rc</span><span class="p">(</span><span class="s2">&quot;figure&quot;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
@@ -417,7 +420,7 @@ document.write(`
 <h2>Inferred fluxes at SK from ND280<a class="headerlink" href="#Inferred-fluxes-at-SK-from-ND280" title="Link to this heading">#</a></h2>
 <p></p><p>Defining a <span class="math notranslate nohighlight">\(\texttt{pandas dataframe}\)</span>:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fluxes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
@@ -431,7 +434,7 @@ document.write(`
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -512,7 +515,7 @@ document.write(`
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fluxes</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
@@ -520,7 +523,7 @@ document.write(`
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -628,7 +631,7 @@ document.write(`
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">fluxes</span><span class="o">.</span><span class="n">minE</span><span class="p">,</span> <span class="n">fluxes</span><span class="o">.</span><span class="n">numu</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\nu_\mu$&quot;</span><span class="p">)</span>
@@ -660,7 +663,48 @@ document.write(`
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[220]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;numu&#39;</span><span class="p">,</span> <span class="s1">&#39;nue&#39;</span><span class="p">,</span> <span class="s1">&#39;antinumu&#39;</span><span class="p">,</span> <span class="s1">&#39;antinue&#39;</span><span class="p">]:</span>
+    <span class="n">fluxes</span><span class="p">[</span><span class="s1">&#39;true&#39;</span><span class="o">+</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">fluxes</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">fluxes</span><span class="o">.</span><span class="n">maxE</span> <span class="o">-</span> <span class="n">fluxes</span><span class="o">.</span><span class="n">minE</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1e3</span> <span class="o">/</span> <span class="p">(</span><span class="mi">50</span> <span class="o">*</span> <span class="mf">1e21</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[221]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">fluxes</span><span class="o">.</span><span class="n">minE</span><span class="p">,</span> <span class="n">fluxes</span><span class="o">.</span><span class="n">truenumu</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\nu_\mu$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">fluxes</span><span class="o">.</span><span class="n">minE</span><span class="p">,</span> <span class="n">fluxes</span><span class="o">.</span><span class="n">truenue</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\nu_e$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">fluxes</span><span class="o">.</span><span class="n">minE</span><span class="p">,</span> <span class="n">fluxes</span><span class="o">.</span><span class="n">trueantinumu</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\overline{\nu}_\mu$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">fluxes</span><span class="o">.</span><span class="n">minE</span><span class="p">,</span> <span class="n">fluxes</span><span class="o">.</span><span class="n">trueantinue</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\overline{\nu}_e$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;600 MeV&quot;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$E$ [GeV]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span>
+    <span class="sa">r</span><span class="s2">&quot;Flux [$\text</span><span class="si">{cm}</span><span class="s2">^{-2} \cdot \text</span><span class="si">{PoT}</span><span class="s2">^{-1}$]&quot;</span>
+<span class="p">)</span>
+<span class="c1">#plt.ylim(bottom=1e-1)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;T2K Flux 2020 | Nominal conditions | SK | $+250$ kA&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_convolution_11_0.png" src="../_images/notebooks_convolution_11_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fluxes</span> <span class="o">=</span> <span class="n">fluxes</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">numu</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">nue</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">antinumu</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">antinue</span><span class="p">)</span>
@@ -668,7 +712,7 @@ document.write(`
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">fluxes</span><span class="o">.</span><span class="n">minE</span><span class="p">,</span> <span class="n">fluxes</span><span class="o">.</span><span class="n">numu</span> <span class="o">/</span> <span class="n">fluxes</span><span class="o">.</span><span class="n">total</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\nu_\mu$&quot;</span><span class="p">)</span>
@@ -694,11 +738,11 @@ document.write(`
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_convolution_11_0.png" src="../_images/notebooks_convolution_11_0.png" />
+<img alt="../_images/notebooks_convolution_13_0.png" src="../_images/notebooks_convolution_13_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[91]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">integrals</span> <span class="o">=</span> <span class="p">{}</span>
@@ -717,7 +761,7 @@ document.write(`
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[91]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -779,7 +823,7 @@ document.write(`
 <section id="Interaction-cross-section-of-the-CCQE">
 <h2>Interaction cross-section of the CCQE<a class="headerlink" href="#Interaction-cross-section-of-the-CCQE" title="Link to this heading">#</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xsec</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;neutrino_ccqe.csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;energy&quot;</span><span class="p">,</span> <span class="s2">&quot;xsec&quot;</span><span class="p">])</span>
@@ -788,7 +832,7 @@ document.write(`
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -845,7 +889,7 @@ document.write(`
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xsec</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
@@ -853,7 +897,7 @@ document.write(`
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -925,7 +969,7 @@ document.write(`
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[214]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">xsec</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">xsec</span><span class="o">.</span><span class="n">xsec</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;CCQE&quot;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;mid&quot;</span><span class="p">)</span>
@@ -940,6 +984,19 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;CCQE neutrino cross-section&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">axins</span> <span class="o">=</span> <span class="n">inloc</span><span class="o">.</span><span class="n">inset_axes</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;25%&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s1">&#39;45%&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">borderpad</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+<span class="n">axins</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">axins</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">xsec</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">xsec</span><span class="o">.</span><span class="n">xsec</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;CCQE&quot;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;mid&quot;</span><span class="p">)</span>
+<span class="n">axins</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;both&#39;</span><span class="p">)</span>
+<span class="n">inloc</span><span class="o">.</span><span class="n">mark_inset</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span> <span class="n">axins</span><span class="p">,</span> <span class="n">loc1</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">loc2</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">fc</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span>
+<span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -948,19 +1005,19 @@ document.write(`
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_convolution_19_0.png" src="../_images/notebooks_convolution_19_0.png" />
+<img alt="../_images/notebooks_convolution_21_0.png" src="../_images/notebooks_convolution_21_0.png" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[98]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xsec</span> <span class="o">=</span> <span class="n">xsec</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">truexsec</span> <span class="o">=</span> <span class="n">xsec</span><span class="o">.</span><span class="n">xsec</span><span class="o">/</span><span class="n">xsec</span><span class="o">.</span><span class="n">energy</span> <span class="o">*</span> <span class="mf">1e-38</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xsec</span> <span class="o">=</span> <span class="n">xsec</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">truexsec</span><span class="o">=</span><span class="n">xsec</span><span class="o">.</span><span class="n">xsec</span> <span class="o">*</span> <span class="n">xsec</span><span class="o">.</span><span class="n">energy</span> <span class="o">*</span> <span class="mf">1e-38</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[99]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">xsec</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">xsec</span><span class="o">.</span><span class="n">truexsec</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;CCQE&quot;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;mid&quot;</span><span class="p">)</span>
@@ -974,7 +1031,20 @@ document.write(`
 <span class="c1"># plt.ylim(bottom=1e-1)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;CCQE neutrino cross-section&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">ax = plt.gca()</span>
+<span class="sd">axins = inloc.inset_axes(</span>
+<span class="sd">    ax, width=&#39;25%&#39;, height=&#39;45%&#39;, loc=5, borderpad=3</span>
+<span class="sd">)</span>
+<span class="sd">axins.set_xlim(0.15, 0.3)</span>
+<span class="sd">axins.set_ylim(2.5e-38, 3e-38)</span>
+<span class="sd">plt.step(xsec.energy, xsec.truexsec, label=r&quot;CCQE&quot;, where=&quot;mid&quot;)</span>
+<span class="sd">axins.grid(True, &#39;both&#39;)</span>
+<span class="sd">inloc.mark_inset(</span>
+<span class="sd">    ax, axins, loc1=1, loc2=3,</span>
+<span class="sd">    fc=&quot;none&quot;, ec=&quot;0.5&quot;</span>
+<span class="sd">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -983,25 +1053,29 @@ document.write(`
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_convolution_21_0.png" src="../_images/notebooks_convolution_21_0.png" />
+<img alt="../_images/notebooks_convolution_23_0.png" src="../_images/notebooks_convolution_23_0.png" />
 </div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The following is not working anymore, due to a mistake in the renormalization of the cross-section. Please skip directly to the next subsection.</p>
 </div>
 <p></p><p>The data is not very smooth, since it has been read-out from a figure in an article. We can use the Savitzky-Golay filter to smooth it a little.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[143]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filtered</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="n">filtered</span> <span class="o">=</span> <span class="n">filtered</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">energy</span> <span class="o">=</span> <span class="n">savgol_filter</span><span class="p">(</span><span class="n">xsec</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;interp&#39;</span><span class="p">))</span>
-<span class="c1">#filtered = filtered.assign(energy = xsec.energy)</span>
-<span class="n">filtered</span> <span class="o">=</span> <span class="n">filtered</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">xsec</span> <span class="o">=</span> <span class="n">savgol_filter</span><span class="p">(</span><span class="n">xsec</span><span class="o">.</span><span class="n">xsec</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">filtered</span> <span class="o">=</span> <span class="n">filtered</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">truexsec</span> <span class="o">=</span> <span class="n">filtered</span><span class="o">.</span><span class="n">xsec</span><span class="o">/</span><span class="n">filtered</span><span class="o">.</span><span class="n">energy</span> <span class="o">*</span> <span class="mf">1e-38</span><span class="p">)</span>
+<span class="n">filtered</span> <span class="o">=</span> <span class="n">filtered</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">energy</span><span class="o">=</span><span class="n">savgol_filter</span><span class="p">(</span><span class="n">xsec</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;interp&quot;</span><span class="p">))</span>
+<span class="c1"># filtered = filtered.assign(energy = xsec.energy)</span>
+<span class="n">filtered</span> <span class="o">=</span> <span class="n">filtered</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">xsec</span><span class="o">=</span><span class="n">savgol_filter</span><span class="p">(</span><span class="n">xsec</span><span class="o">.</span><span class="n">xsec</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">filtered</span> <span class="o">=</span> <span class="n">filtered</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">truexsec</span><span class="o">=</span><span class="n">filtered</span><span class="o">.</span><span class="n">xsec</span> <span class="o">*</span> <span class="n">filtered</span><span class="o">.</span><span class="n">energy</span> <span class="o">*</span> <span class="mf">1e-38</span><span class="p">)</span>
 <span class="n">filtered</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[143]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1038,51 +1112,51 @@ document.write(`
     <tr>
       <th>mean</th>
       <td>4.161805</td>
-      <td>0.407671</td>
-      <td>1.073386e-38</td>
+      <td>0.406868</td>
+      <td>3.419693e-39</td>
     </tr>
     <tr>
       <th>std</th>
       <td>12.439749</td>
-      <td>0.278137</td>
-      <td>1.034841e-38</td>
+      <td>0.276642</td>
+      <td>1.955890e-39</td>
     </tr>
     <tr>
       <th>min</th>
       <td>0.087239</td>
-      <td>-0.007728</td>
-      <td>-8.858705e-40</td>
+      <td>-0.025766</td>
+      <td>-2.247758e-41</td>
     </tr>
     <tr>
       <th>25%</th>
       <td>0.225427</td>
-      <td>0.145849</td>
-      <td>9.313004e-40</td>
+      <td>0.147902</td>
+      <td>1.363587e-39</td>
     </tr>
     <tr>
       <th>50%</th>
       <td>0.727301</td>
-      <td>0.401671</td>
-      <td>7.176754e-39</td>
+      <td>0.402002</td>
+      <td>4.347828e-39</td>
     </tr>
     <tr>
       <th>75%</th>
       <td>2.102402</td>
-      <td>0.667781</td>
-      <td>1.993504e-38</td>
+      <td>0.664540</td>
+      <td>5.086192e-39</td>
     </tr>
     <tr>
       <th>max</th>
       <td>97.103224</td>
-      <td>0.836583</td>
-      <td>2.869417e-38</td>
+      <td>0.825985</td>
+      <td>5.327356e-39</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[84]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[144]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">xsec</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">xsec</span><span class="o">.</span><span class="n">truexsec</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;CCQE&quot;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;mid&quot;</span><span class="p">)</span>
@@ -1094,10 +1168,39 @@ document.write(`
 <span class="c1"># plt.yscale(&quot;log&quot;)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$E$ [GeV]&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\nu$ cross-section [$\text</span><span class="si">{cm}</span><span class="s2">^2$]&quot;</span><span class="p">)</span>
-<span class="c1"># plt.ylim(bottom=1e-1)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;CCQE neutrino cross-section, filtered with a Savitzky-Golay filter&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">ax = plt.gca()</span>
 
+<span class="sd">axins2 = inloc.inset_axes(</span>
+<span class="sd">    ax, width=&#39;25%&#39;, height=&#39;45%&#39;, loc=4, borderpad=3</span>
+<span class="sd">)</span>
+<span class="sd">axins2.set_xlim(0.08, 0.12)</span>
+<span class="sd">axins2.set_ylim(-0.1e-38, 0.5e-38)</span>
+<span class="sd">plt.step(xsec.energy, xsec.truexsec, label=r&quot;CCQE&quot;, where=&quot;mid&quot;)</span>
+<span class="sd">plt.step(filtered.energy, filtered.truexsec, label=r&quot;CCQE, filtered&quot;, where=&quot;mid&quot;)</span>
+<span class="sd">axins2.grid(True, &#39;both&#39;)</span>
+<span class="sd">inloc.mark_inset(</span>
+<span class="sd">    ax, axins2, loc1=2, loc2=4,</span>
+<span class="sd">    fc=&quot;none&quot;, ec=&quot;0.5&quot;</span>
+<span class="sd">)</span>
+
+
+<span class="sd">axins = inloc.inset_axes(</span>
+<span class="sd">    ax, width=&#39;25%&#39;, height=&#39;45%&#39;, loc=9, borderpad=3</span>
+<span class="sd">)</span>
+<span class="sd">axins.set_xlim(0.15, 0.3)</span>
+<span class="sd">axins.set_ylim(2.5e-38, 3e-38)</span>
+<span class="sd">plt.step(xsec.energy, xsec.truexsec, label=r&quot;CCQE&quot;, where=&quot;mid&quot;)</span>
+<span class="sd">plt.step(filtered.energy, filtered.truexsec, label=r&quot;CCQE, filtered&quot;, where=&quot;mid&quot;)</span>
+<span class="sd">axins.grid(True, &#39;both&#39;)</span>
+<span class="sd">inloc.mark_inset(</span>
+<span class="sd">    ax, axins, loc1=1, loc2=3,</span>
+<span class="sd">    fc=&quot;none&quot;, ec=&quot;0.5&quot;</span>
+<span class="sd">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1106,25 +1209,30 @@ document.write(`
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_convolution_24_0.png" src="../_images/notebooks_convolution_24_0.png" />
+<img alt="../_images/notebooks_convolution_27_0.png" src="../_images/notebooks_convolution_27_0.png" />
 </div>
 </div>
 <p></p><p>This plot shows a better reconstructed cross-section, but with a mismatch around 0.1 GeV (due to the abrupt beginning of the data). One way to solve this is to fix manually the points back to the ones read on the figure.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[114]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">,</span> <span class="s1">&#39;xsec&#39;</span><span class="p">,</span> <span class="s1">&#39;truexsec&#39;</span><span class="p">]:</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;energy&quot;</span><span class="p">,</span> <span class="s2">&quot;xsec&quot;</span><span class="p">,</span> <span class="s2">&quot;truexsec&quot;</span><span class="p">]:</span>
     <span class="n">filtered</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">xsec</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="n">key</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[85]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[115]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">xsec</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">xsec</span><span class="o">.</span><span class="n">truexsec</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;CCQE&quot;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;mid&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">filtered</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">filtered</span><span class="o">.</span><span class="n">truexsec</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;CCQE, filtered w/o side effects&quot;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;mid&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span>
+    <span class="n">filtered</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span>
+    <span class="n">filtered</span><span class="o">.</span><span class="n">truexsec</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;CCQE, filtered w/o side effects&quot;</span><span class="p">,</span>
+    <span class="n">where</span><span class="o">=</span><span class="s2">&quot;mid&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;600 MeV&quot;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.65</span><span class="p">,</span> <span class="mf">2e-38</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
 
@@ -1144,23 +1252,46 @@ document.write(`
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_convolution_27_0.png" src="../_images/notebooks_convolution_27_0.png" />
+<img alt="../_images/notebooks_convolution_30_0.png" src="../_images/notebooks_convolution_30_0.png" />
 </div>
 </div>
-<p></p><p>We’ll keep the filtered way in the further analysis, without any other checks, since the reading technique used for the unfiltered data is not precise in itself.</p>
-<p>In order to convolve interaction cross-section with the flux, one needs the same bining for the two histograms (the <span class="math notranslate nohighlight">\(\texttt{numpy}\)</span> function <span class="math notranslate nohighlight">\(\texttt{convolve}\)</span> takes two one-dimensionnal arrays). The way to do so is to interpolate the <span class="math notranslate nohighlight">\((x,y)\)</span> data of one of the two quantities with the <span class="math notranslate nohighlight">\((x)\)</span> of the other. Since :</p>
-<ul><li><p>the flux is the “input” data of the FD (cross-section is more of a filter, a detector response);</p>
-</li><li><p>the flux binning is smaller;</p>
-</li><li><p>the flux data is “cleaner” (collected from T2K collab.) than the cross-section (read from a figure);</p>
-</li></ul><p>we choose to to interpolate the cross-section data to fit the flux binning.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[104]:
+<p></p></section>
+<section id="Fitting-the-cross-section-data">
+<h2>Fitting the cross-section data<a class="headerlink" href="#Fitting-the-cross-section-data" title="Link to this heading">#</a></h2>
+<p>The data is not very smooth, since it has been read-out from a figure in an article. The shape of <span class="math notranslate nohighlight">\(\sigma / E\)</span> looks like a Maxwell-Boltzmann, so we can try fitting it.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[182]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xsec_interp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">((</span><span class="n">fluxes</span><span class="o">.</span><span class="n">minE</span><span class="o">+</span><span class="n">fluxes</span><span class="o">.</span><span class="n">maxE</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">filtered</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">filtered</span><span class="o">.</span><span class="n">truexsec</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">filtered</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">filtered</span><span class="o">.</span><span class="n">truexsec</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;CCQE (+f-s)&quot;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;mid&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">fluxes</span><span class="o">.</span><span class="n">minE</span><span class="p">,</span> <span class="n">xsec_interp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;CCQE (+f-s) interpolated&quot;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">maxwell</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">a</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[208]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lognormal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">mu</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[209]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#params = stats.maxwell.fit(xsec.xsec, floc=0)</span>
+<span class="n">parameters</span><span class="p">,</span> <span class="n">covariance</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">curve_fit</span><span class="p">(</span><span class="n">lognormal</span><span class="p">,</span> <span class="n">xsec</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">xsec</span><span class="o">.</span><span class="n">xsec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[210]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">xsec</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">xsec</span><span class="o">.</span><span class="n">xsec</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;CCQE&quot;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;mid&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xsec</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">lognormal</span><span class="p">(</span><span class="n">xsec</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="o">*</span><span class="n">parameters</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;600 MeV&quot;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.45</span><span class="p">,</span> <span class="mf">2e-1</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
 
@@ -1180,43 +1311,53 @@ document.write(`
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_convolution_30_0.png" src="../_images/notebooks_convolution_30_0.png" />
-</div>
-</div>
-</section>
-<section id="Multiplying-flux-and-cross-section">
-<h2>Multiplying flux and cross-section<a class="headerlink" href="#Multiplying-flux-and-cross-section" title="Link to this heading">#</a></h2>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[108]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;minE&#39;</span><span class="p">,</span> <span class="s1">&#39;maxE&#39;</span><span class="p">]:</span>
-    <span class="n">number</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">fluxes</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;numu&#39;</span><span class="p">,</span> <span class="s1">&#39;nue&#39;</span><span class="p">,</span> <span class="s1">&#39;antinumu&#39;</span><span class="p">,</span> <span class="s1">&#39;antinue&#39;</span><span class="p">]:</span>
-    <span class="n">number</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">xsec_interp</span> <span class="o">*</span> <span class="n">fluxes</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">50</span> <span class="o">*</span> <span class="mf">1e21</span><span class="p">)</span>
-</pre></div>
+<img alt="../_images/notebooks_convolution_37_0.png" src="../_images/notebooks_convolution_37_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[117]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[185]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">minE</span><span class="p">,</span> <span class="n">number</span><span class="o">.</span><span class="n">numu</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\nu_\mu$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">minE</span><span class="p">,</span> <span class="n">number</span><span class="o">.</span><span class="n">nue</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\nu_e$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">minE</span><span class="p">,</span> <span class="n">number</span><span class="o">.</span><span class="n">antinumu</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\overline{\nu}_\mu$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">minE</span><span class="p">,</span> <span class="n">number</span><span class="o">.</span><span class="n">antinue</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\overline{\nu}_e$&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">parameters</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.4094502863440786 0.10818437109468165
+</pre></div></div>
+</div>
+</section>
+<section id="Interpolation">
+<h2>Interpolation<a class="headerlink" href="#Interpolation" title="Link to this heading">#</a></h2>
+<p></p><p>We’ll keep the filtered way in the further analysis, without any other checks, since the reading technique used for the unfiltered data is not precise in itself.</p>
+<p>In order to convolve interaction cross-section with the flux, one needs the same bining for the two histograms (the <span class="math notranslate nohighlight">\(\texttt{numpy}\)</span> function <span class="math notranslate nohighlight">\(\texttt{convolve}\)</span> takes two one-dimensionnal arrays). The way to do so is to interpolate the <span class="math notranslate nohighlight">\((x,y)\)</span> data of one of the two quantities with the <span class="math notranslate nohighlight">\((x)\)</span> of the other. Since :</p>
+<ul><li><p>the flux is the “input” data of the FD (cross-section is more of a filter, a detector response);</p>
+</li><li><p>the flux binning is smaller;</p>
+</li><li><p>the flux data is “cleaner” (collected from T2K collab.) than the cross-section (read from a figure);</p>
+</li></ul><p>we choose to to interpolate the cross-section data to fit the flux binning.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[204]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xsec_interp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">fluxes</span><span class="o">.</span><span class="n">minE</span> <span class="o">+</span> <span class="n">fluxes</span><span class="o">.</span><span class="n">maxE</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">xsec</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">xsec</span><span class="o">.</span><span class="n">truexsec</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">filtered</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">xsec</span><span class="o">.</span><span class="n">truexsec</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;CCQE&quot;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;mid&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">fluxes</span><span class="o">.</span><span class="n">minE</span><span class="p">,</span> <span class="n">xsec_interp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;CCQE interpolated&quot;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;600 MeV&quot;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;600 MeV&quot;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.65</span><span class="p">,</span> <span class="mf">2e-38</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="c1"># plt.yscale(&quot;log&quot;)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$E$ [GeV]&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span>
-    <span class="sa">r</span><span class="s2">&quot;Detected $\nu$ number density [$(\text</span><span class="si">{MeV}</span><span class="s2"> \cdot \text</span><span class="si">{PoT}</span><span class="s2">)^{-1}$]&quot;</span>
-<span class="p">)</span>
-<span class="c1">#plt.ylim(bottom=1e-1)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(T2K Flux 2020 | Nominal conditions | SK | $+250$ kA) $\ \ \ \ \times \ \ \ \ $ (CCQE only)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\nu$ cross-section [$\text</span><span class="si">{cm}</span><span class="s2">^2$]&quot;</span><span class="p">)</span>
+<span class="c1"># plt.ylim(bottom=1e-1)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;CCQE neutrino cross-section&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1227,11 +1368,59 @@ document.write(`
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_convolution_33_0.png" src="../_images/notebooks_convolution_33_0.png" />
+<img alt="../_images/notebooks_convolution_42_0.png" src="../_images/notebooks_convolution_42_0.png" />
+</div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="Multiplying-flux-and-cross-section">
+<h2>Multiplying flux and cross-section<a class="headerlink" href="#Multiplying-flux-and-cross-section" title="Link to this heading">#</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[211]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;minE&quot;</span><span class="p">,</span> <span class="s2">&quot;maxE&quot;</span><span class="p">]:</span>
+    <span class="n">number</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">fluxes</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;numu&quot;</span><span class="p">,</span> <span class="s2">&quot;nue&quot;</span><span class="p">,</span> <span class="s2">&quot;antinumu&quot;</span><span class="p">,</span> <span class="s2">&quot;antinue&quot;</span><span class="p">]:</span>
+    <span class="n">number</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">xsec_interp</span> <span class="o">*</span> <span class="n">fluxes</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">50</span> <span class="o">*</span> <span class="mf">1e21</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[212]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">minE</span><span class="p">,</span> <span class="n">number</span><span class="o">.</span><span class="n">numu</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\nu_\mu$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">minE</span><span class="p">,</span> <span class="n">number</span><span class="o">.</span><span class="n">nue</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\nu_e$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">minE</span><span class="p">,</span> <span class="n">number</span><span class="o">.</span><span class="n">antinumu</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\overline{\nu}_\mu$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">minE</span><span class="p">,</span> <span class="n">number</span><span class="o">.</span><span class="n">antinue</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\overline{\nu}_e$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;600 MeV&quot;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1e-17</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$E$ [GeV]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Detected $\nu$ number density [$(\text</span><span class="si">{MeV}</span><span class="s2"> \cdot \text</span><span class="si">{PoT}</span><span class="s2">)^{-1}$]&quot;</span><span class="p">)</span>
+<span class="c1"># plt.ylim(bottom=1e-1)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
+    <span class="sa">r</span><span class="s2">&quot;(T2K Flux 2020 | Nominal conditions | SK | $+250$ kA) $\ \ \ \ \times \ \ \ \ $ (CCQE only)&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_convolution_46_0.png" src="../_images/notebooks_convolution_46_0.png" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[119]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[200]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number</span> <span class="o">=</span> <span class="n">number</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">numu</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">nue</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">antinumu</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">antinue</span><span class="p">)</span>
@@ -1239,7 +1428,7 @@ document.write(`
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[125]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[201]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">minE</span><span class="p">,</span> <span class="n">number</span><span class="o">.</span><span class="n">numu</span> <span class="o">/</span> <span class="n">number</span><span class="o">.</span><span class="n">total</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\nu_\mu$&quot;</span><span class="p">)</span>
@@ -1254,9 +1443,11 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$E$ [GeV]&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Relative $\nu$ number density per bin&quot;</span><span class="p">)</span>
 <span class="c1"># plt.ylim(bottom=1e-4)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(T2K Flux 2020 | Nominal conditions | SK | $+250$ kA) $\ \ \ \ \times \ \ \ \ $ (CCQE only)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
+    <span class="sa">r</span><span class="s2">&quot;(T2K Flux 2020 | Nominal conditions | SK | $+250$ kA) $\ \ \ \ \times \ \ \ \ $ (CCQE only)&quot;</span>
+<span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mf">6.5e-3</span><span class="p">,</span><span class="kc">None</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mf">6.5e-3</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1266,7 +1457,7 @@ document.write(`
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_convolution_35_0.png" src="../_images/notebooks_convolution_35_0.png" />
+<img alt="../_images/notebooks_convolution_48_0.png" src="../_images/notebooks_convolution_48_0.png" />
 </div>
 </div>
 </section>
@@ -1274,16 +1465,16 @@ document.write(`
 <section id="Some-tests">
 <h2>Some tests<a class="headerlink" href="#Some-tests" title="Link to this heading">#</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l1</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
-<span class="n">l2</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="mi">5</span><span class="o">+</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">5</span>
+<span class="n">l2</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span>
 <span class="n">convf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">l2</span><span class="p">,</span> <span class="n">l1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">)</span>
 <span class="n">convs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;same&quot;</span><span class="p">)</span>
 <span class="n">convv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;valid&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">l2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">l2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="p">[</span><span class="n">convf</span><span class="p">,</span> <span class="n">convs</span><span class="p">,</span> <span class="n">convv</span><span class="p">]:</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1294,11 +1485,11 @@ document.write(`
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_convolution_37_0.png" src="../_images/notebooks_convolution_37_0.png" />
+<img alt="../_images/notebooks_convolution_50_0.png" src="../_images/notebooks_convolution_50_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1312,30 +1503,30 @@ document.write(`
 <span class="n">normal_dist</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">std</span><span class="p">)</span>
 
 <span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-4</span>
-<span class="n">big_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">delta</span><span class="p">)</span>
+<span class="n">big_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
 
-<span class="n">pmf1</span> <span class="o">=</span> <span class="n">uniform_dist</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">big_grid</span><span class="p">)</span><span class="o">*</span><span class="n">delta</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sum of uniform pmf: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">pmf1</span><span class="p">)))</span>
+<span class="n">pmf1</span> <span class="o">=</span> <span class="n">uniform_dist</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">big_grid</span><span class="p">)</span> <span class="o">*</span> <span class="n">delta</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sum of uniform pmf: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">pmf1</span><span class="p">)))</span>
 
-<span class="n">pmf2</span> <span class="o">=</span> <span class="n">normal_dist</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">big_grid</span><span class="p">)</span><span class="o">*</span><span class="n">delta</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sum of normal pmf: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">pmf2</span><span class="p">)))</span>
+<span class="n">pmf2</span> <span class="o">=</span> <span class="n">normal_dist</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">big_grid</span><span class="p">)</span> <span class="o">*</span> <span class="n">delta</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sum of normal pmf: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">pmf2</span><span class="p">)))</span>
 
 
-<span class="n">conv_pmf</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">fftconvolve</span><span class="p">(</span><span class="n">pmf2</span><span class="p">,</span><span class="n">pmf1</span><span class="p">,</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sum of convoluted pmf: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">conv_pmf</span><span class="p">)))</span>
+<span class="n">conv_pmf</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">fftconvolve</span><span class="p">(</span><span class="n">pmf2</span><span class="p">,</span> <span class="n">pmf1</span><span class="p">,</span> <span class="s2">&quot;same&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sum of convoluted pmf: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">conv_pmf</span><span class="p">)))</span>
 
-<span class="n">pdf1</span> <span class="o">=</span> <span class="n">pmf1</span><span class="o">/</span><span class="n">delta</span>
-<span class="n">pdf2</span> <span class="o">=</span> <span class="n">pmf2</span><span class="o">/</span><span class="n">delta</span>
-<span class="n">conv_pdf</span> <span class="o">=</span> <span class="n">conv_pmf</span><span class="o">/</span><span class="n">delta</span>
-<span class="c1">#print(&quot;Integration of convoluted pdf: &quot; + str(np.trapz(conv_pdf, big_grid)))</span>
+<span class="n">pdf1</span> <span class="o">=</span> <span class="n">pmf1</span> <span class="o">/</span> <span class="n">delta</span>
+<span class="n">pdf2</span> <span class="o">=</span> <span class="n">pmf2</span> <span class="o">/</span> <span class="n">delta</span>
+<span class="n">conv_pdf</span> <span class="o">=</span> <span class="n">conv_pmf</span> <span class="o">/</span> <span class="n">delta</span>
+<span class="c1"># print(&quot;Integration of convoluted pdf: &quot; + str(np.trapz(conv_pdf, big_grid)))</span>
 
-<span class="c1">#new_grid=np.arange(0,len(conv_pdf),delta)</span>
+<span class="c1"># new_grid=np.arange(0,len(conv_pdf),delta)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">big_grid</span><span class="p">,</span><span class="n">pdf1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Uniform&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">big_grid</span><span class="p">,</span><span class="n">pdf2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gaussian&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">big_grid</span><span class="p">,</span><span class="n">pdf1</span><span class="o">*</span><span class="n">pdf2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;product&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">big_grid</span><span class="p">,</span><span class="n">conv_pdf</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sum&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;PDFs&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">big_grid</span><span class="p">,</span> <span class="n">pdf1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Uniform&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">big_grid</span><span class="p">,</span> <span class="n">pdf2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Gaussian&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">big_grid</span><span class="p">,</span> <span class="n">pdf1</span> <span class="o">*</span> <span class="n">pdf2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;product&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">big_grid</span><span class="p">,</span> <span class="n">conv_pdf</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Sum&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;PDFs&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1354,7 +1545,7 @@ Sum of convoluted pmf: 1.0000000000023057
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_convolution_38_1.png" src="../_images/notebooks_convolution_38_1.png" />
+<img alt="../_images/notebooks_convolution_51_1.png" src="../_images/notebooks_convolution_51_1.png" />
 </div>
 </div>
 </section>
@@ -1408,6 +1599,8 @@ Sum of convoluted pmf: 1.0000000000023057
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Inferred-fluxes-at-SK-from-ND280">Inferred fluxes at SK from ND280</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Interaction-cross-section-of-the-CCQE">Interaction cross-section of the CCQE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Fitting-the-cross-section-data">Fitting the cross-section data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Interpolation">Interpolation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Multiplying-flux-and-cross-section">Multiplying flux and cross-section</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Some-tests">Some tests</a></li>
 </ul>
