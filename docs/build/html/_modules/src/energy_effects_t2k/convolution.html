@@ -402,12 +402,12 @@ def fluximport(name: str) -&gt; pd.DataFrame:
 
         &gt;&gt;&gt; df = fluximport(name=&#39;some_csv_file.csv&#39;)
         Index([&#39;minE&#39;, &#39;maxE&#39;, &#39;numu&#39;, &#39;anti-numu&#39;, &#39;nue&#39;, &#39;anti-nue&#39;
-        ...   &#39;truenumu&#39;, &#39;trueantinumu&#39;, &#39;truenue&#39;, &#39;trueantinue&#39;
-        ...   ], dtype=&#39;float&#39;)
+        ...   &#39;truenumu&#39;, &#39;trueantinumu&#39;, &#39;truenue&#39;, &#39;trueantinue&#39;],
+        ...   dtype=&#39;float&#39;)
     &quot;&quot;&quot;
 
     df = pd.read_csv(
-        &quot;t2kflux_2020_plus250kA_nominal_sk.csv&quot;,
+        name,
         delimiter=&quot;,&quot;,
         usecols=(lambda x: x != &quot;Bin#&quot;),
     )
@@ -415,8 +415,19 @@ def fluximport(name: str) -&gt; pd.DataFrame:
     df = df.rename(columns={&quot;anti-numu&quot;: &quot;antinumu&quot;, &quot;anti-nue&quot;: &quot;antinue&quot;})
 
     for key in [&quot;numu&quot;, &quot;nue&quot;, &quot;antinumu&quot;, &quot;antinue&quot;]:
-        df[&quot;true&quot; + key] = df[key] * (df.maxE - df.minE) * 1e3 / (50 * 1e21)</div>
+        df[&quot;true&quot; + key] = df[key] * (df.maxE - df.minE) * 1e3 / (50 * 1e21)
 
+    df[&#39;total&#39;] = df.numu + df.nue + df.antinumu + df.antinue
+
+    return df</div>
+
+
+print_dict = {
+    &#39;numu&#39;: r&quot;$\nu_\mu$&quot;,
+    &#39;antinumu&#39;: r&quot;$\overline{\nu}_\mu$&quot;,
+    &#39;nue&#39;: r&quot;$\nu_e$&quot;,
+    &#39;antinue&#39;: r&quot;$\overline{\nu}_e$&quot;,
+}
 </pre></div>
 
                 </article>

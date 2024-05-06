@@ -40,12 +40,12 @@ def fluximport(name: str) -> pd.DataFrame:
 
         >>> df = fluximport(name='some_csv_file.csv')
         Index(['minE', 'maxE', 'numu', 'anti-numu', 'nue', 'anti-nue'
-        ...   'truenumu', 'trueantinumu', 'truenue', 'trueantinue'
-        ...   ], dtype='float')
+        ...   'truenumu', 'trueantinumu', 'truenue', 'trueantinue'],
+        ...   dtype='float')
     """
 
     df = pd.read_csv(
-        "t2kflux_2020_plus250kA_nominal_sk.csv",
+        name,
         delimiter=",",
         usecols=(lambda x: x != "Bin#"),
     )
@@ -54,3 +54,15 @@ def fluximport(name: str) -> pd.DataFrame:
 
     for key in ["numu", "nue", "antinumu", "antinue"]:
         df["true" + key] = df[key] * (df.maxE - df.minE) * 1e3 / (50 * 1e21)
+
+    df["total"] = df.numu + df.nue + df.antinumu + df.antinue
+
+    return df
+
+
+print_dict = {
+    "numu": r"$\nu_\mu$",
+    "antinumu": r"$\overline{\nu}_\mu$",
+    "nue": r"$\nu_e$",
+    "antinue": r"$\overline{\nu}_e$",
+}
