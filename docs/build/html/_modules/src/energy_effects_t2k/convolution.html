@@ -373,6 +373,7 @@ functions:
 
 import numpy as np
 import pandas as pd
+import scipy.signal as sig
 
 
 <div class="viewcode-block" id="fluximport">
@@ -417,17 +418,52 @@ def fluximport(name: str) -&gt; pd.DataFrame:
     for key in [&quot;numu&quot;, &quot;nue&quot;, &quot;antinumu&quot;, &quot;antinue&quot;]:
         df[&quot;true&quot; + key] = df[key] * (df.maxE - df.minE) * 1e3 / (50 * 1e21)
 
-    df[&#39;total&#39;] = df.numu + df.nue + df.antinumu + df.antinue
+    df[&quot;total&quot;] = df.numu + df.nue + df.antinumu + df.antinue
+    df[&quot;truetotal&quot;] = df.truenumu + df.truenue + df.trueantinumu + df.trueantinue
 
     return df</div>
 
 
+
 print_dict = {
-    &#39;numu&#39;: r&quot;$\nu_\mu$&quot;,
-    &#39;antinumu&#39;: r&quot;$\overline{\nu}_\mu$&quot;,
-    &#39;nue&#39;: r&quot;$\nu_e$&quot;,
-    &#39;antinue&#39;: r&quot;$\overline{\nu}_e$&quot;,
+    &quot;numu&quot;: r&quot;$\nu_\mu$&quot;,
+    &quot;antinumu&quot;: r&quot;$\overline{\nu}_\mu$&quot;,
+    &quot;nue&quot;: r&quot;$\nu_e$&quot;,
+    &quot;antinue&quot;: r&quot;$\overline{\nu}_e$&quot;,
 }
+
+
+<div class="viewcode-block" id="xsecimport">
+<a class="viewcode-back" href="../../../_autosummary/src.energy_effects_t2k.convolution.xsecimport.html#src.energy_effects_t2k.convolution.xsecimport">[docs]</a>
+def xsecimport(
+    name:str, mode:str | list[str] = &#39;raw&#39;, on=None, keep_left:int = -1, keep_right:int = 0
+) -&gt; pd.DataFrame:
+    df = pd.read_csv(&quot;neutrino_ccqe.csv&quot;, delimiter=&quot;;&quot;, names=[&quot;energy&quot;, &quot;xsec&quot;])
+
+    if &#39;true&#39; in mode:
+        df.xsec = df.xsec * df.energy * 1e-38
+
+    if &#39;filter&#39; in mode:
+        cachedf = pd.DataFrame()
+        cachedf[&#39;energy&#39;] = sig.savgol_filter(x=df.energy, window_length=10, polyorder=2, mode=&quot;interp&quot;)
+        cachedf[&#39;xsec&#39;] = sig.savgol_filter(x=df.xsec, window_length=12, polyorder=1, mode=&#39;interp&#39;)
+        for key in [&#39;energy&#39;, &#39;xsec&#39;]:
+            cachedf.loc[0:keep_left, key] = df.loc[0:keep_left, key]
+            cachedf.loc[keep_right:-1, key] = df.loc[keep_right:-1, key]
+        df = cachedf
+
+    if &#39;interp&#39; in mode:
+        if on is None:
+            raise AttributeError(&#39;Missing xdata to interpolate onto.&#39;)
+        else:
+            cachedf = pd.DataFrame()
+            cachedf[&#39;energy&#39;] = on
+            cachedf[&#39;xsec&#39;] = np.interp(x=on, xp=df.energy, fp=df.xsec, left=0, right=0)
+            df = cachedf
+
+    return df</div>
+
+
 </pre></div>
 
                 </article>

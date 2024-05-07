@@ -15,3 +15,4 @@
       :toctree:
 
       fluximport
+      xsecimport

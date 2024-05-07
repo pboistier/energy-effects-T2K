@@ -13,6 +13,7 @@ functions:
 
 import numpy as np
 import pandas as pd
+import scipy.signal as sig
 
 
 def fluximport(name: str) -> pd.DataFrame:
@@ -56,6 +57,7 @@ def fluximport(name: str) -> pd.DataFrame:
         df["true" + key] = df[key] * (df.maxE - df.minE) * 1e3 / (50 * 1e21)
 
     df["total"] = df.numu + df.nue + df.antinumu + df.antinue
+    df["truetotal"] = df.truenumu + df.truenue + df.trueantinumu + df.trueantinue
 
     return df
 
@@ -66,3 +68,40 @@ print_dict = {
     "nue": r"$\nu_e$",
     "antinue": r"$\overline{\nu}_e$",
 }
+
+
+def xsecimport(
+    name: str,
+    mode: str | list[str] = "raw",
+    on=None,
+    keep_left: int = -1,
+    keep_right: int = 0,
+) -> pd.DataFrame:
+    df = pd.read_csv("neutrino_ccqe.csv", delimiter=";", names=["energy", "xsec"])
+
+    if "true" in mode:
+        df.xsec = df.xsec * df.energy * 1e-38
+
+    if "filter" in mode:
+        cachedf = pd.DataFrame()
+        cachedf["energy"] = sig.savgol_filter(
+            x=df.energy, window_length=10, polyorder=2, mode="interp"
+        )
+        cachedf["xsec"] = sig.savgol_filter(
+            x=df.xsec, window_length=12, polyorder=1, mode="interp"
+        )
+        for key in ["energy", "xsec"]:
+            cachedf.loc[0:keep_left, key] = df.loc[0:keep_left, key]
+            cachedf.loc[keep_right:-1, key] = df.loc[keep_right:-1, key]
+        df = cachedf
+
+    if "interp" in mode:
+        if on is None:
+            raise AttributeError("Missing xdata to interpolate onto.")
+        else:
+            cachedf = pd.DataFrame()
+            cachedf["energy"] = on
+            cachedf["xsec"] = np.interp(x=on, xp=df.energy, fp=df.xsec, left=0, right=0)
+            df = cachedf
+
+    return df
