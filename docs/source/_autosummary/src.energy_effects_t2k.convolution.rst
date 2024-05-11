@@ -14,5 +14,6 @@
    .. autosummary::
       :toctree:
 
+      energyimport
       fluximport
       xsecimport
