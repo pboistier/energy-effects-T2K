@@ -1,0 +1,173 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "dafca03f-db0d-451f-bb37-9fcad637b77e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import ipywidgets as widgets\n",
+    "from ipywidgets import HBox, VBox, Layout\n",
+    "import numpy as np\n",
+    "from numpy import pi, radians\n",
+    "import matplotlib.pyplot as plt\n",
+    "from IPython.display import display\n",
+    "\n",
+    "%matplotlib inline\n",
+    "from osc_prob import *"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "89b992f1",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "/tmp/ipykernel_22455/1198381260.py:14: DeprecationWarning: `set_matplotlib_formats` is deprecated since IPython 7.23, directly use `matplotlib_inline.backend_inline.set_matplotlib_formats()`\n",
+      "  set_matplotlib_formats('retina')\n"
+     ]
+    }
+   ],
+   "source": [
+    "from matplotlib import rc\n",
+    "\n",
+    "rc(\"figure\", figsize=(10, 6))\n",
+    "rc(\"font\", **{\"family\": \"sans-serif\", \"sans-serif\": [\"Helvetica\"]})\n",
+    "rc(\"lines\", linewidth=2)\n",
+    "rc(\"axes\", labelsize=17, linewidth=1, grid=True, labelpad=-1)\n",
+    "rc(\"axes.spines\", right=True)\n",
+    "rc(\"xtick\", direction=\"in\", labelsize=17, top=True)\n",
+    "rc(\"xtick.major\", width=0.8, size=10)\n",
+    "rc(\"ytick\", direction=\"in\", labelsize=17, right=True)\n",
+    "rc(\"ytick.major\", width=0.8, size=10)\n",
+    "rc(\"legend\", fancybox=False, fontsize=17, shadow=False)\n",
+    "rc(\"grid\", linewidth=1.0, ls=\"dotted\")\n",
+    "from IPython.display import set_matplotlib_formats\n",
+    "\n",
+    "set_matplotlib_formats(\"retina\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "7e7f7f8a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "U = PMNS(delta_cp=pi / 2)\n",
+    "E = np.linspace(0.1, 1, 100)\n",
+    "prob = probability_vacuum(U, E=E, beta=0)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "441db70f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "@widgets.interact(\n",
+    "    delta_cp=(-pi / 2, pi / 2),\n",
+    "    dm2_32=(800 * dm2_32_BF, 1200 * dm2_32_BF),\n",
+    "    theta_23=(0, 90),\n",
+    "    lw=(1.0, 10.0),\n",
+    "    N_mode=[\"FHC\", \"RHC\"],\n",
+    "    channel=[\"Disappearance\", \"Appearance\"],\n",
+    "    MO=[\"NO\", \"IO\"],\n",
+    ")\n",
+    "def plot(\n",
+    "    delta_cp=-pi / 2,\n",
+    "    dm2_32=dm2_32_BF * 1000,\n",
+    "    theta_23=45,\n",
+    "    N_mode=\"FHC\",\n",
+    "    channel=\"Disappearance\",\n",
+    "    Matter_effects=False,\n",
+    "    MO=\"NO\",\n",
+    "):\n",
+    "\n",
+    "    channel_to_ytitle = {\n",
+    "        \"Disappearance\": r\"$P (\\nu_{\\mu} \\rightarrow \\nu_{\\mu})$\",\n",
+    "        \"Appearance\": r\"$P (\\nu_{\\mu} \\rightarrow \\nu_{e})$\",\n",
+    "    }\n",
+    "\n",
+    "    E = np.linspace(0.1, 1, 1000)\n",
+    "    fig, ax = plt.subplots(1, 1, figsize=(12, 6))\n",
+    "    if channel == \"Disappearance\":\n",
+    "        beta = 1\n",
+    "        ymax = 1\n",
+    "    else:\n",
+    "        beta = 0\n",
+    "        ymax = 0.2\n",
+    "    if N_mode == \"FHC\":\n",
+    "        y = probability_general(\n",
+    "            E=E,\n",
+    "            beta=beta,\n",
+    "            theta_23=radians(theta_23),\n",
+    "            delta_cp=delta_cp,\n",
+    "            dm2_atm=dm2_32 / 1000,\n",
+    "            ME=Matter_effects,\n",
+    "            MO=MO,\n",
+    "        )\n",
+    "\n",
+    "    elif N_mode == \"RHC\":\n",
+    "        y = probability_general_anti(\n",
+    "            E=E,\n",
+    "            beta=beta,\n",
+    "            theta_23=radians(theta_23),\n",
+    "            delta_cp=delta_cp,\n",
+    "            dm2_atm=dm2_32 / 1000,\n",
+    "            ME=Matter_effects,\n",
+    "            MO=MO,\n",
+    "        )\n",
+    "\n",
+    "    ax.plot(E, y)\n",
+    "    ax.grid(True)\n",
+    "    ax.set_ylim([0, ymax])\n",
+    "    ax.set_ylabel(channel_to_ytitle[channel])\n",
+    "    ax.set_xlabel(\"Energy [GeV]\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9ea2b86f",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2fb479aa",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.12"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

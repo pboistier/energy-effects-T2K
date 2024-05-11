@@ -1,0 +1,810 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>src.nu_osc.osc_prob &#8212; Energy effects at T2K</title>
+
+
+
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../../_static/documentation_options.js?v=92734c54"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/tabs.js?v=3030b3cb"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/src/nu_osc/osc_prob';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+
+
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+
+
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div id="pst-scroll-pixel-helper"></div>
+
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+
+
+  <div class="col-lg-3 navbar-header-items__start">
+
+      <div class="navbar-item">
+
+
+
+<a class="navbar-brand logo" href="../../../index.html">
+
+
+
+
+
+
+    <p class="title logo__title">Energy effects at T2K</p>
+
+</a></div>
+
+  </div>
+
+  <div class="col-lg-9 navbar-header-items">
+
+    <div class="me-auto navbar-header-items__center">
+
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../usage.html">
+                        Usage
+                      </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api.html">
+                        API
+                      </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../notebooks/Probability_vacuum_tutorial.html">
+                        Oscillation probability in vacuum
+                      </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../notebooks/convolution.html">
+                        Convolution of the flux and interaction cross-section
+                      </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../bibliography.html">
+                        Bibliography
+                      </a>
+                    </li>
+
+  </ul>
+</nav></div>
+
+    </div>
+
+
+    <div class="navbar-header-items__end">
+
+        <div class="navbar-item navbar-persistent--container">
+
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+
+
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+
+    </div>
+
+  </div>
+
+
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+
+
+
+</div>
+
+    </header>
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+
+
+
+
+
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+
+
+
+  <div class="sidebar-header-items sidebar-primary__section">
+
+
+      <div class="sidebar-header-items__center">
+
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../usage.html">
+                        Usage
+                      </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api.html">
+                        API
+                      </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../notebooks/Probability_vacuum_tutorial.html">
+                        Oscillation probability in vacuum
+                      </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../notebooks/convolution.html">
+                        Convolution of the flux and interaction cross-section
+                      </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../bibliography.html">
+                        Bibliography
+                      </a>
+                    </li>
+
+  </ul>
+</nav></div>
+
+      </div>
+
+
+
+      <div class="sidebar-header-items__end">
+
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+
+      </div>
+
+  </div>
+
+
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+
+      <main id="main-content" class="bd-main">
+
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+
+    <div class="header-article-items__start">
+
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+
+    <li class="breadcrumb-item active" aria-current="page">src.nu_osc.osc_prob</li>
+  </ul>
+</nav>
+</div>
+
+    </div>
+
+
+</div>
+</div>
+
+
+
+
+<div id="searchbox"></div>
+                <article class="bd-article">
+
+  <h1>Source code for src.nu_osc.osc_prob</h1><div class="highlight"><pre>
+<span></span># -*- coding: utf-8 -*-
+
+from src.nu_osc.default_parameters import *
+from src.nu_osc.hamiltonians import *
+from numpy import *
+import numpy as np
+import cmath
+import cmath as cmath
+
+from matplotlib.collections import LineCollection
+from matplotlib import pyplot as plt
+
+
+<div class="viewcode-block" id="K">
+<a class="viewcode-back" href="../../../_autosummary/src.nu_osc.osc_prob.K.html#src.nu_osc.osc_prob.K">[docs]</a>
+def K(U, beta, i, j):
+    return U[1][i] * conj(U[beta][i]) * conj(U[1][j]) * U[beta][j]</div>
+
+
+
+<div class="viewcode-block" id="PMNS">
+<a class="viewcode-back" href="../../../_autosummary/src.nu_osc.osc_prob.PMNS.html#src.nu_osc.osc_prob.PMNS">[docs]</a>
+def PMNS(
+    theta_12=theta_12_BF,
+    theta_13=theta_13_BF,
+    theta_23=theta_23_BF,
+    delta_cp=delta_cp_BF,
+):
+    r&quot;&quot;&quot;Returns PMNS matrix
+
+    Parameters
+    ----------
+    3 mixing angles and delta_cp phase
+    By default best fit values are set from default_parameters file
+
+    Returns
+    -------
+    numpy array
+        2D numpy array of the PMNS matrix
+    &quot;&quot;&quot;
+    s13 = sin(theta_13)
+    c13 = cos(theta_13)
+    s23 = sin(theta_23)
+    c23 = cos(theta_23)
+    s12 = sin(theta_12)
+    c12 = cos(theta_12)
+
+    s2_13 = sin(theta_13) ** 2
+    c2_13 = cos(theta_13) ** 2
+    s2_23 = sin(theta_23) ** 2
+    c2_23 = cos(theta_23) ** 2
+    c2_12 = cos(theta_12) ** 2
+    s2_12 = sin(theta_12) ** 2
+
+    A = np.array([[1, 0, 0], [0, c23, s23], [0, -s23, c23]])
+    B = np.array(
+        [
+            [c13, 0, s13 * exp(complex(0, -delta_cp))],
+            [0, 1, 0],
+            [-s13 * exp(complex(0, delta_cp)), 0, c13],
+        ]
+    )
+    C = np.array([[c12, s12, 0], [-s12, c12, 0], [0, 0, 1]])
+
+    U = np.dot(np.dot(A, B), C)
+    return U</div>
+
+
+
+<div class="viewcode-block" id="cronecer">
+<a class="viewcode-back" href="../../../_autosummary/src.nu_osc.osc_prob.cronecer.html#src.nu_osc.osc_prob.cronecer">[docs]</a>
+def cronecer(beta):
+    if beta == 1:
+        return 1
+    else:
+        return 0</div>
+
+
+
+<div class="viewcode-block" id="probability_vacuum">
+<a class="viewcode-back" href="../../../_autosummary/src.nu_osc.osc_prob.probability_vacuum.html#src.nu_osc.osc_prob.probability_vacuum">[docs]</a>
+def probability_vacuum(U, beta, E, L=baseline, dm2_21=dm2_21_BF, dm2_32=dm2_32_BF):
+    r&quot;&quot;&quot;The probability of oscillations of muon neutrino for different energies in vacuum
+
+    Parameters
+    ----------
+    U - PMNS matrix
+    beta - channel of the oscillations (beta=0 - electronic, beta=1 - muonic channel, beta=2 - taonic channel)
+    E - energy of oscillating beam
+    L - baseline of the oscillations
+
+    Returns
+    -------
+    numpy array
+        probability of oscillations into given channel beta, at given energy E
+    &quot;&quot;&quot;
+
+    dm2_31 = dm2_32 + dm2_21
+    Delta_21 = 1.2669 * dm2_21 * L / E
+    Delta_32 = 1.2669 * dm2_32 * L / E
+    Delta_31 = 1.2669 * dm2_31 * L / E
+    sin2_21 = sin(Delta_21) ** 2
+    sin2_32 = sin(Delta_32) ** 2
+    sin2_31 = sin(Delta_31) ** 2
+
+    sind_21 = sin(2 * Delta_21)
+    sind_32 = sin(2 * Delta_32)
+    sind_31 = sin(2 * Delta_31)
+
+    cosd_21 = cos(2 * Delta_21)
+    cosd_32 = cos(2 * Delta_32)
+    cosd_31 = cos(2 * Delta_31)
+
+    return (
+        cronecer(beta)
+        - 4
+        * (
+            K(U, beta, 1, 0) * sin2_21
+            + K(U, beta, 2, 0) * sin2_31
+            + K(U, beta, 2, 1) * sin2_32
+        ).real
+        - 2
+        * (
+            K(U, beta, 1, 0) * sind_21
+            + K(U, beta, 2, 0) * sind_31
+            + K(U, beta, 2, 1) * sind_32
+        ).imag
+    )</div>
+
+
+
+<div class="viewcode-block" id="probability_vacuum_approx">
+<a class="viewcode-back" href="../../../_autosummary/src.nu_osc.osc_prob.probability_vacuum_approx.html#src.nu_osc.osc_prob.probability_vacuum_approx">[docs]</a>
+def probability_vacuum_approx(
+    E, beta, theta_13=theta_13_BF, theta_23=theta_23_BF, L=baseline, dm2_32=dm2_32_BF
+):
+    r&quot;&quot;&quot;Computes the leading approximation of the probability of oscillations of muon neutrino in the long-baseline experiment
+
+    Parameters
+    ----------
+    beta - channel of the oscillations (beta=0 - electronic, beta=1 - muonic channel, beta=2 - taonic channel)
+    E - energy of oscillating beam
+    L - baseline of the oscillations
+
+    Returns
+    -------
+    numpy array
+        approximated probability of oscillations into given channel beta, at given energy E
+    &quot;&quot;&quot;
+    Delta_32 = 1.2669 * dm2_32 * L / E
+    sin2_32 = sin(Delta_32) ** 2
+
+    if beta == 0:
+        P = sin(2 * theta_13) ** 2 * sin(theta_23) ** 2 * sin(Delta_32) ** 2
+    elif beta == 1:
+        P = 1 - sin(2 * theta_23) ** 2 * cos(theta_13) ** 4 * sin(Delta_32) ** 2
+    return P</div>
+
+
+
+<div class="viewcode-block" id="probability_vacuum_anti">
+<a class="viewcode-back" href="../../../_autosummary/src.nu_osc.osc_prob.probability_vacuum_anti.html#src.nu_osc.osc_prob.probability_vacuum_anti">[docs]</a>
+def probability_vacuum_anti(U, beta, E, L=baseline, dm2_21=dm2_21_BF, dm2_32=dm2_32_BF):
+    r&quot;&quot;&quot;The probability of oscillations of antimuon neutrino for different energies in vacuum
+
+    Parameters
+    ----------
+    U - PMNS matrix
+    beta - channel of the oscillations (beta=0 - electronic, beta=1 - muonic channel, beta=2 - taonic channel)
+    E - energy of oscillating beam
+    L - baseline of the oscillations
+
+    Returns
+    -------
+    numpy array
+        probability of antimuon oscillations into given channel beta, at given energy E
+    &quot;&quot;&quot;
+
+    dm2_31 = dm2_21 + dm2_32
+    Delta_21 = 1.2669 * dm2_21 * L / E
+    Delta_32 = 1.2669 * dm2_32 * L / E
+    Delta_31 = 1.2669 * dm2_31 * L / E
+
+    sin2_21 = pow(sin(Delta_21), 2.0)
+    sin2_32 = pow(sin(Delta_32), 2.0)
+    sin2_31 = pow(sin(Delta_31), 2.0)
+
+    sind_21 = sin(2 * Delta_21)
+    sind_32 = sin(2 * Delta_32)
+    sind_31 = sin(2 * Delta_31)
+
+    cosd_21 = cos(2 * Delta_21)
+    cosd_32 = cos(2 * Delta_32)
+    cosd_31 = cos(2 * Delta_31)
+
+    return (
+        cronecer(beta)
+        - 4
+        * (
+            K(U, beta, 1, 0) * sin2_21
+            + K(U, beta, 2, 0) * sin2_31
+            + K(U, beta, 2, 1) * sin2_32
+        ).real
+        + 2
+        * (
+            K(U, beta, 1, 0) * sind_21
+            + K(U, beta, 2, 0) * sind_31
+            + K(U, beta, 2, 1) * sind_32
+        ).imag
+    )</div>
+
+
+
+<div class="viewcode-block" id="probability_general">
+<a class="viewcode-back" href="../../../_autosummary/src.nu_osc.osc_prob.probability_general.html#src.nu_osc.osc_prob.probability_general">[docs]</a>
+def probability_general(
+    E,
+    beta,
+    theta_12=theta_12_BF,
+    theta_13=theta_13_BF,
+    theta_23=theta_23_BF,
+    delta_cp=delta_cp_BF,
+    dm2_21=dm2_21_BF,
+    dm2_atm=dm2_32_BF,
+    compute_matrix_multiplication=True,
+    L=baseline * CONV_KM_TO_INV_EV,
+    ME=True,
+    MO=&quot;NO&quot;,
+):
+    r&quot;&quot;&quot;The probability of oscillations of muon neutrino for different energies including matter effects (SU(3) expansion method is used)
+
+    Parameters
+    ----------
+    all fundamenta oscillation parameters - by default BF values are set
+    beta - channel of the oscillations (beta=0 - electronic, beta=1 - muonic channel, beta=2 - taonic channel)
+    E - energy of oscillating beam
+    L - baseline of the oscillations
+    ME - matter effects (if ME=True, ME are included, if ME=False, ME will be ignored (oscillations in vacuum))
+    Returns
+    -------
+    numpy array
+        the most general and exact probability of muon oscillations into given channel beta, at given energy E
+    &quot;&quot;&quot;
+    if MO == &quot;NO&quot;:
+        dm2_32 = dm2_atm
+    if MO == &quot;IO&quot;:
+        dm2_32 = -dm2_atm - dm2_21
+
+    if ME:
+        VCC = VCC_EARTH_CRUST
+
+        h_vacuum_energy_ind = hamiltonian_3nu_energy_independent(
+            theta_12,
+            theta_13,
+            theta_23,
+            delta_cp,
+            dm2_21,
+            dm2_32,
+            compute_matrix_multiplication=True,
+        )
+        VCC_matrix = [[VCC, 0, 0], [0, 0, 0], [0, 0, 0]]
+        return np.array(
+            [
+                probability_energy_fixed(
+                    np.multiply(1.0 / x / 1.0e9, h_vacuum_energy_ind) + VCC_matrix,
+                    beta,
+                    L,
+                )
+                for x in E
+            ]
+        )
+    else:
+        U = PMNS(
+            theta_12=theta_12, theta_13=theta_13, theta_23=theta_23, delta_cp=delta_cp
+        )
+        return probability_vacuum(
+            U=U, beta=beta, E=E, L=baseline, dm2_21=dm2_21, dm2_32=dm2_32
+        )</div>
+
+
+
+<div class="viewcode-block" id="probability_general_anti">
+<a class="viewcode-back" href="../../../_autosummary/src.nu_osc.osc_prob.probability_general_anti.html#src.nu_osc.osc_prob.probability_general_anti">[docs]</a>
+def probability_general_anti(
+    E,
+    beta,
+    theta_12=theta_12_BF,
+    theta_13=theta_13_BF,
+    theta_23=theta_23_BF,
+    delta_cp=delta_cp_BF,
+    dm2_21=dm2_21_BF,
+    dm2_atm=dm2_32_BF,
+    compute_matrix_multiplication=True,
+    L=baseline * CONV_KM_TO_INV_EV,
+    ME=True,
+    MO=&quot;NO&quot;,
+):
+    r&quot;&quot;&quot;See probability_general. Just for antineutrino&quot;&quot;&quot;
+
+    if MO == &quot;NO&quot;:
+        dm2_32 = dm2_atm
+    if MO == &quot;IO&quot;:
+        dm2_32 = -dm2_atm - dm2_21
+
+    if ME:
+        VCC = -VCC_EARTH_CRUST
+
+        h_vacuum_energy_ind = hamiltonian_3nu_energy_independent(
+            theta_12,
+            theta_13,
+            theta_23,
+            -delta_cp,
+            dm2_21,
+            dm2_32,
+            compute_matrix_multiplication=True,
+        )
+        VCC_matrix = [[VCC, 0, 0], [0, 0, 0], [0, 0, 0]]
+        return np.array(
+            [
+                probability_energy_fixed(
+                    np.multiply(1.0 / x / 1.0e9, h_vacuum_energy_ind) + VCC_matrix,
+                    beta,
+                    L,
+                )
+                for x in E
+            ]
+        )
+    else:
+        U = PMNS(
+            theta_12=theta_12, theta_13=theta_13, theta_23=theta_23, delta_cp=delta_cp
+        )
+        return probability_vacuum_anti(
+            U=U, beta=beta, E=E, L=baseline, dm2_21=dm2_21, dm2_32=dm2_32
+        )</div>
+
+
+
+<div class="viewcode-block" id="multiline">
+<a class="viewcode-back" href="../../../_autosummary/src.nu_osc.osc_prob.multiline.html#src.nu_osc.osc_prob.multiline">[docs]</a>
+def multiline(xs, ys, c, ax=None, **kwargs):
+    &quot;&quot;&quot;Plot lines with different colorings
+
+    Parameters
+    ----------
+    xs : iterable container of x coordinates
+    ys : iterable container of y coordinates
+    c : iterable container of numbers mapped to colormap
+    ax (optional): Axes to plot on.
+    kwargs (optional): passed to LineCollection
+
+    Notes:
+        len(xs) == len(ys) == len(c) is the number of line segments
+        len(xs[i]) == len(ys[i]) is the number of points for each line (indexed by i)
+
+    Returns
+    -------
+    lc : LineCollection instance.
+    &quot;&quot;&quot;
+    # find axes
+    ax = plt.gca() if ax is None else ax
+
+    # create LineCollection
+    segments = [np.column_stack([x, y]) for x, y in zip(xs, ys)]
+    lc = LineCollection(segments, **kwargs)
+
+    # set coloring of line segments
+    #    Note: I get an error if I pass c as a list here... not sure why.
+    lc.set_array(np.asarray(c))
+
+    # add lines to axes and rescale
+    #    Note: adding a collection doesn&#39;t autoscalee xlim/ylim
+    ax.add_collection(lc)
+    ax.autoscale()
+    return lc</div>
+
+</pre></div>
+
+                </article>
+
+
+
+
+
+                <footer class="prev-next-footer">
+
+<div class="prev-next-area">
+</div>
+                </footer>
+
+            </div>
+
+
+
+                <div class="bd-sidebar-secondary bd-toc"></div>
+
+
+          </div>
+          <footer class="bd-footer-content">
+
+          </footer>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+
+    <div class="footer-items__start">
+
+        <div class="footer-item">
+
+  <p class="copyright">
+
+      © Copyright 2024, Pierre Boistier.
+      <br/>
+
+  </p>
+</div>
+
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+
+    </div>
+
+
+
+    <div class="footer-items__end">
+
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+
+    </div>
+
+</div>
+
+  </footer>
+  </body>
+</html>
