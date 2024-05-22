@@ -374,7 +374,7 @@ document.write(`
 <h1>Convolution of the flux and interaction cross-section<a class="headerlink" href="#Convolution-of-the-flux-and-interaction-cross-section" title="Link to this heading">#</a></h1>
 <p>Miscellaneous:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
@@ -1106,7 +1106,7 @@ document.write(`
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">ccqe</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">ccqe</span><span class="o">.</span><span class="n">xsec</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;CCQE (raw)&quot;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;mid&quot;</span><span class="p">)</span>
@@ -1142,7 +1142,7 @@ document.write(`
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ccqe_true</span> <span class="o">=</span> <span class="n">conv</span><span class="o">.</span><span class="n">xsecimport</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;neutrino_ccqe.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">)</span>
@@ -1150,7 +1150,7 @@ document.write(`
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">ccqe_true</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">ccqe_true</span><span class="o">.</span><span class="n">xsec</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;CCQE (raw)&quot;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;mid&quot;</span><span class="p">)</span>
@@ -1187,7 +1187,7 @@ document.write(`
 </div>
 <p></p><p>The data is not very smooth, since it has been read-out from a figure in an article. We can use the Savitzky-Golay filter to smooth it a little.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ccqe_filtered</span> <span class="o">=</span> <span class="n">conv</span><span class="o">.</span><span class="n">xsecimport</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;neutrino_ccqe.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;true filter&quot;</span><span class="p">)</span>
@@ -1195,7 +1195,7 @@ document.write(`
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">ccqe_true</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">ccqe_true</span><span class="o">.</span><span class="n">xsec</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;CCQE (raw)&quot;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;mid&quot;</span><span class="p">)</span>
@@ -1248,7 +1248,7 @@ document.write(`
 </div>
 <p>This plot shows a better reconstructed cross-section, but with a mismatch around 0.1 GeV (due to the abrupt beginning of the data). One way to solve this is to fix manually the points back to the ones read on the figure.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ccqe_filtered</span> <span class="o">=</span> <span class="n">conv</span><span class="o">.</span><span class="n">xsecimport</span><span class="p">(</span>
@@ -1258,7 +1258,7 @@ document.write(`
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">ccqe_true</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">ccqe_true</span><span class="o">.</span><span class="n">xsec</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;CCQE (raw)&quot;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;mid&quot;</span><span class="p">)</span>
@@ -1381,7 +1381,7 @@ document.write(`
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[82]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="s2">&quot;col&quot;</span><span class="p">)</span>  <span class="c1"># , sharey=&#39;row&#39;)</span>
@@ -1391,7 +1391,7 @@ document.write(`
         <span class="n">ccqe_interp</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span>
         <span class="n">ccqe_interp</span><span class="o">.</span><span class="n">xsec</span><span class="p">,</span>
         <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;CCQE (+f-o+i)&quot;</span><span class="p">,</span>
-        <span class="n">where</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="p">,</span>
+        <span class="n">where</span><span class="o">=</span><span class="s2">&quot;mid&quot;</span><span class="p">,</span>
         <span class="n">color</span><span class="o">=</span><span class="s2">&quot;cornflowerblue&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
@@ -1664,7 +1664,7 @@ document.write(`
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span>
@@ -1695,7 +1695,7 @@ document.write(`
 </div>
 <p>The plot is truncated, so let’s add somme points on the left and on the right so that the energy difference is 0 at -0.5 and 0 at 1.0, then let’s interpolate the curve.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ccqe_energy_res_interp</span> <span class="o">=</span> <span class="n">conv</span><span class="o">.</span><span class="n">energyimport</span><span class="p">(</span>
@@ -1705,7 +1705,7 @@ document.write(`
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span>
@@ -1742,7 +1742,7 @@ document.write(`
 </div>
 <p></p><p>Before the convolution, let’s normalize the curve so that its integral is 1.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">integral</span> <span class="o">=</span> <span class="p">(</span><span class="n">ccqe_energy_res_interp</span><span class="o">.</span><span class="n">events</span> <span class="o">*</span> <span class="n">ccqe_energy_res_interp</span><span class="o">.</span><span class="n">relatenergy</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -1751,7 +1751,7 @@ document.write(`
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span>
@@ -1785,7 +1785,7 @@ document.write(`
 <section id="Convoluting-the-predicted-number-of-neutrinos-at-SK-with-the-energy-resolution">
 <h2>Convoluting the predicted number of neutrinos at SK with the energy resolution<a class="headerlink" href="#Convoluting-the-predicted-number-of-neutrinos-at-SK-with-the-energy-resolution" title="Link to this heading">#</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">convolved</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1797,163 +1797,7 @@ document.write(`
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">convolved</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-{&#39;numu&#39;: array([8.96827942e-56, 1.01004831e-55, 1.13308235e-55, 1.26625987e-55,
-        1.40982571e-55, 1.56398022e-55, 1.72878481e-55, 1.90415463e-55,
-        2.09001020e-55, 2.28621059e-55, 2.49224958e-55, 2.70739497e-55,
-        2.93110942e-55, 3.16319438e-55, 3.40352252e-55, 3.65208351e-55,
-        3.90898883e-55, 4.17455129e-55, 4.44890264e-55, 4.73219899e-55,
-        5.02497180e-55, 5.32735044e-55, 5.63927993e-55, 5.96081283e-55,
-        6.29184581e-55, 6.63149220e-55, 6.97819792e-55, 7.33047165e-55,
-        7.68684617e-55, 8.04476501e-55, 8.40123411e-55, 8.75276023e-55,
-        9.09386987e-55, 9.42070434e-55, 9.72966851e-55, 1.00155042e-54,
-        1.02763105e-54, 1.05095687e-54, 1.07127882e-54, 1.08868161e-54,
-        1.10311629e-54, 1.11448548e-54, 1.12260395e-54, 1.12725060e-54,
-        1.12834544e-54, 1.12564616e-54, 1.11891834e-54, 1.10818299e-54,
-        1.09347355e-54, 1.07492722e-54, 1.05286551e-54, 1.02764235e-54,
-        9.99665109e-55, 9.69395252e-55, 9.37184140e-55, 9.03374974e-55,
-        8.68230379e-55, 8.31938639e-55, 7.94691577e-55, 7.56448611e-55,
-        7.17190577e-55, 6.77412587e-55, 6.37869291e-55, 5.99159194e-55,
-        5.61504894e-55, 5.25025454e-55, 4.90152571e-55, 4.57311323e-55,
-        4.26597408e-55, 3.97905074e-55, 3.71082748e-55, 3.46014822e-55,
-        3.22638957e-55, 3.00901303e-55, 2.80721168e-55, 2.62008795e-55,
-        2.44667608e-55, 2.28595582e-55, 2.13695730e-55, 1.99875135e-55,
-        1.87044224e-55, 1.75119594e-55, 1.64027865e-55, 1.53705766e-55,
-        1.44097961e-55, 1.35148127e-55, 1.26792745e-55, 1.18985989e-55,
-        1.11684638e-55, 1.04833656e-55, 9.83854577e-56, 9.22929918e-56,
-        8.65214669e-56, 8.10747604e-56, 7.59679090e-56, 7.12002814e-56,
-        6.67548902e-56, 6.26051494e-56, 5.87316198e-56, 5.51114170e-56,
-        5.17175052e-56, 4.85317928e-56, 4.55378192e-56, 4.27197223e-56,
-        4.00672292e-56, 3.75667018e-56, 3.52035063e-56, 3.29673633e-56,
-        3.08500037e-56, 2.88437092e-56, 2.69408499e-56, 2.51314845e-56,
-        2.34083927e-56, 2.17676210e-56, 2.02063583e-56, 1.87237213e-56,
-        1.73173460e-56, 1.59836609e-56, 1.47197359e-56, 1.35226173e-56,
-        1.23905228e-56, 1.13212714e-56, 1.03135668e-56, 9.36688393e-57,
-        8.47902618e-57, 7.64670665e-57, 6.86828102e-57, 6.14498876e-57,
-        5.47754268e-57, 4.86313410e-57, 4.29875420e-57, 3.78263996e-57,
-        3.31341163e-57, 2.88930153e-57, 2.50817884e-57, 2.16722940e-57,
-        1.86374947e-57, 1.59520963e-57]),
- &#39;nue&#39;: array([1.10407932e-57, 1.22111065e-57, 1.34297925e-57, 1.46972352e-57,
-        1.60132971e-57, 1.73753610e-57, 1.87692165e-57, 2.01947142e-57,
-        2.16549815e-57, 2.31392948e-57, 2.46335209e-57, 2.61207937e-57,
-        2.76008835e-57, 2.90743107e-57, 3.05224195e-57, 3.19434699e-57,
-        3.33448642e-57, 3.47121713e-57, 3.60481838e-57, 3.73685082e-57,
-        3.86651207e-57, 3.99253947e-57, 4.11535055e-57, 4.23553334e-57,
-        4.35214651e-57, 4.46432979e-57, 4.57327300e-57, 4.67837576e-57,
-        4.77843534e-57, 4.87267771e-57, 4.96133978e-57, 5.04575988e-57,
-        5.12597736e-57, 5.20212050e-57, 5.27350941e-57, 5.33715865e-57,
-        5.39352665e-57, 5.44481329e-57, 5.49186671e-57, 5.53630129e-57,
-        5.57572483e-57, 5.60993232e-57, 5.63784590e-57, 5.65848908e-57,
-        5.67201059e-57, 5.67905694e-57, 5.68199832e-57, 5.67923121e-57,
-        5.66897885e-57, 5.65226477e-57, 5.63069360e-57, 5.60379803e-57,
-        5.57245044e-57, 5.53655706e-57, 5.49340072e-57, 5.44478285e-57,
-        5.39163924e-57, 5.33047578e-57, 5.26029597e-57, 5.18197158e-57,
-        5.09413180e-57, 4.99637855e-57, 4.89082945e-57, 4.77459635e-57,
-        4.64725008e-57, 4.50820680e-57, 4.35731600e-57, 4.19851283e-57,
-        4.03545394e-57, 3.87026706e-57, 3.70376912e-57, 3.53673426e-57,
-        3.37163819e-57, 3.21169945e-57, 3.05782907e-57, 2.91051914e-57,
-        2.77012500e-57, 2.63617597e-57, 2.50818858e-57, 2.38520166e-57,
-        2.26645808e-57, 2.15159482e-57, 2.03961373e-57, 1.92929396e-57,
-        1.82078679e-57, 1.71476465e-57, 1.61150392e-57, 1.51142572e-57,
-        1.41484374e-57, 1.32193767e-57, 1.23274193e-57, 1.14720964e-57,
-        1.06579666e-57, 9.89305946e-58, 9.18337272e-58, 8.52923200e-58,
-        7.92849903e-58, 7.37614687e-58, 6.86750481e-58, 6.39863400e-58,
-        5.96534781e-58, 5.56397608e-58, 5.19187084e-58, 4.84645568e-58,
-        4.52549411e-58, 4.22714047e-58, 3.94908484e-58, 3.69022991e-58,
-        3.44893487e-58, 3.22372177e-58, 3.01381626e-58, 2.81790695e-58,
-        2.63435575e-58, 2.46270763e-58, 2.30215049e-58, 2.15157245e-58,
-        2.01075428e-58, 1.87887787e-58, 1.75487492e-58, 1.63837740e-58,
-        1.52893488e-58, 1.42610139e-58, 1.32949330e-58, 1.23862832e-58,
-        1.15303289e-58, 1.07235900e-58, 9.96360901e-59, 9.24933758e-59,
-        8.57735291e-59, 7.94543265e-59, 7.35060428e-59, 6.78838137e-59,
-        6.25701232e-59, 5.75668419e-59, 5.28647303e-59, 4.84453598e-59,
-        4.42957014e-59, 4.04014818e-59]),
- &#39;antinumu&#39;: array([7.45795378e-57, 8.08464720e-57, 8.72245819e-57, 9.37213468e-57,
-        1.00335759e-56, 1.07049208e-56, 1.13853654e-56, 1.20738548e-56,
-        1.27709143e-56, 1.34761211e-56, 1.41860551e-56, 1.48954415e-56,
-        1.56016781e-56, 1.63031044e-56, 1.69964538e-56, 1.76804930e-56,
-        1.83580475e-56, 1.90294544e-56, 1.96867701e-56, 2.03315478e-56,
-        2.09690731e-56, 2.15930263e-56, 2.22031612e-56, 2.27977663e-56,
-        2.33787014e-56, 2.39477819e-56, 2.44991327e-56, 2.50330470e-56,
-        2.55528199e-56, 2.60554564e-56, 2.65376845e-56, 2.70012446e-56,
-        2.74472468e-56, 2.78813830e-56, 2.83036300e-56, 2.87102248e-56,
-        2.91000355e-56, 2.94657510e-56, 2.98089411e-56, 3.01208431e-56,
-        3.03892156e-56, 3.06181212e-56, 3.08086371e-56, 3.09604572e-56,
-        3.10717219e-56, 3.11374414e-56, 3.11596032e-56, 3.11422032e-56,
-        3.10857843e-56, 3.09953780e-56, 3.08701707e-56, 3.07045591e-56,
-        3.05047213e-56, 3.02659959e-56, 2.99848405e-56, 2.96665900e-56,
-        2.93115462e-56, 2.89212558e-56, 2.84955211e-56, 2.80356144e-56,
-        2.75452039e-56, 2.70177860e-56, 2.64462894e-56, 2.58312948e-56,
-        2.51685615e-56, 2.44503423e-56, 2.36758799e-56, 2.28528816e-56,
-        2.19864913e-56, 2.10792252e-56, 2.01383701e-56, 1.91744157e-56,
-        1.81996614e-56, 1.72353915e-56, 1.62976087e-56, 1.53918554e-56,
-        1.45222339e-56, 1.36920049e-56, 1.29005818e-56, 1.21442205e-56,
-        1.14199443e-56, 1.07274971e-56, 1.00622359e-56, 9.42117264e-57,
-        8.80985542e-57, 8.23170784e-57, 7.68522893e-57, 7.17262228e-57,
-        6.69303816e-57, 6.24258487e-57, 5.81920637e-57, 5.42103763e-57,
-        5.04731223e-57, 4.69810757e-57, 4.37302635e-57, 4.07220149e-57,
-        3.79424860e-57, 3.53713416e-57, 3.29931036e-57, 3.07922611e-57,
-        2.87512881e-57, 2.68572749e-57, 2.50967403e-57, 2.34587456e-57,
-        2.19331569e-57, 2.05107766e-57, 1.91837995e-57, 1.79450758e-57,
-        1.67880959e-57, 1.57073039e-57, 1.46965472e-57, 1.37503247e-57,
-        1.28632482e-57, 1.20316399e-57, 1.12520122e-57, 1.05200287e-57,
-        9.83290674e-58, 9.18738090e-58, 8.57972530e-58, 8.00798492e-58,
-        7.46958069e-58, 6.96245078e-58, 6.48529906e-58, 6.03486367e-58,
-        5.61001443e-58, 5.21039470e-58, 4.83388801e-58, 4.47955730e-58,
-        4.14689261e-58, 3.83357389e-58, 3.53789297e-58, 3.25878464e-58,
-        2.99542444e-58, 2.74731945e-58, 2.51383406e-58, 2.29442381e-58,
-        2.08840378e-58, 1.89463163e-58]),
- &#39;antinue&#39;: array([9.85213253e-59, 1.08911831e-58, 1.19857158e-58, 1.31354307e-58,
-        1.43325416e-58, 1.55688085e-58, 1.68266949e-58, 1.80990342e-58,
-        1.94067578e-58, 2.07551831e-58, 2.21099502e-58, 2.34662721e-58,
-        2.48331894e-58, 2.61947325e-58, 2.75371967e-58, 2.88598981e-58,
-        3.01710724e-58, 3.14694778e-58, 3.27477598e-58, 3.40191865e-58,
-        3.52815999e-58, 3.65131228e-58, 3.77218307e-58, 3.89215719e-58,
-        4.01135995e-58, 4.12882907e-58, 4.24311911e-58, 4.35391570e-58,
-        4.46188340e-58, 4.56741661e-58, 4.66915082e-58, 4.76796875e-58,
-        4.86279581e-58, 4.95285571e-58, 5.03941372e-58, 5.12218738e-58,
-        5.19998621e-58, 5.27450157e-58, 5.34667158e-58, 5.41448848e-58,
-        5.47717232e-58, 5.53559375e-58, 5.58772265e-58, 5.63555000e-58,
-        5.67881133e-58, 5.71762640e-58, 5.75588846e-58, 5.79180080e-58,
-        5.82501510e-58, 5.85685211e-58, 5.88545179e-58, 5.90808728e-58,
-        5.92480055e-58, 5.93656608e-58, 5.94530216e-58, 5.94744521e-58,
-        5.94225452e-58, 5.93543591e-58, 5.92484049e-58, 5.90693769e-58,
-        5.88180632e-58, 5.85159590e-58, 5.81396652e-58, 5.76831753e-58,
-        5.71552928e-58, 5.65417042e-58, 5.58285770e-58, 5.49975276e-58,
-        5.40562496e-58, 5.30169922e-58, 5.19043544e-58, 5.07061746e-58,
-        4.94065589e-58, 4.80296425e-58, 4.65873214e-58, 4.50985535e-58,
-        4.35730252e-58, 4.20084414e-58, 4.04163376e-58, 3.88126102e-58,
-        3.71964341e-58, 3.55653795e-58, 3.39099494e-58, 3.22252088e-58,
-        3.05283615e-58, 2.88385638e-58, 2.71782965e-58, 2.55552970e-58,
-        2.39706119e-58, 2.24285325e-58, 2.09268208e-58, 1.94630517e-58,
-        1.80507683e-58, 1.67115666e-58, 1.54633326e-58, 1.43154020e-58,
-        1.32651468e-58, 1.23051780e-58, 1.14268653e-58, 1.06204738e-58,
-        9.87901410e-59, 9.19581490e-59, 8.56536680e-59, 7.98243069e-59,
-        7.44297821e-59, 6.94333285e-59, 6.47996355e-59, 6.04976966e-59,
-        5.65053934e-59, 5.27937329e-59, 4.93420486e-59, 4.61330935e-59,
-        4.31407692e-59, 4.03480767e-59, 3.77415022e-59, 3.53095117e-59,
-        3.30401583e-59, 3.09188436e-59, 2.89400864e-59, 2.70906485e-59,
-        2.53555360e-59, 2.37285576e-59, 2.22057965e-59, 2.07752572e-59,
-        1.94310795e-59, 1.81696530e-59, 1.69833084e-59, 1.58695148e-59,
-        1.48219176e-59, 1.38349925e-59, 1.29058955e-59, 1.20297749e-59,
-        1.12018490e-59, 1.04200050e-59, 9.68266306e-60, 8.98759684e-60,
-        8.33184562e-60, 7.71182151e-60])}
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;numu&quot;</span><span class="p">,</span> <span class="s2">&quot;nue&quot;</span><span class="p">,</span> <span class="s2">&quot;antinumu&quot;</span><span class="p">,</span> <span class="s2">&quot;antinue&quot;</span><span class="p">]:</span>
@@ -2003,7 +1847,130 @@ document.write(`
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_convolution_58_0.png" src="../_images/notebooks_convolution_58_0.png" />
+<img alt="../_images/notebooks_convolution_57_0.png" src="../_images/notebooks_convolution_57_0.png" />
+</div>
+</div>
+<p></p><hr class="docutils" />
+<p>Let’s focus on 1 bin of <code class="docutils literal notranslate"><span class="pre">number</span></code>, between <code class="docutils literal notranslate"><span class="pre">minE</span></code> and <code class="docutils literal notranslate"><span class="pre">maxE</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[100]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span>
+    <span class="n">number</span><span class="o">.</span><span class="n">minE</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="n">number</span><span class="o">.</span><span class="n">numu</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="n">where</span><span class="o">=</span><span class="s2">&quot;pre&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="n">conv</span><span class="o">.</span><span class="n">print_dict</span><span class="p">[</span><span class="s2">&quot;numu&quot;</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s2">&quot;numu&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$E$ [GeV]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Neutrino number density [$\text</span><span class="si">{MeV}</span><span class="s2">^{-1} \cdot \text</span><span class="si">{PoT}</span><span class="s2">^{-1}$]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_convolution_61_0.png" src="../_images/notebooks_convolution_61_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[133]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span>
+    <span class="n">number</span><span class="o">.</span><span class="n">minE</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="n">number</span><span class="o">.</span><span class="n">numu</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="n">where</span><span class="o">=</span><span class="s2">&quot;pre&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="n">conv</span><span class="o">.</span><span class="n">print_dict</span><span class="p">[</span><span class="s2">&quot;numu&quot;</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s2">&quot;numu&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="n">n</span><span class="p">]:</span>
+    <span class="n">Emoy</span> <span class="o">=</span> <span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">minE</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">number</span><span class="o">.</span><span class="n">maxE</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">true_energy</span> <span class="o">=</span> <span class="n">ccqe_energy_res_interp</span><span class="o">.</span><span class="n">relatenergy</span> <span class="o">*</span> <span class="n">Emoy</span> <span class="o">+</span> <span class="n">Emoy</span>
+    <span class="n">true_integral</span> <span class="o">=</span> <span class="n">number</span><span class="o">.</span><span class="n">numu</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">maxE</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">number</span><span class="o">.</span><span class="n">minE</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">raw_integral</span> <span class="o">=</span> <span class="p">(</span><span class="n">true_energy</span> <span class="o">*</span> <span class="n">ccqe_energy_res_interp</span><span class="o">.</span><span class="n">events</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">true_events</span> <span class="o">=</span> <span class="n">ccqe_energy_res_interp</span><span class="o">.</span><span class="n">events</span> <span class="o">*</span> <span class="n">true_integral</span> <span class="o">/</span> <span class="n">raw_integral</span>
+
+    <span class="n">interpolated</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">number</span><span class="o">.</span><span class="n">minE</span><span class="p">,</span> <span class="n">xp</span><span class="o">=</span><span class="n">true_energy</span><span class="p">,</span> <span class="n">fp</span><span class="o">=</span><span class="n">true_events</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span>
+        <span class="n">true_energy</span><span class="p">,</span>
+        <span class="n">true_events</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span>
+        <span class="n">number</span><span class="o">.</span><span class="n">minE</span><span class="p">,</span>
+        <span class="n">interpolated</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Emoy = (number.minE.loc[n+1] + number.maxE.loc[n+1]) / 2</span>
+<span class="sd">plt.step(</span>
+<span class="sd">    ccqe_energy_res_interp.relatenergy * Emoy + Emoy,</span>
+<span class="sd">    ccqe_energy_res_interp.events * number.numu.loc[n+1],</span>
+<span class="sd">    color=&#39;lightcoral&#39;</span>
+<span class="sd">)</span>
+<span class="sd">Emoy = (number.minE.loc[n-1] + number.maxE.loc[n-1]) / 2</span>
+<span class="sd">plt.step(</span>
+<span class="sd">    ccqe_energy_res_interp.relatenergy * Emoy + Emoy,</span>
+<span class="sd">    ccqe_energy_res_interp.events * number.numu.loc[n-1],</span>
+<span class="sd">    color=&#39;indianred&#39;</span>
+<span class="sd">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="c1"># plt.ylim(bottom=2e-56)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$E$ [GeV]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Neutrino number density [$\text</span><span class="si">{MeV}</span><span class="s2">^{-1} \cdot \text</span><span class="si">{PoT}</span><span class="s2">^{-1}$]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_convolution_62_0.png" src="../_images/notebooks_convolution_62_0.png" />
+</div>
+</div>
+<p></p><p>Let’s check the integrals under each raw bin and the convoluted bins are still the same.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[134]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raw_integral</span> <span class="o">=</span> <span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">maxE</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">number</span><span class="o">.</span><span class="n">minE</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="o">*</span> <span class="n">number</span><span class="o">.</span><span class="n">numu</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+
+<span class="n">Emoy</span> <span class="o">=</span> <span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">minE</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">number</span><span class="o">.</span><span class="n">maxE</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">convoluted_integral</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="n">ccqe_energy_res_interp</span><span class="o">.</span><span class="n">relatenergy</span> <span class="o">*</span> <span class="n">Emoy</span> <span class="o">+</span> <span class="n">Emoy</span><span class="p">)</span> <span class="o">*</span> <span class="n">true_events</span>
+<span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">interpolated_integral</span> <span class="o">=</span> <span class="p">(</span><span class="n">interpolated</span> <span class="o">*</span> <span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">maxE</span> <span class="o">-</span> <span class="n">number</span><span class="o">.</span><span class="n">minE</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="n">raw_integral</span><span class="p">,</span> <span class="n">convoluted_integral</span><span class="p">,</span> <span class="n">interpolated_integral</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[134]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(4.3307792177915996e-58, 4.3307792177915996e-58, 4.86769918906229e-58)
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
 </div>
 </div>
 </section>
@@ -2011,7 +1978,7 @@ document.write(`
 <section id="Some-tests">
 <h2>Some tests<a class="headerlink" href="#Some-tests" title="Link to this heading">#</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l1</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
@@ -2031,11 +1998,11 @@ document.write(`
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_convolution_60_0.png" src="../_images/notebooks_convolution_60_0.png" />
+<img alt="../_images/notebooks_convolution_67_0.png" src="../_images/notebooks_convolution_67_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -2091,7 +2058,7 @@ Sum of convoluted pmf: 1.0000000000023057
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_convolution_61_1.png" src="../_images/notebooks_convolution_61_1.png" />
+<img alt="../_images/notebooks_convolution_68_1.png" src="../_images/notebooks_convolution_68_1.png" />
 </div>
 </div>
 <hr class="docutils" />
@@ -2101,7 +2068,7 @@ Sum of convoluted pmf: 1.0000000000023057
 </div>
 <p>The data is not very smooth, since it has been read-out from a figure in an article. The shape of <span class="math notranslate nohighlight">\(\sigma / E\)</span> looks like a Maxwell-Boltzmann, so we can try fitting it.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">maxwell</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
@@ -2110,7 +2077,7 @@ Sum of convoluted pmf: 1.0000000000023057
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lognormal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">mu</span><span class="p">):</span>
@@ -2121,7 +2088,7 @@ Sum of convoluted pmf: 1.0000000000023057
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># params = stats.maxwell.fit(xsec.xsec, floc=0)</span>
@@ -2130,7 +2097,7 @@ Sum of convoluted pmf: 1.0000000000023057
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[81]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">ccqe</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">ccqe</span><span class="o">.</span><span class="n">xsec</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;CCQE&quot;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;mid&quot;</span><span class="p">)</span>
@@ -2154,11 +2121,11 @@ Sum of convoluted pmf: 1.0000000000023057
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_convolution_68_0.png" src="../_images/notebooks_convolution_68_0.png" />
+<img alt="../_images/notebooks_convolution_75_0.png" src="../_images/notebooks_convolution_75_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">parameters</span><span class="p">)</span>
