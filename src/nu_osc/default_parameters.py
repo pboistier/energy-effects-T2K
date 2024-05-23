@@ -58,7 +58,7 @@ dm2_21_BF = 7.42e-5
 dm2_32_BF = 2.517e-3
 dm2_31_BF = dm2_21_BF + dm2_32_BF
 
-baseline = 295.0
+BASELINE = 295.0
 
 SQRT3 = sqrt(3.0)
 r"""float: Module-level constant

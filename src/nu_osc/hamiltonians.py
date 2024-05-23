@@ -576,7 +576,7 @@ def evolution_operator_3nu(hamiltonian_matrix, L):
     return evolution_operator
 
 
-def probability_energy_fixed(hamiltonian_matrix, beta, L=baseline * CONV_KM_TO_INV_EV):
+def probability_energy_fixed(hamiltonian_matrix, L=BASELINE * CONV_KM_TO_INV_EV):
     r"""Returns the 3nu oscillation probability.
 
     Returns the three-neutrino oscillation probabilities
@@ -611,9 +611,14 @@ def probability_energy_fixed(hamiltonian_matrix, beta, L=baseline * CONV_KM_TO_I
     """
     U = evolution_operator_3nu(hamiltonian_matrix, L)
 
-    if beta == 0:
-        return abs(U[0][1]) ** 2.0
-    elif beta == 1:
-        return abs(U[1][1]) ** 2
-    elif beta == 2:
-        return abs(U[2][1]) ** 2
+    Pee = abs(U[0][0]) ** 2.0
+    Pem = abs(U[1][0]) ** 2.0
+    Pet = abs(U[2][0]) ** 2.0
+    Pme = abs(U[0][1]) ** 2.0
+    Pmm = abs(U[1][1]) ** 2.0
+    Pmt = abs(U[2][1]) ** 2.0
+    Pte = abs(U[0][2]) ** 2.0
+    Ptm = abs(U[1][2]) ** 2.0
+    Ptt = abs(U[2][2]) ** 2.0
+
+    return Pee, Pem, Pet, Pme, Pmm, Pmt, Pte, Ptm, Ptt

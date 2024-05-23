@@ -1,4 +1,4 @@
-"""Convolution.
+"""Convolution
 
 This tool accepts comma separated value files (.csv).
 
@@ -40,8 +40,9 @@ def fluximport(name: str) -> pd.DataFrame:
         Dataframe which columns are
 
         >>> df = fluximport(name='some_csv_file.csv')
-        Index(['minE', 'maxE', 'numu', 'anti-numu', 'nue', 'anti-nue'
-        ...   'truenumu', 'trueantinumu', 'truenue', 'trueantinue'],
+        Index(['minE', 'maxE', 'numu', 'antinumu', 'nue', 'antinue',
+        ...   'truenumu', 'trueantinumu', 'truenue', 'trueantinue',
+        ...   'total', 'truetotal'],
         ...   dtype='float')
     """
 
@@ -67,6 +68,8 @@ print_dict = {
     "antinumu": r"$\overline{\nu}_\mu$",
     "nue": r"$\nu_e$",
     "antinue": r"$\overline{\nu}_e$",
+    "nutau": r"$\nu_\tau$",
+    "antinutau": r"$\overline{\nu}_\tau$",
 }
 
 

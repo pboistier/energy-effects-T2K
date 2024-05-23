@@ -358,7 +358,7 @@ document.write(`
                 <article class="bd-article">
 
   <h1>Source code for src.energy_effects_t2k.convolution</h1><div class="highlight"><pre>
-<span></span>&quot;&quot;&quot;Convolution.
+<span></span>&quot;&quot;&quot;Convolution
 
 This tool accepts comma separated value files (.csv).
 
@@ -402,8 +402,9 @@ def fluximport(name: str) -&gt; pd.DataFrame:
         Dataframe which columns are
 
         &gt;&gt;&gt; df = fluximport(name=&#39;some_csv_file.csv&#39;)
-        Index([&#39;minE&#39;, &#39;maxE&#39;, &#39;numu&#39;, &#39;anti-numu&#39;, &#39;nue&#39;, &#39;anti-nue&#39;
-        ...   &#39;truenumu&#39;, &#39;trueantinumu&#39;, &#39;truenue&#39;, &#39;trueantinue&#39;],
+        Index([&#39;minE&#39;, &#39;maxE&#39;, &#39;numu&#39;, &#39;antinumu&#39;, &#39;nue&#39;, &#39;antinue&#39;,
+        ...   &#39;truenumu&#39;, &#39;trueantinumu&#39;, &#39;truenue&#39;, &#39;trueantinue&#39;,
+        ...   &#39;total&#39;, &#39;truetotal&#39;],
         ...   dtype=&#39;float&#39;)
     &quot;&quot;&quot;
 
@@ -430,6 +431,8 @@ print_dict = {
     &quot;antinumu&quot;: r&quot;$\overline{\nu}_\mu$&quot;,
     &quot;nue&quot;: r&quot;$\nu_e$&quot;,
     &quot;antinue&quot;: r&quot;$\overline{\nu}_e$&quot;,
+    &quot;nutau&quot;: r&quot;$\nu_\tau$&quot;,
+    &quot;antinutau&quot;: r&quot;$\overline{\nu}_\tau$&quot;,
 }
 
 

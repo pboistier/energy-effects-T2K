@@ -68,7 +68,7 @@ def cronecer(beta):
         return 0
 
 
-def probability_vacuum(U, beta, E, L=baseline, dm2_21=dm2_21_BF, dm2_32=dm2_32_BF):
+def probability_vacuum(U, beta, E, L=BASELINE, dm2_21=dm2_21_BF, dm2_32=dm2_32_BF):
     r"""The probability of oscillations of muon neutrino for different energies in vacuum
 
     Parameters
@@ -118,7 +118,7 @@ def probability_vacuum(U, beta, E, L=baseline, dm2_21=dm2_21_BF, dm2_32=dm2_32_B
 
 
 def probability_vacuum_approx(
-    E, beta, theta_13=theta_13_BF, theta_23=theta_23_BF, L=baseline, dm2_32=dm2_32_BF
+    E, beta, theta_13=theta_13_BF, theta_23=theta_23_BF, L=BASELINE, dm2_32=dm2_32_BF
 ):
     r"""Computes the leading approximation of the probability of oscillations of muon neutrino in the long-baseline experiment
 
@@ -143,7 +143,7 @@ def probability_vacuum_approx(
     return P
 
 
-def probability_vacuum_anti(U, beta, E, L=baseline, dm2_21=dm2_21_BF, dm2_32=dm2_32_BF):
+def probability_vacuum_anti(U, beta, E, L=BASELINE, dm2_21=dm2_21_BF, dm2_32=dm2_32_BF):
     r"""The probability of oscillations of antimuon neutrino for different energies in vacuum
 
     Parameters
@@ -195,7 +195,6 @@ def probability_vacuum_anti(U, beta, E, L=baseline, dm2_21=dm2_21_BF, dm2_32=dm2
 
 def probability_general(
     E,
-    beta,
     theta_12=theta_12_BF,
     theta_13=theta_13_BF,
     theta_23=theta_23_BF,
@@ -203,7 +202,7 @@ def probability_general(
     dm2_21=dm2_21_BF,
     dm2_atm=dm2_32_BF,
     compute_matrix_multiplication=True,
-    L=baseline * CONV_KM_TO_INV_EV,
+    L=BASELINE * CONV_KM_TO_INV_EV,
     ME=True,
     MO="NO",
 ):
@@ -212,7 +211,6 @@ def probability_general(
     Parameters
     ----------
     all fundamenta oscillation parameters - by default BF values are set
-    beta - channel of the oscillations (beta=0 - electronic, beta=1 - muonic channel, beta=2 - taonic channel)
     E - energy of oscillating beam
     L - baseline of the oscillations
     ME - matter effects (if ME=True, ME are included, if ME=False, ME will be ignored (oscillations in vacuum))
@@ -228,39 +226,27 @@ def probability_general(
 
     if ME:
         VCC = VCC_EARTH_CRUST
-
-        h_vacuum_energy_ind = hamiltonian_3nu_energy_independent(
-            theta_12,
-            theta_13,
-            theta_23,
-            delta_cp,
-            dm2_21,
-            dm2_32,
-            compute_matrix_multiplication=True,
-        )
-        VCC_matrix = [[VCC, 0, 0], [0, 0, 0], [0, 0, 0]]
-        return np.array(
-            [
-                probability_energy_fixed(
-                    np.multiply(1.0 / x / 1.0e9, h_vacuum_energy_ind) + VCC_matrix,
-                    beta,
-                    L,
-                )
-                for x in E
-            ]
-        )
     else:
-        U = PMNS(
-            theta_12=theta_12, theta_13=theta_13, theta_23=theta_23, delta_cp=delta_cp
-        )
-        return probability_vacuum(
-            U=U, beta=beta, E=E, L=baseline, dm2_21=dm2_21, dm2_32=dm2_32
-        )
+        VCC = 0
+
+    h_vacuum_energy_ind = hamiltonian_3nu_energy_independent(
+        theta_12,
+        theta_13,
+        theta_23,
+        delta_cp,
+        dm2_21,
+        dm2_32,
+        compute_matrix_multiplication=True,
+    )
+    VCC_matrix = [[VCC, 0, 0], [0, 0, 0], [0, 0, 0]]
+    return probability_energy_fixed(
+        np.multiply(1.0 / E / 1.0e9, h_vacuum_energy_ind) + VCC_matrix,
+        L,
+    )
 
 
 def probability_general_anti(
     E,
-    beta,
     theta_12=theta_12_BF,
     theta_13=theta_13_BF,
     theta_23=theta_23_BF,
@@ -268,7 +254,7 @@ def probability_general_anti(
     dm2_21=dm2_21_BF,
     dm2_atm=dm2_32_BF,
     compute_matrix_multiplication=True,
-    L=baseline * CONV_KM_TO_INV_EV,
+    L=BASELINE * CONV_KM_TO_INV_EV,
     ME=True,
     MO="NO",
 ):
@@ -281,34 +267,23 @@ def probability_general_anti(
 
     if ME:
         VCC = -VCC_EARTH_CRUST
-
-        h_vacuum_energy_ind = hamiltonian_3nu_energy_independent(
-            theta_12,
-            theta_13,
-            theta_23,
-            -delta_cp,
-            dm2_21,
-            dm2_32,
-            compute_matrix_multiplication=True,
-        )
-        VCC_matrix = [[VCC, 0, 0], [0, 0, 0], [0, 0, 0]]
-        return np.array(
-            [
-                probability_energy_fixed(
-                    np.multiply(1.0 / x / 1.0e9, h_vacuum_energy_ind) + VCC_matrix,
-                    beta,
-                    L,
-                )
-                for x in E
-            ]
-        )
     else:
-        U = PMNS(
-            theta_12=theta_12, theta_13=theta_13, theta_23=theta_23, delta_cp=delta_cp
-        )
-        return probability_vacuum_anti(
-            U=U, beta=beta, E=E, L=baseline, dm2_21=dm2_21, dm2_32=dm2_32
-        )
+        VCC = 0
+
+    h_vacuum_energy_ind = hamiltonian_3nu_energy_independent(
+        theta_12,
+        theta_13,
+        theta_23,
+        -delta_cp,
+        dm2_21,
+        dm2_32,
+        compute_matrix_multiplication=True,
+    )
+    VCC_matrix = [[VCC, 0, 0], [0, 0, 0], [0, 0, 0]]
+    return probability_energy_fixed(
+        np.multiply(1.0 / E / 1.0e9, h_vacuum_energy_ind) + VCC_matrix,
+        L,
+    )
 
 
 def multiline(xs, ys, c, ax=None, **kwargs):
