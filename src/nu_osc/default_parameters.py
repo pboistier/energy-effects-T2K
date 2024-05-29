@@ -60,6 +60,10 @@ dm2_31_BF = dm2_21_BF + dm2_32_BF
 
 BASELINE = 295.0
 
+SK_POT = 14.94e20
+
+TOT_NEUTRONS = 6.0209e33
+
 SQRT3 = sqrt(3.0)
 r"""float: Module-level constant
 
