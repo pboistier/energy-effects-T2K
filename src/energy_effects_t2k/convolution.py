@@ -16,6 +16,7 @@ import pandas as pd
 import scipy.signal as sig
 import src.nu_osc.osc_prob as osc
 import src.nu_osc.default_parameters as param
+import matplotlib.pyplot as plt
 
 
 def fluximport(name: str) -> pd.DataFrame:
@@ -295,6 +296,7 @@ def oscillate(
     return oscillated
 
 
+"""
 def envelope(
     to_oscillate: pd.DataFrame,
     params: dict[str, list[float]],
@@ -321,3 +323,342 @@ def envelope(
     oscillate_min = pd.concat(list_of_df, keys=keys).groupby(level=1).min()
 
     return oscillate_min, oscillate_max
+"""
+
+
+def envelope_list(
+    to_oscillate: pd.DataFrame,
+    vparams: dict[str, list[float]],
+    fparams: dict[str, float] = {},
+    gate: pd.DataFrame = None,
+    n: int = 100,
+) -> list[pd.DataFrame]:
+
+    if len(vparams) == 0:
+        if len(fparams) == 0:
+            raise ValueError("Empty envelope.")
+
+        else:
+            oscillated = oscillate(to_oscillate=to_oscillate, **fparams)
+            if gate is not None:
+                oscillated = convolve(input=oscillated, gate=gate)
+            return [oscillated]
+
+    else:
+        key, values = vparams.popitem()
+        sample = np.linspace(*values, n)
+        list_of_df = []
+
+        for value in sample:
+            list_of_df += envelope_list(
+                to_oscillate=to_oscillate,
+                vparams=vparams.copy(),
+                fparams=fparams | {key: value},
+                gate=gate,
+                n=n,
+            )
+
+        return list_of_df
+
+
+def envelope(
+    to_oscillate: pd.DataFrame,
+    params: dict[str, list[float]],
+    gate: pd.DataFrame = None,
+    n: int = 100,
+) -> tuple[pd.DataFrame, ...]:
+
+    m = len(params)
+    keys = np.linspace(0.0, n**m, n**m)
+    list_of_df = envelope_list(
+        to_oscillate=to_oscillate, vparams=params.copy(), gate=gate, n=n
+    )
+    oscillate_max = pd.concat(list_of_df, keys=keys).groupby(level=1).max()
+    oscillate_min = pd.concat(list_of_df, keys=keys).groupby(level=1).min()
+
+    return oscillate_min, oscillate_max
+
+
+carabadjac_transform = {
+    "theta_12": ["theta_12", r"$\theta_{12}$"],
+    "theta_13": ["theta_13", r"$\theta_{13}$"],
+    "theta_23": ["theta_23", r"$\theta_{23}$"],
+    "dm2_21": ["Dm_square_21", r"$\Delta m_{21}^2$"],
+    "dm2_atm": ["Dm_square_32", r"$\Delta m_{32}^2$"],
+    "delta_cp": ["delta_CP", r"$\delta_\text{CP}$"],
+}
+
+param_transform = {"bf": "BF", "p1sigma": r"$\pm 1\sigma$", "p3sigma": r"$\pm 3\sigma$"}
+
+"""
+def oscillation_analysis(
+    number,
+    energy_resolution,
+    params,
+    flavors=['numu', 'nue', 'anitnumu', 'antinue'],
+):
+    for key in ['bf', 'p1sigma', 'm1sigma', 'p3sigma', 'm3sigma']:
+        number_oscillated[key] = oscillate(to_oscillate=number, **{params})
+"""
+
+
+def oscillated_plot(
+    number_oscillated,
+    oscillated_smeared,
+    params,
+    channel="",
+    keys=["numu"],
+):
+    fig, axs = plt.subplots(
+        2,
+        1,
+        sharex="col",
+        sharey="row",
+        figsize=(15, 10),
+        gridspec_kw={"height_ratios": [2, 1]},
+    )
+    fig.subplots_adjust(wspace=0, hspace=0)
+
+    to_print = ", ".join([carabadjac_transform[x][1] for x in params.keys()])
+
+    for key in keys:
+        axs[0].plot(
+            (number_oscillated["bf"].minE + number_oscillated["bf"].maxE) / 2,
+            number_oscillated["bf"][key],
+            label=print_dict[key] + r" ($\times \mathcal{P}$) (" + to_print + " BF)",
+            color="indianred",
+        )
+
+        axs[0].plot(
+            (number_oscillated["p1sigma"].minE + number_oscillated["p1sigma"].maxE) / 2,
+            number_oscillated["p1sigma"][key],
+            label=print_dict[key]
+            + r" ($\times \mathcal{P}$) ("
+            + to_print
+            + r" $\pm 1\sigma$)",
+            color="indianred",
+            linestyle="--",
+        )
+
+        axs[0].plot(
+            (number_oscillated["m1sigma"].minE + number_oscillated["m1sigma"].maxE) / 2,
+            number_oscillated["m1sigma"][key],
+            color="indianred",
+            linestyle="--",
+        )
+
+        axs[0].plot(
+            (number_oscillated["p3sigma"].minE + number_oscillated["p3sigma"].maxE) / 2,
+            number_oscillated["p3sigma"][key],
+            label=print_dict[key]
+            + r" ($\times \mathcal{P}$) ("
+            + to_print
+            + r" $\pm 3\sigma$)",
+            color="indianred",
+            linestyle="dotted",
+        )
+
+        axs[0].plot(
+            (number_oscillated["m3sigma"].minE + number_oscillated["m3sigma"].maxE) / 2,
+            number_oscillated["m3sigma"][key],
+            color="indianred",
+            linestyle="dotted",
+        )
+
+        axs[0].fill_between(
+            (number_oscillated["max"].minE + number_oscillated["min"].maxE) / 2,
+            number_oscillated["min"][key],
+            number_oscillated["max"][key],
+            # label=print_dict[key] + r" ($\times \mathcal{P})\ (\Delta m_{32}^2 \pm 3\sigma$)",
+            color="indianred",
+            alpha=0.5,
+        )
+
+        axs[0].plot(
+            (oscillated_smeared["bf"].minE + oscillated_smeared["bf"].maxE) / 2,
+            oscillated_smeared["bf"][key],
+            label=print_dict[key]
+            + r" ($\times \mathcal{P} \otimes \delta E$) ("
+            + to_print
+            + " BF)",
+            color="cadetblue",
+        )
+
+        axs[0].plot(
+            (oscillated_smeared["p1sigma"].minE + oscillated_smeared["p1sigma"].maxE)
+            / 2,
+            oscillated_smeared["p1sigma"][key],
+            label=print_dict[key]
+            + r" ($\times \mathcal{P} \otimes \delta E$) ("
+            + to_print
+            + r" $\pm 1\sigma$)",
+            color="cadetblue",
+            linestyle="--",
+        )
+
+        axs[0].plot(
+            (oscillated_smeared["m1sigma"].minE + oscillated_smeared["m1sigma"].maxE)
+            / 2,
+            oscillated_smeared["m1sigma"][key],
+            color="cadetblue",
+            linestyle="--",
+        )
+
+        axs[0].plot(
+            (oscillated_smeared["p3sigma"].minE + oscillated_smeared["p3sigma"].maxE)
+            / 2,
+            oscillated_smeared["p3sigma"][key],
+            label=print_dict[key]
+            + r" ($\times \mathcal{P} \otimes \delta E$) ("
+            + to_print
+            + r" $\pm 3\sigma$)",
+            color="cadetblue",
+            linestyle="dotted",
+        )
+
+        axs[0].plot(
+            (oscillated_smeared["m3sigma"].minE + oscillated_smeared["m3sigma"].maxE)
+            / 2,
+            oscillated_smeared["m3sigma"][key],
+            color="cadetblue",
+            linestyle="dotted",
+        )
+
+        axs[0].fill_between(
+            (oscillated_smeared["max"].minE + oscillated_smeared["min"].maxE) / 2,
+            oscillated_smeared["max"][key],
+            oscillated_smeared["min"][key],
+            # label=print_dict[key] + r" ($\times \mathcal{P})\ (\Delta m_{32}^2 \pm 3\sigma$)",
+            color="cadetblue",
+            alpha=0.5,
+        )
+
+        axs[1].plot(
+            (number_oscillated["bf"].minE + number_oscillated["bf"].maxE) / 2,
+            number_oscillated["bf"][key] / number_oscillated["bf"][key],
+            color="indianred",
+        )
+
+        axs[1].plot(
+            (number_oscillated["p1sigma"].minE + number_oscillated["p1sigma"].maxE) / 2,
+            number_oscillated["p1sigma"][key] / number_oscillated["bf"][key],
+            color="indianred",
+            linestyle="--",
+        )
+
+        axs[1].plot(
+            (number_oscillated["m1sigma"].minE + number_oscillated["m1sigma"].maxE) / 2,
+            number_oscillated["m1sigma"][key] / number_oscillated["bf"][key],
+            color="indianred",
+            linestyle="--",
+        )
+
+        axs[1].plot(
+            (number_oscillated["p3sigma"].minE + number_oscillated["p3sigma"].maxE) / 2,
+            number_oscillated["p3sigma"][key] / number_oscillated["bf"][key],
+            color="indianred",
+            linestyle="dotted",
+        )
+
+        axs[1].plot(
+            (number_oscillated["m3sigma"].minE + number_oscillated["m3sigma"].maxE) / 2,
+            number_oscillated["m3sigma"][key] / number_oscillated["bf"][key],
+            color="indianred",
+            linestyle="dotted",
+        )
+
+        axs[1].fill_between(
+            (number_oscillated["max"].minE + number_oscillated["min"].maxE) / 2,
+            number_oscillated["max"][key] / number_oscillated["bf"][key],
+            number_oscillated["min"][key] / number_oscillated["bf"][key],
+            color="indianred",
+            alpha=0.5,
+        )
+
+        axs[1].plot(
+            (oscillated_smeared["bf"].minE + oscillated_smeared["bf"].maxE) / 2,
+            oscillated_smeared["bf"][key] / oscillated_smeared["bf"][key],
+            color="cadetblue",
+        )
+
+        axs[1].plot(
+            (oscillated_smeared["p1sigma"].minE + oscillated_smeared["p1sigma"].maxE)
+            / 2,
+            oscillated_smeared["p1sigma"][key] / oscillated_smeared["bf"][key],
+            color="cadetblue",
+            linestyle="--",
+        )
+
+        axs[1].plot(
+            (oscillated_smeared["m1sigma"].minE + oscillated_smeared["m1sigma"].maxE)
+            / 2,
+            oscillated_smeared["m1sigma"][key] / oscillated_smeared["bf"][key],
+            color="cadetblue",
+            linestyle="--",
+        )
+
+        axs[1].plot(
+            (oscillated_smeared["p3sigma"].minE + oscillated_smeared["p3sigma"].maxE)
+            / 2,
+            oscillated_smeared["p3sigma"][key] / oscillated_smeared["bf"][key],
+            color="cadetblue",
+            linestyle="dotted",
+        )
+
+        axs[1].plot(
+            (oscillated_smeared["m3sigma"].minE + oscillated_smeared["m3sigma"].maxE)
+            / 2,
+            oscillated_smeared["m3sigma"][key] / oscillated_smeared["bf"][key],
+            color="cadetblue",
+            linestyle="dotted",
+        )
+
+        axs[1].fill_between(
+            (oscillated_smeared["max"].minE + oscillated_smeared["min"].maxE) / 2,
+            oscillated_smeared["max"][key] / oscillated_smeared["bf"][key],
+            oscillated_smeared["min"][key] / oscillated_smeared["bf"][key],
+            color="cadetblue",
+            alpha=0.5,
+        )
+
+    for ax in axs:
+        ax.axvline(x=0.6, linestyle="--", color="black")
+    axs[0].text(
+        x=0.6,
+        y=0.9,
+        s=r"600 MeV",
+        ha="right",
+        va="top",
+        rotation=90,
+        transform=axs[0].get_xaxis_transform(),
+    )
+
+    if channel != "":
+        props = dict(boxstyle="round", facecolor="yellow", alpha=0.5)
+        axs[0].text(
+            0.05,
+            0.95,
+            channel,
+            transform=axs[0].transAxes,
+            fontsize=20,
+            verticalalignment="top",
+            bbox=props,
+        )
+
+    # plt.xscale("log")
+    # plt.yscale("log")
+    axs[1].set_xlabel(r"$E$ [GeV]")
+    axs[0].set_ylabel(r"Number per energy bin [$\text{MeV}^{-1}$]")
+    axs[1].set_ylabel(r"Normalized to BF")
+    # plt.ylim(bottom=1e-1)
+    axs[0].set_xlim([0.0, 1.2])
+    # axs[1].set_ylim([0.9,1.12])
+    # plt.ylim([0.02,0.1])
+    plt.suptitle(
+        r"Number of expected CCQE $\nu_\mu$ at SK in (FHC | Nominal) with NuFIT24 param. in (NO | ME)"
+    )
+    axs[0].legend()
+
+    plt.tight_layout()
+    fig.subplots_adjust(wspace=0, hspace=0)
+    plt.show()
