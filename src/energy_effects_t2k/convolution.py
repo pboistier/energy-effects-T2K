@@ -243,6 +243,36 @@ def convolve(
     return output
 
 
+def bias(
+    input: pd.DataFrame,
+    a: float = 0.0,
+    b: float = 0.0,
+    x_keys: str | list[str] = ["minE", "maxE"],
+    y_keys: str | list[str] = [
+        "numu",
+        "nue",
+        "nutau",
+        "antinumu",
+        "antinue",
+        "antinutau",
+    ],
+) -> pd.DataFrame:
+
+    output = pd.DataFrame()
+    for key in x_keys:
+        output[key] = input[key]
+
+    for key in y_keys:
+        interpolated = np.interp(
+            x=(input.minE + input.maxE) / 2,
+            xp=(1 + a) * (input.minE + input.maxE) / 2 + b,
+            fp=input[key],
+        )
+        output[key] = interpolated
+
+    return output
+
+
 def oscillate(
     to_oscillate: pd.DataFrame,
     **osc_param,
@@ -365,7 +395,7 @@ def envelope(
     to_oscillate: pd.DataFrame,
     params: dict[str, list[float]],
     gate: pd.DataFrame = None,
-    n: int = 100,
+    n: int = 10,
 ) -> tuple[pd.DataFrame, ...]:
 
     m = len(params)
@@ -407,7 +437,9 @@ def oscillated_plot(
     oscillated_smeared,
     params,
     channel="",
+    resolution="",
     keys=["numu"],
+    number=None,
 ):
     fig, axs = plt.subplots(
         2,
@@ -621,6 +653,49 @@ def oscillated_plot(
             alpha=0.5,
         )
 
+        if number is not None:
+            axs[0].fill_between(
+                (number.minE + number.maxE) / 2,
+                number_oscillated["bf"][key]
+                * (1 + 1 / np.sqrt(number[key] * (number.maxE - number.minE) * 1e3)),
+                [
+                    max(x, 0)
+                    for x in number_oscillated["bf"][key]
+                    * (1 - 1 / np.sqrt(number[key] * (number.maxE - number.minE) * 1e3))
+                ],
+                facecolor="none",
+                edgecolor="indianred",
+                hatch="/",
+                alpha=0.5,
+                zorder=-1,
+                label=print_dict[key] + r" ($\times \mathcal{P}$) stat. uncertainty",
+            )
+
+            ylim = axs[1].get_ylim()
+
+            axs[1].fill_between(
+                (number.minE + number.maxE) / 2,
+                [
+                    min(1 + x, ylim[1])
+                    for x in (
+                        1 / (np.sqrt(number[key] * (number.maxE - number.minE) * 1e3))
+                    ).replace([np.inf, -np.inf], [*ylim])
+                ],
+                [
+                    max(1 - x, ylim[0])
+                    for x in (
+                        1 / (np.sqrt(number[key] * (number.maxE - number.minE) * 1e3))
+                    ).replace([np.inf, -np.inf], [*ylim])
+                ],
+                facecolor="none",
+                edgecolor="indianred",
+                hatch="/",
+                alpha=0.5,
+                zorder=-1,
+            )
+
+            axs[1].set_ylim(*ylim)
+
     for ax in axs:
         ax.axvline(x=0.6, linestyle="--", color="black")
     axs[0].text(
@@ -636,13 +711,28 @@ def oscillated_plot(
     if channel != "":
         props = dict(boxstyle="round", facecolor="yellow", alpha=0.5)
         axs[0].text(
-            0.05,
-            0.95,
+            0.07,
+            0.93,
             channel,
             transform=axs[0].transAxes,
             fontsize=20,
-            verticalalignment="top",
+            va="center",
+            ha="center",
             bbox=props,
+        )
+
+    if resolution != "":
+        props = dict(boxstyle="round", facecolor="yellow", alpha=0.5)
+        axs[0].text(
+            0.07,
+            0.88,
+            r"$\delta E =$" + resolution,
+            transform=axs[0].transAxes,
+            fontsize=10,
+            va="top",
+            ha="center",
+            bbox=props,
+            # rotation=90
         )
 
     # plt.xscale("log")
@@ -656,12 +746,39 @@ def oscillated_plot(
     # plt.ylim([0.02,0.1])
     if "anti" in keys[0]:
         plt.suptitle(
-            r"Number of expected CCQE $\nu_\mu$ at SK in (RHC | Nominal) with NuFIT24 param. in (NO | ME)"
+            r"Number of expected CCQE "
+            + channel
+            + r" at SK in (RHC | Nominal) with NuFIT24 param. in (NO | ME)"
         )
     else:
         plt.suptitle(
-            r"Number of expected CCQE $\nu_\mu$ at SK in (FHC | Nominal) with NuFIT24 param. in (NO | ME)"
+            r"Number of expected CCQE "
+            + channel
+            + r" at SK in (FHC | Nominal) with NuFIT24 param. in (NO | ME)"
         )
+
+    if "nue" in keys[0]:
+        for ax in axs:
+            ax.fill_betweenx(
+                y=[*ax.get_ylim()],
+                x1=0.00773,
+                color="black",
+                alpha=0.2,
+                label=r"Cherenkov detection limit",
+            )
+            ax.set_ymargin(0)
+
+    if "numu" in keys[0]:
+        for ax in axs:
+            ax.fill_betweenx(
+                y=[*ax.get_ylim()],
+                x1=0.16,
+                color="black",
+                alpha=0.2,
+                label=r"Cherenkov detection limit",
+            )
+            ax.set_ymargin(0)
+
     axs[0].legend()
 
     plt.tight_layout()
