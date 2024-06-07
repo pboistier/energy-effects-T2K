@@ -651,12 +651,17 @@ def oscillated_plot(
     axs[0].set_ylabel(r"Number per energy bin [$\text{MeV}^{-1}$]")
     axs[1].set_ylabel(r"Normalized to BF")
     # plt.ylim(bottom=1e-1)
-    axs[0].set_xlim([0.0, 1.2])
+    axs[0].set_xlim([0.0, 1.4])
     # axs[1].set_ylim([0.9,1.12])
     # plt.ylim([0.02,0.1])
-    plt.suptitle(
-        r"Number of expected CCQE $\nu_\mu$ at SK in (FHC | Nominal) with NuFIT24 param. in (NO | ME)"
-    )
+    if "anti" in keys[0]:
+        plt.suptitle(
+            r"Number of expected CCQE $\nu_\mu$ at SK in (RHC | Nominal) with NuFIT24 param. in (NO | ME)"
+        )
+    else:
+        plt.suptitle(
+            r"Number of expected CCQE $\nu_\mu$ at SK in (FHC | Nominal) with NuFIT24 param. in (NO | ME)"
+        )
     axs[0].legend()
 
     plt.tight_layout()
