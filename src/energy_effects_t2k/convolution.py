@@ -439,7 +439,7 @@ def oscillated_plot(
     channel="",
     resolution="",
     keys=["numu"],
-    number=None,
+    uncertainty=False,
 ):
     fig, axs = plt.subplots(
         2,
@@ -653,15 +653,30 @@ def oscillated_plot(
             alpha=0.5,
         )
 
-        if number is not None:
+        if uncertainty:
             axs[0].fill_between(
-                (number.minE + number.maxE) / 2,
+                (number_oscillated["bf"].minE + number_oscillated["bf"].maxE) / 2,
                 number_oscillated["bf"][key]
-                * (1 + 1 / np.sqrt(number[key] * (number.maxE - number.minE) * 1e3)),
+                + np.sqrt(
+                    number_oscillated["bf"][key]
+                    / (
+                        (number_oscillated["bf"].maxE - number_oscillated["bf"].minE)
+                        * 1e3
+                    )
+                ),
                 [
                     max(x, 0)
                     for x in number_oscillated["bf"][key]
-                    * (1 - 1 / np.sqrt(number[key] * (number.maxE - number.minE) * 1e3))
+                    - np.sqrt(
+                        number_oscillated["bf"][key]
+                        / (
+                            (
+                                number_oscillated["bf"].maxE
+                                - number_oscillated["bf"].minE
+                            )
+                            * 1e3
+                        )
+                    )
                 ],
                 facecolor="none",
                 edgecolor="indianred",
@@ -674,17 +689,37 @@ def oscillated_plot(
             ylim = axs[1].get_ylim()
 
             axs[1].fill_between(
-                (number.minE + number.maxE) / 2,
+                (number_oscillated["bf"].minE + number_oscillated["bf"].maxE) / 2,
                 [
                     min(1 + x, ylim[1])
                     for x in (
-                        1 / (np.sqrt(number[key] * (number.maxE - number.minE) * 1e3))
+                        1
+                        / (
+                            np.sqrt(
+                                number_oscillated["bf"][key]
+                                * (
+                                    number_oscillated["bf"].maxE
+                                    - number_oscillated["bf"].minE
+                                )
+                                * 1e3
+                            )
+                        )
                     ).replace([np.inf, -np.inf], [*ylim])
                 ],
                 [
                     max(1 - x, ylim[0])
                     for x in (
-                        1 / (np.sqrt(number[key] * (number.maxE - number.minE) * 1e3))
+                        1
+                        / (
+                            np.sqrt(
+                                number_oscillated["bf"][key]
+                                * (
+                                    number_oscillated["bf"].maxE
+                                    - number_oscillated["bf"].minE
+                                )
+                                * 1e3
+                            )
+                        )
                     ).replace([np.inf, -np.inf], [*ylim])
                 ],
                 facecolor="none",

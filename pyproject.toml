@@ -23,7 +23,11 @@ dependencies = [
     "pydata-sphinx-theme>=0.15.2",
     "pandas>=2.2.2",
     "black[jupyter]>=24.4.2",
-    "scipy>=1.13.0",
+    "scipy>=1.13.1",
+    "iminuit>=2.26.0",
+    "numba>=0.59.1",
+    "ipywidgets>=8.1.3",
+    "unicodeitplus>=0.3.1",
 ]
 requires-python = ">=3.10"
 readme = "README.md"
