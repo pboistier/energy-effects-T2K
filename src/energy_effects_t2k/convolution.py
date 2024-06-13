@@ -17,6 +17,7 @@ import scipy.signal as sig
 import src.nu_osc.osc_prob as osc
 import src.nu_osc.default_parameters as param
 import matplotlib.pyplot as plt
+from numba import jit
 
 
 def fluximport(name: str) -> pd.DataFrame:
