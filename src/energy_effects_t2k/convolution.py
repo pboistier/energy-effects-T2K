@@ -84,8 +84,6 @@ def xsecimport(
     name: str,
     mode: str | list[str] = "raw",
     on=None,
-    keep_left: int = -1,
-    keep_right: int = 0,
 ) -> pd.DataFrame:
     df = pd.read_csv(name, delimiter=";", names=["energy", "xsec"])
 
@@ -100,10 +98,8 @@ def xsecimport(
         cachedf["xsec"] = sig.savgol_filter(
             x=df.xsec, window_length=12, polyorder=1, mode="interp"
         )
-        for key in ["energy", "xsec"]:
-            cachedf.loc[0:keep_left, key] = df.loc[0:keep_left, key]
-            cachedf.loc[keep_right:-1, key] = df.loc[keep_right:-1, key]
-        df = cachedf
+        cachedf.xsec = cachedf.xsec.mask(cachedf.xsec < 0, 0)
+        df = cachedf  # * (df.xsec * df.energy).sum() / (cachedf.xsec * cachedf.energy).sum()
 
     if "interp" in mode:
         if on is None:
@@ -112,7 +108,7 @@ def xsecimport(
             cachedf = pd.DataFrame()
             cachedf["energy"] = on
             cachedf["xsec"] = np.interp(x=on, xp=df.energy, fp=df.xsec, left=0, right=0)
-            df = cachedf
+            df = cachedf  # * (df.xsec * df.energy).sum() / (cachedf.xsec * cachedf.energy).sum()
 
     return df
 
